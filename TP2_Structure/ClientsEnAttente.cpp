@@ -20,7 +20,6 @@ ClientsEnAttente::~ClientsEnAttente()
 	pSuivant_ = 0;
 	delete pPrécédent_;
 	delete pSuivant_;
-	
 }
 
 void ClientsEnAttente::SetClientSection(int section)
