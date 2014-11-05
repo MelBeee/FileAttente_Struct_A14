@@ -5,16 +5,32 @@
 //-------------------------------------------------
 #include "ClientsEnAttente.h"
 
-ClientsEnAttente::ClientsEnAttente()
+ClientsEnAttente::ClientsEnAttente(string nom, int nbPersonne, int section)
 {
-   SetPrécédent(0);   // 0 indique qu'on ne connait pas l'adresse; équivaut à null
-   SetSuivant(0);
+	SetPrécédent(nullptr);   // 0 indique qu'on ne connait pas l'adresse; équivaut à null
+	SetSuivant(nullptr);
+	clientsTable.nomReservation = nom;
+	clientsTable.nombreDePersonnes = nbPersonne;
+	SetClientSection(section);
 }
 
-ClientsEnAttente::ClientsEnAttente(string nom)
+void ClientsEnAttente::SetClientSection(int section)
 {
-   SetPrécédent(nullptr);   // 0 indique qu'on ne connait pas l'adresse; équivaut à null
-   SetSuivant(nullptr);
+	if (section >= 100)
+	{
+		clientsTable.sectionChoisis.push_back(SalleManger);
+		section -= 100;
+	}
+	if (section >= 10)
+	{
+		clientsTable.sectionChoisis.push_back(TerrasseFumeur);
+		section -= 10;
+	}
+	if (section >= 1)
+	{
+		clientsTable.sectionChoisis.push_back(TerrasseNonFumeur);
+		section -= 1;
+	}
 }
 
 void ClientsEnAttente::SetPrécédent(ClientsEnAttente * p)
@@ -25,6 +41,11 @@ void ClientsEnAttente::SetPrécédent(ClientsEnAttente * p)
 void ClientsEnAttente::SetSuivant(ClientsEnAttente *p)
 {
    pSuivant_ = p;
+}
+
+vector<Section> ClientsEnAttente::GetClientSection()
+{
+	return clientsTable.sectionChoisis;
 }
 
 ClientsEnAttente * ClientsEnAttente::GetPrécédent() const

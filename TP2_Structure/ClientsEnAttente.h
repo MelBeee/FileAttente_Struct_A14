@@ -11,7 +11,7 @@ using namespace std;
 
 enum Section
 {
-   TerrasseNonFumeur, TerrasseFumeur, SalleManger
+   TerrasseNonFumeur = 1, TerrasseFumeur = 10, SalleManger = 100
 };
 
 class ClientsEnAttente
@@ -29,13 +29,15 @@ class ClientsEnAttente
 
 public:
    //--- Constructeurs
-   ClientsEnAttente();
-   ClientsEnAttente(string nom);
+
+   ClientsEnAttente(string nom,int nbPersonne, int section);
 
    void SetPrécédent(ClientsEnAttente * p);
    void SetSuivant(ClientsEnAttente *p);
    void SetClient(Client c);
+   void SetClientSection(int section);
 
+   vector<Section> GetClientSection();
    ClientsEnAttente * GetPrécédent() const;
    ClientsEnAttente * GetSuivant() const;
    Client GetClient(); 
