@@ -14,9 +14,14 @@ ClientsEnAttente* FileAttente::GetDernier() const
    return pDernier_;
 }
 
-void FileAttente::SetNbElements(int nb)
+void FileAttente::SetNbGroupes(int nb)
 {
-   nbElements_ = nb;
+   nbGroupes_ = nb;
+}
+
+void FileAttente::SetNbPersonnes(int nb)
+{
+	nbPersonne_ = nb;
 }
 
 void FileAttente::SetPremier(ClientsEnAttente * p)
@@ -36,7 +41,7 @@ bool FileAttente::EstVide() const
 
 FileAttente::FileAttente()
 {
-   SetNbElements(0);  // il n'y a pas d'éléments dans la liste
+	SetNbGroupes(0);  // il n'y a pas d'éléments dans la liste
    SetPremier(0);     // on pointe sur rien
    SetDernier(0);
 }
@@ -68,7 +73,7 @@ void FileAttente::AjouterEnFinDeListe(string nom)
       GetDernier()->SetSuivant(pNouveau);
       SetDernier(pNouveau);
    }
-   SetNbElements(GetNbElements() + 1);
+   SetNbElements(ObtenirNbGroupes() + 1);
 }
 
 string FileAttente::RetirerDeLaListe()
@@ -91,15 +96,20 @@ string FileAttente::RetirerDeLaListe()
    }
    //--- le delete est CRUCIAL comme nous l'avons vu en fin de cours
    delete pTemporaire;  // retourne au système l'espace réservé
-   SetNbElements(GetNbElements() - 1);
+   SetNbGroupes(ObtenirNbGroupes() - 1);
 
    return nom;
 }
 
 // retourne le nombre d'éléments de la liste
-int FileAttente::GetNbElements() const
+int FileAttente::ObtenirNbGroupes() const
 {
-   return nbElements_;
+	return nbGroupes_;
+}
+
+int FileAttente::ObtenirNbPersonnes() const
+{
+	return nbPersonne_;
 }
 
 void FileAttente::Afficher(ostream & out) const
@@ -111,7 +121,7 @@ void FileAttente::Afficher(ostream & out) const
       out << pTemporaire->GetNom() << endl;
       pTemporaire = pTemporaire->GetSuivant();
    }
-   out << "Il y a " << GetNbElements() << " elements dans la liste"
+   out << "Il y a " << ObtenirNbGroupes() << " elements dans la liste"
       << endl << endl;
 }
 
@@ -163,7 +173,7 @@ int FileAttente::DonnerLeRang(string nom) const
 
 void  FileAttente::PasserDevantToutLeMonde()
 {
-   if (GetNbElements() > 1)
+   if (ObtenirNbGroupes() > 1)
    {
       ClientsEnAttente * pTricheur = GetDernier();
       // modifier la file pour 'enlever' le dernier

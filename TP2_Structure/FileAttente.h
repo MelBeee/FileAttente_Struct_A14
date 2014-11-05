@@ -10,44 +10,50 @@ using namespace std;
 
 class FileAttente
 {
-   ClientsEnAttente * pPremier_;  // Premier de la liste
-   ClientsEnAttente * pDernier_;  // Dernier de la liste
-   int     nbElements_;// Nombre de noeuds dans la liste
+	ClientsEnAttente * pPremier_;  // Premier de la file
+	ClientsEnAttente * pDernier_;  // Dernier de la file
+	int     nbGroupes_;// Nombre de noeuds dans la file
+	int		nbPersonne_;//Nombre de client dans la file
 
-   void    SetPremier(ClientsEnAttente * p);
-   ClientsEnAttente*  GetPremier() const;
+	void    SetPremier(ClientsEnAttente * p);
+	ClientsEnAttente*  GetPremier() const;
 
-   void    SetDernier(ClientsEnAttente * p);
-   ClientsEnAttente*  GetDernier() const;
+	void    SetDernier(ClientsEnAttente * p);
+	ClientsEnAttente*  GetDernier() const;
 
-   void    SetNbElements(int nb);
-   bool    EstVide() const;
+	void    SetNbGroupes(int nb);
+	void	SetNbPersonnes(int nb);
 
-   bool    EstLeMemeNom(ClientsEnAttente * p, string nom) const;
-   string  MettreEnMajuscules(string nom) const;
+	bool    EstVide() const;
+
+	bool    EstLeMemeNom(ClientsEnAttente * p, string nom) const;
+	string  MettreEnMajuscules(string nom) const;
 
 public:
-   //--- Constructeur par défaut
+	//--- Constructeur par défaut
 	FileAttente();
 
-   //--- La liste peut s'afficher elle-même
-   void   Afficher(ostream &) const;
+	//--- La liste peut s'afficher elle-même
+	void   Afficher(ostream &) const;
 
-   //--- et retourner le nombre d'éléments qu'elle contient
-   int    GetNbElements() const;
+	//--- et retourner le nombre de groupes qu'elle contient
+	int    ObtenirNbGroupes() const;
 
-   //--- on peut ajouter en fin de liste et retirer au début de la liste
-   void   AjouterEnFinDeListe(string nom);
-   string RetirerDeLaListe();
+	//--- et retourner le nombre client qu'elle contient
+	int    ObtenirNbPersonnes() const;
 
-   //--- Méthode qui vérifie si un nom est dans la liste
-   bool   VérifierSiPrésent(string nom) const;
+	//--- on peut ajouter en fin de liste et retirer au début de la liste
+	void   AjouterEnFinDeListe(string nom);
+	string RetirerDeLaListe();
 
-   //--- Méthode qui retourne un entier correspondant au rang dans la liste
-   //    0 signifie absent. 
-   int    DonnerLeRang(string nom) const;
+	//--- Méthode qui vérifie si un nom est dans la liste
+	bool   VérifierSiPrésent(string nom) const;
 
-   //--- De faire passer le dernier en premier dans la liste
-   void  PasserDevantToutLeMonde();
+	//--- Méthode qui retourne un entier correspondant au rang dans la liste
+	//    0 signifie absent. 
+	int    DonnerLeRang(string nom) const;
+
+	//--- De faire passer le dernier en premier dans la liste
+	void  PasserDevantToutLeMonde();
 };
 #endif

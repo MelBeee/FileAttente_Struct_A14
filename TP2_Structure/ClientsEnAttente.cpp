@@ -35,12 +35,12 @@ void ClientsEnAttente::SetClientSection(int section)
 
 void ClientsEnAttente::SetPrécédent(ClientsEnAttente * p)
 {
-   pPrécédent_ = p;
+	pPrécédent_ = p;
 }
 
 void ClientsEnAttente::SetSuivant(ClientsEnAttente *p)
 {
-   pSuivant_ = p;
+	pSuivant_ = p;
 }
 
 vector<Section> ClientsEnAttente::GetClientSection()
@@ -50,21 +50,21 @@ vector<Section> ClientsEnAttente::GetClientSection()
 
 ClientsEnAttente * ClientsEnAttente::GetPrécédent() const
 {
-   return pPrécédent_;
+	return pPrécédent_;
 }
 
 ClientsEnAttente * ClientsEnAttente::GetSuivant() const
 {
-   return pSuivant_;
+	return pSuivant_;
 }
 
 ClientsEnAttente::Client ClientsEnAttente::GetClient()
 {
-   return clientsTable;
+	return clientsTable;
 }
 
 void ClientsEnAttente::SetClient(Client c)
 {
-   clientsTable.nomReservation = c.nomReservation;
-   clientsTable.nombreDePersonnes = c.nombreDePersonnes;
+	clientsTable.nomReservation = c.nomReservation;
+	clientsTable.nombreDePersonnes = c.nombreDePersonnes;
 }
