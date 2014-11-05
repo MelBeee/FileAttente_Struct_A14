@@ -2,8 +2,8 @@
 //
 // par Pierre Prud'homme, octobre 2014
 //-------------------------------------------------
-#ifndef _NOEUD_H_
-#define _NOEUD_H_
+#ifndef _CLIENTSENATTENTE_H_
+#define _CLIENTSENATTENTE_H_
 #include <string>
 #include <vector>
 using namespace std;

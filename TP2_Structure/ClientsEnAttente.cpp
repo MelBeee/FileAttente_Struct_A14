@@ -3,7 +3,7 @@
 //
 // par Pierre Prud'homme, octobre 2014
 //-------------------------------------------------
-#include "Noeud.h"
+#include "ClientsEnAttente.h"
 
 ClientsEnAttente::ClientsEnAttente()
 {

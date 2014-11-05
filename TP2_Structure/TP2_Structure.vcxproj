@@ -77,12 +77,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Liste.cpp" />
-    <ClCompile Include="Noeud.cpp" />
+    <ClCompile Include="ClientsEnAttente.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Liste.h" />
-    <ClInclude Include="Noeud.h" />
+    <ClInclude Include="ClientsEnAttente.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
