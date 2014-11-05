@@ -1,6 +1,4 @@
 /*
-Melissa Boucher
-Xavier Brosseau
 */
 #include <iostream>
 #include <string>
@@ -10,3 +8,4 @@ int main()
 {
 
 }
+// t laid
