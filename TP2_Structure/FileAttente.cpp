@@ -2,46 +2,46 @@
 //
 // par Pierre Prud'homme, octobre 2014
 //-------------------------------------------------
-#include "liste.h"
+#include "FileAttente.h"
 
-void Liste::SetDernier(ClientsEnAttente * p)
+void FileAttente::SetDernier(ClientsEnAttente * p)
 {
    pDernier_ = p;
 }
 
-ClientsEnAttente* Liste::GetDernier() const
+ClientsEnAttente* FileAttente::GetDernier() const
 {
    return pDernier_;
 }
 
-void Liste::SetNbElements(int nb)
+void FileAttente::SetNbElements(int nb)
 {
    nbElements_ = nb;
 }
 
-void Liste::SetPremier(ClientsEnAttente * p)
+void FileAttente::SetPremier(ClientsEnAttente * p)
 {
    pPremier_ = p;
 }
 
-ClientsEnAttente* Liste::GetPremier() const
+ClientsEnAttente* FileAttente::GetPremier() const
 {
    return pPremier_;
 }
 
-bool Liste::EstVide() const
+bool FileAttente::EstVide() const
 {
    return GetPremier() == 0;
 }
 
-Liste::Liste()
+FileAttente::FileAttente()
 {
    SetNbElements(0);  // il n'y a pas d'éléments dans la liste
    SetPremier(0);     // on pointe sur rien
    SetDernier(0);
 }
 
-void Liste::AjouterEnFinDeListe(string nom)
+void FileAttente::AjouterEnFinDeListe(string nom)
 {
    ClientsEnAttente * pNouveau = new ClientsEnAttente(nom);
 
@@ -71,7 +71,7 @@ void Liste::AjouterEnFinDeListe(string nom)
    SetNbElements(GetNbElements() + 1);
 }
 
-string Liste::RetirerDeLaListe()
+string FileAttente::RetirerDeLaListe()
 {
    ClientsEnAttente * pTemporaire = GetPremier();
    string nom;
@@ -97,12 +97,12 @@ string Liste::RetirerDeLaListe()
 }
 
 // retourne le nombre d'éléments de la liste
-int Liste::GetNbElements() const
+int FileAttente::GetNbElements() const
 {
    return nbElements_;
 }
 
-void Liste::Afficher(ostream & out) const
+void FileAttente::Afficher(ostream & out) const
 {
    ClientsEnAttente * pTemporaire = GetPremier();
 
@@ -115,7 +115,7 @@ void Liste::Afficher(ostream & out) const
       << endl << endl;
 }
 
-string Liste::MettreEnMajuscules(string nom) const
+string FileAttente::MettreEnMajuscules(string nom) const
 {
    for (int i = 0; i < nom.size(); ++i)
    {
@@ -124,13 +124,13 @@ string Liste::MettreEnMajuscules(string nom) const
    return nom;
 }
 
-bool Liste::EstLeMemeNom(ClientsEnAttente * p, string nom) const
+bool FileAttente::EstLeMemeNom(ClientsEnAttente * p, string nom) const
 {
    return MettreEnMajuscules(p->GetNom()) == MettreEnMajuscules(nom);
 }
 
 //--- Méthode qui vérifie si un nom est dans la liste
-bool   Liste::VérifierSiPrésent(string nom) const
+bool   FileAttente::VérifierSiPrésent(string nom) const
 {
    ClientsEnAttente * pBalayage = GetPremier();
 
@@ -142,7 +142,7 @@ bool   Liste::VérifierSiPrésent(string nom) const
    return pBalayage != nullptr;
 }
 
-int Liste::DonnerLeRang(string nom) const
+int FileAttente::DonnerLeRang(string nom) const
 {
    ClientsEnAttente * pBalayage = GetPremier();
    int rang = 1;
@@ -161,7 +161,7 @@ int Liste::DonnerLeRang(string nom) const
    return rang;
 }
 
-void  Liste::PasserDevantToutLeMonde()
+void  FileAttente::PasserDevantToutLeMonde()
 {
    if (GetNbElements() > 1)
    {

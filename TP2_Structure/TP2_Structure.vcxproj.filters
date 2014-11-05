@@ -18,18 +18,18 @@
     <ClCompile Include="Source.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Liste.cpp">
+    <ClCompile Include="ClientsEnAttente.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="ClientsEnAttente.cpp">
+    <ClCompile Include="FileAttente.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Liste.h">
+    <ClInclude Include="ClientsEnAttente.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="ClientsEnAttente.h">
+    <ClInclude Include="FileAttente.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

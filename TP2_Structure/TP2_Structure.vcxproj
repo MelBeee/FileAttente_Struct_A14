@@ -76,12 +76,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Liste.cpp" />
+    <ClCompile Include="FileAttente.cpp" />
     <ClCompile Include="ClientsEnAttente.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Liste.h" />
+    <ClInclude Include="FileAttente.h" />
     <ClInclude Include="ClientsEnAttente.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

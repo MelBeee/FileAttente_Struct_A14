@@ -8,7 +8,7 @@
 #include <iostream>
 using namespace std;
 
-class Liste
+class FileAttente
 {
    ClientsEnAttente * pPremier_;  // Premier de la liste
    ClientsEnAttente * pDernier_;  // Dernier de la liste
@@ -28,7 +28,7 @@ class Liste
 
 public:
    //--- Constructeur par défaut
-   Liste();
+	FileAttente();
 
    //--- La liste peut s'afficher elle-même
    void   Afficher(ostream &) const;
