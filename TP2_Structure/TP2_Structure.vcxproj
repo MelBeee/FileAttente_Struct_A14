@@ -78,11 +78,13 @@
   <ItemGroup>
     <ClCompile Include="FileAttente.cpp" />
     <ClCompile Include="ClientsEnAttente.cpp" />
+    <ClCompile Include="FonctionsGenerales.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileAttente.h" />
     <ClInclude Include="ClientsEnAttente.h" />
+    <ClInclude Include="FonctionsGenerales.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

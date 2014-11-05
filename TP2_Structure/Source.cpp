@@ -1,35 +1,14 @@
-#include <iostream>
-#include <string>
-using namespace std;
+#include "FonctionsGenerales.h"
 
-int MenuFaireChoix()
-{
-   int Choix;
-
-   cout << " 1. Ajouter un client dans la file " << endl
-      << " 2. Assigner une table " << endl
-      << " 3. Retirer un client qui quitte " << endl
-      << " 4. Afficher un client de la file " << endl
-      << " 5. Afficher la file d'attente en entier " << endl
-      << " 6. Quitter le programme " << endl;
-
-   do
-   {
-      cout << " Faites votre choix : ";
-      cin >> Choix;
-
-      if (Choix < 1 || Choix > 6)
-         cout << " Choix Invalide, recommencer " << endl;
-   } while (Choix < 1 || Choix > 6);
-
-   system("cls");
-
-   return Choix;
-}
 
 int main()
 {
+   setlocale(LC_ALL, "");
+
    bool quitter = true;
+   string nom;
+   int nbre;
+   int sections;
 
    while (quitter)
    {
@@ -37,9 +16,15 @@ int main()
       {
       case 1:
          cout << " Ajout d'un client " << endl;
+         DemanderInfoClient(nom, nbre, sections);
+
+         // Doit créer un nouveau client avec les info recu
+
+         sections = 0;
          break;
       case 2:
          cout << " Assignation d'une table " << endl;
+         AssignerTable();
          break;
       case 3:
          cout << " Retrait d'un client qui quitte " << endl;
@@ -52,8 +37,13 @@ int main()
          break;
       case 6:
          cout << " Quitter " << endl;
-         quitter = false;
+         quitter = QuitterLeProgramme();
+         if (!quitter)
+         {
+            AffichageFinale();
+         }
          break;
       }
    }
 }
+
