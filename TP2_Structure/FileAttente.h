@@ -33,6 +33,9 @@ public:
 	//--- Constructeur par défaut
 	FileAttente();
 
+	//--- Destructeur par défaut
+	~FileAttente();
+
 	//--- La liste peut s'afficher elle-même
 	void   Afficher(ostream &) const;
 

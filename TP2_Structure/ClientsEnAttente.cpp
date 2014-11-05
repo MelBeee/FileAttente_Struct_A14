@@ -14,6 +14,15 @@ ClientsEnAttente::ClientsEnAttente(string nom, int nbPersonne, int section)
 	SetClientSection(section);
 }
 
+ClientsEnAttente::~ClientsEnAttente()
+{
+	pPrécédent_ = 0;
+	pSuivant_ = 0;
+	delete pPrécédent_;
+	delete pSuivant_;
+	
+}
+
 void ClientsEnAttente::SetClientSection(int section)
 {
 	if (section >= 100)

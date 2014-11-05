@@ -31,6 +31,7 @@ public:
 	//--- Constructeurs
 
 	ClientsEnAttente(string nom, int nbPersonne, int section);
+	~ClientsEnAttente();
 
 	void SetPrécédent(ClientsEnAttente * p);
 	void SetSuivant(ClientsEnAttente *p);
