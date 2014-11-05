@@ -4,12 +4,12 @@
 //-------------------------------------------------
 #include "liste.h"
 
-void Liste::SetDernier(Noeud * p)
+void Liste::SetDernier(ClientsEnAttente * p)
 {
    pDernier_ = p;
 }
 
-Noeud* Liste::GetDernier() const
+ClientsEnAttente* Liste::GetDernier() const
 {
    return pDernier_;
 }
@@ -19,12 +19,12 @@ void Liste::SetNbElements(int nb)
    nbElements_ = nb;
 }
 
-void Liste::SetPremier(Noeud * p)
+void Liste::SetPremier(ClientsEnAttente * p)
 {
    pPremier_ = p;
 }
 
-Noeud* Liste::GetPremier() const
+ClientsEnAttente* Liste::GetPremier() const
 {
    return pPremier_;
 }
@@ -43,7 +43,7 @@ Liste::Liste()
 
 void Liste::AjouterEnFinDeListe(string nom)
 {
-   Noeud * pNouveau = new Noeud(nom);
+   ClientsEnAttente * pNouveau = new ClientsEnAttente(nom);
 
    if (EstVide())
    {
@@ -73,7 +73,7 @@ void Liste::AjouterEnFinDeListe(string nom)
 
 string Liste::RetirerDeLaListe()
 {
-   Noeud * pTemporaire = GetPremier();
+   ClientsEnAttente * pTemporaire = GetPremier();
    string nom;
 
    if (pTemporaire == 0)   // if (!pTemporaire)
@@ -104,7 +104,7 @@ int Liste::GetNbElements() const
 
 void Liste::Afficher(ostream & out) const
 {
-   Noeud * pTemporaire = GetPremier();
+   ClientsEnAttente * pTemporaire = GetPremier();
 
    while (pTemporaire != 0)
    {
@@ -124,7 +124,7 @@ string Liste::MettreEnMajuscules(string nom) const
    return nom;
 }
 
-bool Liste::EstLeMemeNom(Noeud * p, string nom) const
+bool Liste::EstLeMemeNom(ClientsEnAttente * p, string nom) const
 {
    return MettreEnMajuscules(p->GetNom()) == MettreEnMajuscules(nom);
 }
@@ -132,7 +132,7 @@ bool Liste::EstLeMemeNom(Noeud * p, string nom) const
 //--- Méthode qui vérifie si un nom est dans la liste
 bool   Liste::VérifierSiPrésent(string nom) const
 {
-   Noeud * pBalayage = GetPremier();
+   ClientsEnAttente * pBalayage = GetPremier();
 
    while (pBalayage != nullptr && !EstLeMemeNom(pBalayage, nom))
    {
@@ -144,7 +144,7 @@ bool   Liste::VérifierSiPrésent(string nom) const
 
 int Liste::DonnerLeRang(string nom) const
 {
-   Noeud * pBalayage = GetPremier();
+   ClientsEnAttente * pBalayage = GetPremier();
    int rang = 1;
 
    while (pBalayage != nullptr && !EstLeMemeNom(pBalayage, nom))
@@ -165,7 +165,7 @@ void  Liste::PasserDevantToutLeMonde()
 {
    if (GetNbElements() > 1)
    {
-      Noeud * pTricheur = GetDernier();
+      ClientsEnAttente * pTricheur = GetDernier();
       // modifier la file pour 'enlever' le dernier
       SetDernier(GetDernier()->GetPrécédent());
       GetDernier()->SetSuivant(nullptr);

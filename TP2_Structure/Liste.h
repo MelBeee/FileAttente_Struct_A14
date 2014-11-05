@@ -4,26 +4,26 @@
 //-------------------------------------------------
 #ifndef _LISTE_H_
 #define _LISTE_H_
-#include "Noeud.h"
+#include "ClientsEnAttente.h"
 #include <iostream>
 using namespace std;
 
 class Liste
 {
-   Noeud * pPremier_;  // Premier de la liste
-   Noeud * pDernier_;  // Dernier de la liste
+   ClientsEnAttente * pPremier_;  // Premier de la liste
+   ClientsEnAttente * pDernier_;  // Dernier de la liste
    int     nbElements_;// Nombre de noeuds dans la liste
 
-   void    SetPremier(Noeud * p);
-   Noeud*  GetPremier() const;
+   void    SetPremier(ClientsEnAttente * p);
+   ClientsEnAttente*  GetPremier() const;
 
-   void    SetDernier(Noeud * p);
-   Noeud*  GetDernier() const;
+   void    SetDernier(ClientsEnAttente * p);
+   ClientsEnAttente*  GetDernier() const;
 
    void    SetNbElements(int nb);
    bool    EstVide() const;
 
-   bool    EstLeMemeNom(Noeud * p, string nom) const;
+   bool    EstLeMemeNom(ClientsEnAttente * p, string nom) const;
    string  MettreEnMajuscules(string nom) const;
 
 public:
