@@ -1,6 +1,4 @@
-// Déclaration d'un noeud. En l'occurence, le
-// noeud ne contient qu'une string comme élément
-// d'information
+// Déclaration du noeud du client
 //
 // par Pierre Prud'homme, octobre 2014
 //-------------------------------------------------
