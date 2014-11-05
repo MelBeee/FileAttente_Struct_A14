@@ -1,8 +1,6 @@
 /*
-Melissa the butcher
-Xavier Bourgeaulty
-Xavier Poubelle
-YOLO
+Melissa Boucher
+Xavier Brosseau
 */
 #include <iostream>
 #include <string>
