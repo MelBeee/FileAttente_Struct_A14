@@ -46,7 +46,8 @@ public:
 	int    ObtenirNbPersonnes() const;
 
 	//--- on peut ajouter en fin de liste et retirer au début de la liste
-	void   AjouterEnFinDeListe(string nom);
+	void   Ajouter(string nom, int nbPersonne, int section);
+	
 	string RetirerDeLaListe();
 
 	//--- Méthode qui vérifie si un nom est dans la liste

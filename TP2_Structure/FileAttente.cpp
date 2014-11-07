@@ -55,9 +55,9 @@ FileAttente::~FileAttente()
 	delete pDernier_;
 }
 
-void FileAttente::AjouterEnFinDeListe(string nom)
+void FileAttente::Ajouter(string nom, int nbPersonne, int section)
 {
-	ClientsEnAttente * pNouveau = new ClientsEnAttente(nom);
+	ClientsEnAttente * pNouveau = new ClientsEnAttente(nom, nbPersonne, section);
 
 	if (EstVide())
 	{
