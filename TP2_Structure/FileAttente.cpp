@@ -107,6 +107,7 @@ Client Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable)
 {
 
 }
+
 bool FileAttente::Retirer(string nomClient, int nbPersonnes)
 {
 	bool existe = false; 
@@ -143,7 +144,7 @@ bool FileAttente::Retirer(string nomClient, int nbPersonnes)
 	//return nom;
 }
 
-string FileAttente::GetClient(int indice)
+string FileAttente::GetClient(int indice) const
 {
 
 }

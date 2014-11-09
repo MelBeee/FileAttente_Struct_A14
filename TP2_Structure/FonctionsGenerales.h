@@ -17,6 +17,6 @@ int DeterminerSection();
 void RetraitClient(FileAttente& laFile);
 void SetClientSection(int section, Client& c);
 Client CreationClient(Client n);
-
+void AfficherUnClient(FileAttente const laFile);
 
 #endif
