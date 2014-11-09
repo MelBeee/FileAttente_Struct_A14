@@ -23,7 +23,7 @@ class ClientsEnAttente
 		vector<Section> sectionChoisis;
 	};
 
-	Client clientsTable;
+	Client clientsTable_;
 	ClientsEnAttente * pPrécédent_;  // Chaque noeud retient l'adresse de celui qui le précède
 	ClientsEnAttente * pSuivant_;    // et de celui qui le suit
 
@@ -38,10 +38,13 @@ public:
 	void SetClient(Client c);
 	void SetClientSection(int section);
 
-	vector<Section> GetClientSection();
+
 	ClientsEnAttente * GetPrécédent() const;
 	ClientsEnAttente * GetSuivant() const;
-	Client GetClient();
+	Client GetClient() const;
+	string GetNom() const; 
+	int GetNombrePersonne() const;	
+	vector<Section> GetClientSection() const;
 };
 
 #endif

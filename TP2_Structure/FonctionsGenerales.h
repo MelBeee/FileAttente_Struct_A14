@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "FileAttente.h"
 using namespace std;
 
 int MenuFaireChoix();

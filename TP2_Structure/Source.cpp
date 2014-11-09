@@ -4,7 +4,7 @@
 int main()
 {
    setlocale(LC_ALL, "");
-
+   FileAttente laFile; 
    bool quitter = true;
    string nom;
    int nbre;
@@ -16,11 +16,8 @@ int main()
       {
       case 1:
          cout << " Ajout d'un client " << endl;
-         DemanderInfoClient(nom, nbre, sections);
-
-         // Doit créer un nouveau client avec les info recu
-
-         sections = 0;
+		 DemanderInfoClient(nom, nbre, sections);
+		 laFile.Ajouter(nom, nbre, sections); 
          break;
       case 2:
          cout << " Assignation d'une table " << endl;

@@ -5,15 +5,17 @@
 //-------------------------------------------------
 #include "ClientsEnAttente.h"
 
+// Constructeur Paramétrique
 ClientsEnAttente::ClientsEnAttente(string nom, int nbPersonne, int section)
 {
 	SetPrécédent(nullptr);   // 0 indique qu'on ne connait pas l'adresse; équivaut à null
 	SetSuivant(nullptr);
-	clientsTable.nomReservation = nom;
-	clientsTable.nombreDePersonnes = nbPersonne;
+	clientsTable_.nomReservation = nom;
+	clientsTable_.nombreDePersonnes = nbPersonne;
 	SetClientSection(section);
 }
 
+// Destructeur
 ClientsEnAttente::~ClientsEnAttente()
 {
 	pPrécédent_ = 0;
@@ -22,21 +24,22 @@ ClientsEnAttente::~ClientsEnAttente()
 	delete pSuivant_;
 }
 
+// Mutateurs
 void ClientsEnAttente::SetClientSection(int section)
 {
 	if (section >= 100)
 	{
-		clientsTable.sectionChoisis.push_back(SalleManger);
+		clientsTable_.sectionChoisis.push_back(SalleManger);
 		section -= 100;
 	}
 	if (section >= 10)
 	{
-		clientsTable.sectionChoisis.push_back(TerrasseFumeur);
+		clientsTable_.sectionChoisis.push_back(TerrasseFumeur);
 		section -= 10;
 	}
 	if (section >= 1)
 	{
-		clientsTable.sectionChoisis.push_back(TerrasseNonFumeur);
+		clientsTable_.sectionChoisis.push_back(TerrasseNonFumeur);
 		section -= 1;
 	}
 }
@@ -51,9 +54,27 @@ void ClientsEnAttente::SetSuivant(ClientsEnAttente *p)
 	pSuivant_ = p;
 }
 
-vector<Section> ClientsEnAttente::GetClientSection()
+void ClientsEnAttente::SetClient(Client c)
 {
-	return clientsTable.sectionChoisis;
+	clientsTable_.nomReservation = c.nomReservation;
+	clientsTable_.nombreDePersonnes = c.nombreDePersonnes;
+}
+
+// Accesseurs
+
+string ClientsEnAttente::GetNom() const
+{
+	return clientsTable_.nomReservation;
+}
+
+int ClientsEnAttente::GetNombrePersonne() const
+{
+	return clientsTable_.nombreDePersonnes;
+}
+
+vector<Section> ClientsEnAttente::GetClientSection() const
+{
+	return clientsTable_.sectionChoisis;
 }
 
 ClientsEnAttente * ClientsEnAttente::GetPrécédent() const
@@ -66,13 +87,7 @@ ClientsEnAttente * ClientsEnAttente::GetSuivant() const
 	return pSuivant_;
 }
 
-ClientsEnAttente::Client ClientsEnAttente::GetClient()
+ClientsEnAttente::Client ClientsEnAttente::GetClient() const
 {
-	return clientsTable;
-}
-
-void ClientsEnAttente::SetClient(Client c)
-{
-	clientsTable.nomReservation = c.nomReservation;
-	clientsTable.nombreDePersonnes = c.nombreDePersonnes;
+	return clientsTable_;
 }

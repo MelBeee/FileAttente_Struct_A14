@@ -82,7 +82,8 @@ void FileAttente::Ajouter(string nom, int nbPersonne, int section)
 		GetDernier()->SetSuivant(pNouveau);
 		SetDernier(pNouveau);
 	}
-	SetNbElements(ObtenirNbGroupes() + 1);
+	SetNbGroupes(ObtenirNbGroupes() + 1);
+	SetNbPersonnes(ObtenirNbPersonnes() + nbPersonne); 
 }
 
 string FileAttente::RetirerDeLaListe()
@@ -103,6 +104,7 @@ string FileAttente::RetirerDeLaListe()
 	{
 		SetDernier(0);
 	}
+	SetNbPersonnes(ObtenirNbPersonnes() - pTemporaire->GetNombrePersonne());
 	//--- le delete est CRUCIAL comme nous l'avons vu en fin de cours
 	delete pTemporaire;  // retourne au système l'espace réservé
 	SetNbGroupes(ObtenirNbGroupes() - 1);
