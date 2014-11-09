@@ -15,6 +15,8 @@ bool QuitterLeProgramme();
 void AffichageFinale();
 int DeterminerSection();
 void RetraitClient(FileAttente& laFile);
+void SetClientSection(int section, Client& c);
+Client CreationClient(Client n);
 
 
 #endif

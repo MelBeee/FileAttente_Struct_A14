@@ -9,6 +9,7 @@ int main()
    string nom;
    int nbre;
    int sections;
+   Client nouveau; 
 
    while (quitter)
    {
@@ -16,8 +17,7 @@ int main()
       {
       case 1:
          cout << " Ajout d'un client " << endl;
-		 DemanderInfoClient(nom, nbre, sections);
-		 laFile.Ajouter(nom, nbre, sections); 
+		 laFile.Ajouter(CreationClient(nouveau));
          break;
       case 2:
          cout << " Assignation d'une table " << endl;

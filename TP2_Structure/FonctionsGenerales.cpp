@@ -52,8 +52,6 @@ void DemanderInfoClient(string& nom, int& nbre, int& sections)
    cout << " Est-ce que vous aimeriez manger dans les sections suivantes (o/n) " << endl;
    sections = DeterminerSection();
 
-   cout << " Sections : " << sections;
-
    Attendre();
 }
 
@@ -171,4 +169,37 @@ void RetraitClient(FileAttente& laFile)
 
 
 	cout << " Aurevoir " << endl; 
+}
+
+
+void SetClientSection(int section, Client& c)
+{
+	if (section >= 100)
+	{
+		c.sectionChoisis.push_back(SalleManger);
+		section -= 100;
+	}
+	if (section >= 10)
+	{
+		c.sectionChoisis.push_back(TerrasseFumeur);
+		section -= 10;
+	}
+	if (section >= 1)
+	{
+		c.sectionChoisis.push_back(TerrasseNonFumeur);
+		section -= 1;
+	}
+}
+
+Client CreationClient(Client n)
+{
+	string nom;
+	int nbre, sections; 
+
+	DemanderInfoClient(nom, nbre, sections);
+	n.nomReservation = nom;
+	n.nombreDePersonnes = nbre;
+	SetClientSection(sections, n);
+
+	return n; 
 }

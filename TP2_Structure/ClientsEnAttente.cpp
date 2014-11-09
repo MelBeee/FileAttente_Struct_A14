@@ -25,24 +25,7 @@ ClientsEnAttente::~ClientsEnAttente()
 }
 
 // Mutateurs
-void ClientsEnAttente::SetClientSection(int section)
-{
-	if (section >= 100)
-	{
-		clientsTable_.sectionChoisis.push_back(SalleManger);
-		section -= 100;
-	}
-	if (section >= 10)
-	{
-		clientsTable_.sectionChoisis.push_back(TerrasseFumeur);
-		section -= 10;
-	}
-	if (section >= 1)
-	{
-		clientsTable_.sectionChoisis.push_back(TerrasseNonFumeur);
-		section -= 1;
-	}
-}
+
 
 void ClientsEnAttente::SetPrécédent(ClientsEnAttente * p)
 {
