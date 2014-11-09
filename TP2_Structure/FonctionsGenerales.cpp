@@ -166,5 +166,9 @@ void RetraitClient(FileAttente& laFile)
 	} while (!laFile.VérifierSiPrésent(nom)); 
 
 
+	// ENLEVER CLIENTS
+
+
+
 	cout << " Aurevoir " << endl; 
 }
