@@ -24,11 +24,6 @@ class FileAttente
 	void    SetNbGroupes(int nb);
 	void	SetNbPersonnes(int nb);
 
-	bool    EstVide() const;
-
-	bool    EstLeMemeNom(ClientsEnAttente * p, string nom) const;
-	string  MettreEnMajuscules(string nom) const;
-
 public:
 	//--- Constructeur par défaut
 	FileAttente();
@@ -37,7 +32,7 @@ public:
 	~FileAttente();
 
 	//--- La liste peut s'afficher elle-même
-	void   Afficher(ostream &) const;
+	void   Afficher(ostream & out) const;
 
 	//--- et retourner le nombre de groupes qu'elle contient
 	int    ObtenirNbGroupes() const;
@@ -45,17 +40,20 @@ public:
 	//--- et retourner le nombre client qu'elle contient
 	int    ObtenirNbPersonnes() const;
 
-	//--- on peut ajouter en fin de liste et retirer au début de la liste
-	void   Ajouter(string nom, int nbPersonne, int section);
-	
-	string RetirerDeLaListe();
+	string  MettreEnMajuscules(string nom) const;
+	bool    EstLeMemeNom(ClientsEnAttente * p, string nom, int nbPersonnes) const;
+	void Ajouter(Client clientAMettreEnFile);
+	Client Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable);
+	bool Retirer(string nomClient, int nbPersonnes);
+	string GetClient(int indice); 
+	bool EstVide() const;
 
 	//--- Méthode qui vérifie si un nom est dans la liste
-	bool   VérifierSiPrésent(string nom) const;
+	bool   VérifierSiPrésent(string nom, int nbPersonnes) const;
 
 	//--- Méthode qui retourne un entier correspondant au rang dans la liste
 	//    0 signifie absent. 
-	int    DonnerLeRang(string nom) const;
+	int    DonnerLeRang(string nom, int nbPersonnes) const;
 
 	//--- De faire passer le dernier en premier dans la liste
 	void  PasserDevantToutLeMonde();

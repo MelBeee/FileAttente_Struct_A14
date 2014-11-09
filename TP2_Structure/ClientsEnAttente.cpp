@@ -6,13 +6,13 @@
 #include "ClientsEnAttente.h"
 
 // Constructeur Paramétrique
-ClientsEnAttente::ClientsEnAttente(string nom, int nbPersonne, int section)
+ClientsEnAttente::ClientsEnAttente(string nom, int nbPersonne, vector<Section> sections)
 {
 	SetPrécédent(nullptr);   // 0 indique qu'on ne connait pas l'adresse; équivaut à null
 	SetSuivant(nullptr);
 	clientsTable_.nomReservation = nom;
 	clientsTable_.nombreDePersonnes = nbPersonne;
-	SetClientSection(section);
+	clientsTable_.sectionChoisis = sections; 
 }
 
 // Destructeur

@@ -8,6 +8,12 @@
 #include <vector>
 using namespace std;
 
+struct Client
+{
+	string nomReservation;
+	int nombreDePersonnes;
+	vector<Section> sectionChoisis;
+};
 
 enum Section
 {
@@ -16,13 +22,6 @@ enum Section
 
 class ClientsEnAttente
 {
-	struct Client
-	{
-		string nomReservation;
-		int nombreDePersonnes;
-		vector<Section> sectionChoisis;
-	};
-
 	Client clientsTable_;
 	ClientsEnAttente * pPrécédent_;  // Chaque noeud retient l'adresse de celui qui le précède
 	ClientsEnAttente * pSuivant_;    // et de celui qui le suit
@@ -30,7 +29,8 @@ class ClientsEnAttente
 public:
 	//--- Constructeurs
 
-	ClientsEnAttente(string nom, int nbPersonne, int section);
+
+	ClientsEnAttente(string nom, int nbPersonne, vector<Section> sections);
 	~ClientsEnAttente();
 
 	void SetPrécédent(ClientsEnAttente * p);

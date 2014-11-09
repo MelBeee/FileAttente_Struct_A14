@@ -34,11 +34,6 @@ ClientsEnAttente* FileAttente::GetPremier() const
 	return pPremier_;
 }
 
-bool FileAttente::EstVide() const
-{
-	return GetPremier() == 0;
-}
-
 FileAttente::FileAttente()
 {
 	SetNbGroupes(0);  // il n'y a pas d'éléments dans la liste
@@ -54,64 +49,6 @@ FileAttente::~FileAttente()
 	delete pPremier_;
 	delete pDernier_;
 }
-
-void FileAttente::Ajouter(string nom, int nbPersonne, int section)
-{
-	ClientsEnAttente * pNouveau = new ClientsEnAttente(nom, nbPersonne, section);
-
-	if (EstVide())
-	{
-		SetPremier(pNouveau);
-		SetDernier(pNouveau);  // ajouté quand on a un pointe
-	}
-	else
-	{
-		// Trouver l'adresse du dernier noeud de la liste
-		//Noeud * pTemporaire = GetPremier();
-		//while (pTemporaire->GetSuivant() != 0)
-		//{
-		//   pTemporaire = pTemporaire->GetSuivant();
-		//}
-
-		//// tout va bien, on a l'adresse du dernier de la liste
-		//// dans pTemporaire
-		//pNouveau->SetPrécédent(pTemporaire);
-		//pTemporaire->SetSuivant(pNouveau);
-
-		pNouveau->SetPrécédent(GetDernier());
-		GetDernier()->SetSuivant(pNouveau);
-		SetDernier(pNouveau);
-	}
-	SetNbGroupes(ObtenirNbGroupes() + 1);
-	SetNbPersonnes(ObtenirNbPersonnes() + nbPersonne); 
-}
-
-string FileAttente::RetirerDeLaListe()
-{
-	ClientsEnAttente * pTemporaire = GetPremier();
-	string nom;
-
-	if (pTemporaire == 0)   // if (!pTemporaire)
-		throw exception("...La liste est vide...");
-
-	nom = pTemporaire->GetNom();
-	SetPremier(GetPremier()->GetSuivant());
-	if (GetPremier() != 0)
-	{
-		GetPremier()->SetPrécédent(0);
-	}
-	else
-	{
-		SetDernier(0);
-	}
-	SetNbPersonnes(ObtenirNbPersonnes() - pTemporaire->GetNombrePersonne());
-	//--- le delete est CRUCIAL comme nous l'avons vu en fin de cours
-	delete pTemporaire;  // retourne au système l'espace réservé
-	SetNbGroupes(ObtenirNbGroupes() - 1);
-
-	return nom;
-}
-
 // retourne le nombre d'éléments de la liste
 int FileAttente::ObtenirNbGroupes() const
 {
@@ -127,13 +64,87 @@ void FileAttente::Afficher(ostream & out) const
 {
 	ClientsEnAttente * pTemporaire = GetPremier();
 
-	while (pTemporaire != 0)
+	while (pTemporaire != 0) // pourquoi != 0 ? 
 	{
-		out << pTemporaire->GetNom() << endl;
+		vector<Section> tempo = pTemporaire->GetClientSection();
+
+		out << "Réservation : " << pTemporaire->GetNom() 
+			<< "Nb de personnes : " << pTemporaire->GetNombrePersonne() 
+			<< "Sections désirées : ";
+		for (int i = 0; i < tempo.size(); i++)
+		{
+			cout << tempo[i] << ", ";
+		}
+		cout << endl << endl; 
 		pTemporaire = pTemporaire->GetSuivant();
 	}
-	out << "Il y a " << ObtenirNbGroupes() << " elements dans la liste"
-		<< endl << endl;
+	out << "Il y a " << ObtenirNbGroupes() << " elements dans la liste" << endl
+		<< "Il y a " << ObtenirNbPersonnes() << " en file " << endl; 
+}
+void FileAttente::Ajouter(Client clientAMettreEnFile)
+{
+
+	ClientsEnAttente * pNouveau = new ClientsEnAttente(clientAMettreEnFile.nomReservation,
+													   clientAMettreEnFile.nombreDePersonnes, 
+													   clientAMettreEnFile.sectionChoisis);
+
+	if (EstVide())
+	{
+		SetPremier(pNouveau);
+		SetDernier(pNouveau);  // ajouté quand on a un pointe
+	}
+	else
+	{
+		pNouveau->SetPrécédent(GetDernier());
+		GetDernier()->SetSuivant(pNouveau);
+		SetDernier(pNouveau);
+	}
+	SetNbGroupes(ObtenirNbGroupes() + 1);
+	SetNbPersonnes(ObtenirNbPersonnes() + nbPersonne_);
+}
+
+Client Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable)
+{
+
+}
+bool FileAttente::Retirer(string nomClient, int nbPersonnes)
+{
+	bool existe = false; 
+
+	if (VérifierSiPrésent(nomClient, nbPersonnes))
+	{
+
+		existe = true; 
+	}
+
+	return existe; 
+}
+
+string FileAttente::GetClient(int indice)
+{
+
+}
+
+bool FileAttente::EstVide() const
+{
+	return GetPremier() == 0;
+}
+
+bool FileAttente::VérifierSiPrésent(string nom, int nbPersonnes) const
+{
+	ClientsEnAttente * pBalayage = GetPremier();
+
+	while (pBalayage != nullptr && !EstLeMemeNom(pBalayage, nom, nbPersonnes))
+	{
+		pBalayage = pBalayage->GetSuivant();
+	}
+
+	return pBalayage != nullptr;
+}
+
+bool FileAttente::EstLeMemeNom(ClientsEnAttente * p, string nom, int nbPersonnes) const
+{
+	return (MettreEnMajuscules(p->GetNom()) == MettreEnMajuscules(nom) && p->GetNombrePersonne() == nbPersonnes);
 }
 
 string FileAttente::MettreEnMajuscules(string nom) const
@@ -145,28 +156,11 @@ string FileAttente::MettreEnMajuscules(string nom) const
 	return nom;
 }
 
-bool FileAttente::EstLeMemeNom(ClientsEnAttente * p, string nom) const
-{
-	return MettreEnMajuscules(p->GetNom()) == MettreEnMajuscules(nom);
-}
-
-//--- Méthode qui vérifie si un nom est dans la liste
-bool   FileAttente::VérifierSiPrésent(string nom) const
+int FileAttente::DonnerLeRang(string nom, int nbPersonnes) const
 {
 	ClientsEnAttente * pBalayage = GetPremier();
-
-	while (pBalayage != nullptr && !EstLeMemeNom(pBalayage, nom))
-	{
-		pBalayage = pBalayage->GetSuivant();
-	}
-
-	return pBalayage != nullptr;
-}
-
-int FileAttente::DonnerLeRang(string nom) const
-{
-	ClientsEnAttente * pBalayage = GetPremier();
-	int rang = 1;
+	//int rang = 1; 
+	int rang = 0; 
 
 	while (pBalayage != nullptr && !EstLeMemeNom(pBalayage, nom))
 	{
@@ -174,15 +168,14 @@ int FileAttente::DonnerLeRang(string nom) const
 		rang++;
 	}
 
-	if (pBalayage == nullptr)
-	{
-		rang = 0;
-	}
+	//if (pBalayage == nullptr)
+	//{
+	//	rang = 0;
+	//}
 
 	return rang;
 }
-
-void  FileAttente::PasserDevantToutLeMonde()
+void FileAttente::PasserDevantToutLeMonde()
 {
 	if (ObtenirNbGroupes() > 1)
 	{
@@ -197,5 +190,3 @@ void  FileAttente::PasserDevantToutLeMonde()
 		SetPremier(pTricheur);
 	}
 }
-
-
