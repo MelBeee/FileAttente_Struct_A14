@@ -152,3 +152,19 @@ void AffichageFinale()
    cout << " Il restait " << " clients dans la file d'attente lors de la fermeture du restaurant " << endl;
    Attendre();
 }
+
+void RetraitClient(FileAttente& laFile)
+{
+	system("cls");
+
+	string nom;
+
+	do
+	{
+		cout << " Quel était le nom de votre réservation ? ";
+		cin >> nom;
+	} while (!laFile.VérifierSiPrésent(nom)); 
+
+
+	cout << " Aurevoir " << endl; 
+}

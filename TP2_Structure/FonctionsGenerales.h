@@ -14,6 +14,7 @@ void AssignerTable();
 bool QuitterLeProgramme();
 void AffichageFinale();
 int DeterminerSection();
+void RetraitClient(FileAttente& laFile);
 
 
 #endif

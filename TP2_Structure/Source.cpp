@@ -25,6 +25,7 @@ int main()
          break;
       case 3:
          cout << " Retrait d'un client qui quitte " << endl;
+		 RetraitClient(laFile);
          break;
       case 4:
          cout << " Affichage d'un client en attente " << endl;
