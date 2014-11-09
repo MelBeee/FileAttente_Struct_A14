@@ -80,7 +80,6 @@
     <ClCompile Include="ClientsEnAttente.cpp" />
     <ClCompile Include="FonctionsGenerales.cpp" />
     <ClCompile Include="Source.cpp" />
-    <ClCompile Include="Tempo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileAttente.h" />
