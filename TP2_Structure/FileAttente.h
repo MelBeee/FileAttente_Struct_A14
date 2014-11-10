@@ -5,6 +5,7 @@
 #ifndef _LISTE_H_
 #define _LISTE_H_
 #include "ClientsEnAttente.h"
+#include "FonctionsGenerales.h"
 #include <iostream>
 using namespace std;
 

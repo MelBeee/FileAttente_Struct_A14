@@ -193,6 +193,22 @@ void SetClientSection(int section, Client& c)
 	}
 }
 
+string AfficherSection(int i)
+{
+	if (i = TerrasseFumeur)
+	{
+		return "TerrasseFumeur";
+	}
+	else if (i = TerrasseNonFumeur)
+	{
+		return "TerrasseNonFumeur";
+	}
+	else
+	{
+		return "SalleManger";
+	}
+}
+
 Client CreationClient(Client n)
 {
 	string nom;
