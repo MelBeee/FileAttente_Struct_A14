@@ -24,6 +24,16 @@ void FileAttente::SetNbPersonnes(int nb)
 	nbPersonne_ = nb;
 }
 
+void FileAttente::SetNbGroupesTotal(int nb)
+{
+	nbGroupesTotal_ = nb;
+}
+
+void FileAttente::SetNbPersonnesTotal(int nb)
+{
+	nbPersonnesTotal_ = nb;
+}
+
 void FileAttente::SetPremier(ClientsEnAttente * p)
 {
 	pPremier_ = p;
@@ -62,12 +72,12 @@ int FileAttente::ObtenirNbPersonnes() const
 
 int FileAttente::ObtenirNbPersonnesTotal() const
 {
-	return nbPersonneTotale_;
+	return nbPersonnesTotal_;
 }
 
 int FileAttente::ObtenirNbGroupesTotal() const
 {
-	return nbGroupeTotale_;
+	return nbGroupesTotal_;
 }
 
 void FileAttente::Afficher(ostream & out) const
@@ -111,6 +121,7 @@ void FileAttente::Ajouter(Client clientAMettreEnFile)
 	}
 	SetNbGroupes(ObtenirNbGroupes() + 1);
 	SetNbPersonnes(ObtenirNbPersonnes() + nbPersonne_);
+	set
 }
 
 Client Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable)

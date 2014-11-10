@@ -14,8 +14,8 @@ class FileAttente
 	ClientsEnAttente * pDernier_;  // Dernier de la file
 	int nbGroupes_;// Nombre de noeuds dans la file
 	int nbPersonne_;//Nombre de client dans la file
-	int nbPersonneTotale_;//Nombre de client dans la file au total
-	int nbGroupeTotale_;//Nombre de Groupe dans la file au total
+	int nbPersonnesTotal_;//Nombre de client dans la file au total
+	int nbGroupesTotal_;//Nombre de Groupe dans la file au total
 
 	void    SetPremier(ClientsEnAttente * p);
 	ClientsEnAttente*  GetPremier() const;
@@ -25,6 +25,8 @@ class FileAttente
 
 	void    SetNbGroupes(int nb);
 	void	SetNbPersonnes(int nb);
+	void	SetNbGroupesTotal(int nb);
+	void	SetNbPersonnesTotal(int nb);
 
 public:
 	//--- Constructeur par défaut
