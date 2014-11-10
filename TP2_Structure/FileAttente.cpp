@@ -120,8 +120,10 @@ void FileAttente::Ajouter(Client clientAMettreEnFile)
 		SetDernier(pNouveau);
 	}
 	SetNbGroupes(ObtenirNbGroupes() + 1);
+	SetNbGroupesTotal(ObtenirNbGroupes());
+
 	SetNbPersonnes(ObtenirNbPersonnes() + nbPersonne_);
-	set
+	SetNbPersonnesTotal(ObtenirNbPersonnes());
 }
 
 Client Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable)
