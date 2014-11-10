@@ -15,6 +15,7 @@ class FileAttente
 	int nbGroupes_;// Nombre de noeuds dans la file
 	int nbPersonne_;//Nombre de client dans la file
 	int nbPersonneTotale_;//Nombre de client dans la file au total
+	int nbGroupeTotale_;//Nombre de Groupe dans la file au total
 
 	void    SetPremier(ClientsEnAttente * p);
 	ClientsEnAttente*  GetPremier() const;
@@ -43,6 +44,9 @@ public:
 
 	//--- et retourner le nombre client qu'elle contient
 	int    ObtenirNbPersonnesTotal() const;
+
+	//--- et retourner le nombre client qu'elle contient
+	int    ObtenirNbGroupesTotal() const;
 
 	string  MettreEnMajuscules(string nom) const;
 	bool    EstLeMemeNom(ClientsEnAttente * p, string nom, int nbPersonnes) const;
