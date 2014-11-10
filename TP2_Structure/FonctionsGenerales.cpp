@@ -145,7 +145,7 @@ bool QuitterLeProgramme(FileAttente const laFile)
 
 void AffichageFinale(FileAttente const laFile)
 {
-	cout << " Il y a eu " << laFile.ObtenirNbPersonnesTotal() << " réservations comblés " << endl;
+	cout << " Il y a eu " << laFile.ObtenirNbGroupesTotal() << " réservations comblés " << endl;
    cout << " Il y a eu " << laFile.ObtenirNbPersonnesTotal() << " clients servis dans le restaurant ce soir " << endl;
 	cout << " Il restait " << laFile.ObtenirNbPersonnes() << " clients dans la file d'attente lors de la fermeture du restaurant " << endl;
 	Attendre();
