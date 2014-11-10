@@ -142,19 +142,19 @@ bool FileAttente::Retirer(string nomClient, int nbPersonnes)
 
 	if (VérifierSiPrésent(nomClient, nbPersonnes))
 	{
-		existe = true;
-		for (int i = 0; i < xx; i++) ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		while (pTemporaire != GetDernier() && !existe) ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		{
 			//nom = pTemporaire->GetNom();
 			//nbPers = pTemporaire->GetNombrePersonne();
 			
 			if (/*nom == nomClient && nbPers == nbPersonnes*/ EstLeMemeNom(pTemporaire,nomClient,nbPersonnes))
 			{
-				cout << "c Good\n";
+				cout << "XXXXXXXX Good\n";
+				existe = true;
 			}
 			else
 			{
-				cout << "c pas good\n";
+				cout << "XXXXXXXX pas good\n";
 			}
 			
 			pTemporaire = pTemporaire->GetSuivant();
