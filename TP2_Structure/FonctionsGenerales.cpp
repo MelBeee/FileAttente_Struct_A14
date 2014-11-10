@@ -168,7 +168,7 @@ void RetraitClient(FileAttente& laFile)
 			cout << " Vous n'avez pas donné les bonnes informations, recommencez. " << endl;
 	} while (!laFile.VérifierSiPrésent(nom, nbre));
 
-	// ENLEVER CLIENTS
+	laFile.Retirer(nom, nbre);
 
 	cout << " Aurevoir " << nom << endl;
 }

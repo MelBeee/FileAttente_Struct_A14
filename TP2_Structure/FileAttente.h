@@ -2,8 +2,8 @@
 //
 // par Pierre Prud'homme, octobre 2014
 //-------------------------------------------------
-#ifndef _LISTE_H_
-#define _LISTE_H_
+#ifndef _FILEATTENTE_H_
+#define _FILEATTENTE_H_
 #include "ClientsEnAttente.h"
 #include <iostream>
 using namespace std;
