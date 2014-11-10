@@ -67,5 +67,8 @@ public:
 
 	//--- De faire passer le dernier en premier dans la liste
 	void  PasserDevantToutLeMonde();
+
+	//--- Pour afficher le choix de section
+	string AfficherSection(int i) const;
 };
 #endif

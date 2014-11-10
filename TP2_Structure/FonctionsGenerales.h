@@ -16,7 +16,6 @@ void AffichageFinale(FileAttente const laFile);
 int DeterminerSection();
 void RetraitClient(FileAttente& laFile);
 void SetClientSection(int section, Client& c);
-string AfficherSection(int i);
 Client CreationClient(Client n);
 void AfficherUnClient(FileAttente const laFile);
 void AfficherLigneSeparation();

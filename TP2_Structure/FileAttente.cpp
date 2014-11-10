@@ -93,7 +93,7 @@ void FileAttente::Afficher(ostream & out) const
 			<< "Sections désirées : ";
 		for (unsigned int i = 0; i < tempo.size(); i++)
 		{
-			/*cout << AfficherSection(tempo[i]) << ", ";*/
+			cout << AfficherSection(tempo[i]) << ", ";
 		}
 		cout << endl << endl; 
 		pTemporaire = pTemporaire->GetSuivant();
@@ -225,6 +225,7 @@ int FileAttente::DonnerLeRang(string nom, int nbPersonnes) const
 
 	return rang;
 }
+
 void FileAttente::PasserDevantToutLeMonde()
 {
 	if (ObtenirNbGroupes() > 1)
@@ -238,5 +239,21 @@ void FileAttente::PasserDevantToutLeMonde()
 		pTricheur->SetSuivant(GetPremier());
 		pTricheur->SetPrécédent(nullptr);
 		SetPremier(pTricheur);
+	}
+}
+
+string FileAttente::AfficherSection(int i) const
+{
+	if (i == TerrasseNonFumeur)
+	{
+		return "TerrasseNonFumeur";
+	}
+	else if (i == TerrasseFumeur)
+	{
+		return "TerrasseFumeur";
+	}
+	else
+	{
+		return "SalleManger";
 	}
 }
