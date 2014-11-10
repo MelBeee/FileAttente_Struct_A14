@@ -11,14 +11,14 @@ void Attendre()
 int MenuFaireChoix()
 {
 	int Choix;
-   AfficherLigneSeparation();
+	AfficherLigneSeparation();
 	cout << " 1. Ajouter un client dans la file " << endl
 		<< " 2. Assigner une table " << endl
 		<< " 3. Retirer un client qui quitte " << endl
 		<< " 4. Afficher un client de la file " << endl
 		<< " 5. Afficher la file d'attente en entier " << endl
 		<< " 6. Quitter le programme " << endl;
-   AfficherLigneSeparation();
+	AfficherLigneSeparation();
 	do
 	{
 		cout << " Faites votre choix : ";
@@ -145,11 +145,11 @@ bool QuitterLeProgramme(FileAttente const laFile)
 
 void AffichageFinale(FileAttente const laFile)
 {
-   AfficherLigneSeparation();
+	AfficherLigneSeparation();
 	cout << " Il y a eu " << laFile.ObtenirNbGroupesTotal() << " réservations comblés " << endl;
-   cout << " Il y a eu " << laFile.ObtenirNbPersonnesTotal() << " clients servis dans le restaurant ce soir " << endl;
+	cout << " Il y a eu " << laFile.ObtenirNbPersonnesTotal() << " clients servis dans le restaurant ce soir " << endl;
 	cout << " Il restait " << laFile.ObtenirNbPersonnes() << " clients dans la file d'attente lors de la fermeture du restaurant " << endl;
-   AfficherLigneSeparation();
+	AfficherLigneSeparation();
 	Attendre();
 }
 
@@ -209,7 +209,7 @@ Client CreationClient(Client n)
 void AfficherUnClient(FileAttente const laFile)
 {
 	int pos;
-	
+
 
 	if (laFile.EstVide())
 	{
@@ -223,7 +223,7 @@ void AfficherUnClient(FileAttente const laFile)
 			cin >> pos;
 		} while (pos != 1); // changer pour le faire tant et aussi longtemps qu'on a pas une position valide.
 	}
-	
+
 
 
 	laFile.GetClient(1);
@@ -231,5 +231,5 @@ void AfficherUnClient(FileAttente const laFile)
 
 void AfficherLigneSeparation()
 {
-   cout << " ========================================================================= " << endl;
+	cout << " ========================================================================= " << endl;
 }

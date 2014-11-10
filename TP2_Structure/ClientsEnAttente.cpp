@@ -12,7 +12,7 @@ ClientsEnAttente::ClientsEnAttente(string nom, int nbPersonne, vector<Section> s
 	SetSuivant(nullptr);
 	clientsTable_.nomReservation = nom;
 	clientsTable_.nombreDePersonnes = nbPersonne;
-	clientsTable_.sectionChoisis = sections; 
+	clientsTable_.sectionChoisis = sections;
 }
 
 // Destructeur

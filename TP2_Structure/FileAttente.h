@@ -55,7 +55,7 @@ public:
 	void	Ajouter(Client clientAMettreEnFile);
 	Client	Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable);
 	bool	Retirer(string nomClient, int nbPersonnes);
-	string	GetClient(int indice) const; 
+	string	GetClient(int indice) const;
 	bool	EstVide() const;
 
 	//--- Méthode qui vérifie si un nom est dans la liste

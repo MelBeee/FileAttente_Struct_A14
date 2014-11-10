@@ -6,254 +6,254 @@
 
 void FileAttente::SetDernier(ClientsEnAttente * p)
 {
-   pDernier_ = p;
+	pDernier_ = p;
 }
 
 ClientsEnAttente* FileAttente::GetDernier() const
 {
-   return pDernier_;
+	return pDernier_;
 }
 
 void FileAttente::SetNbGroupes(int nb)
 {
-   nbGroupes_ = nb;
+	nbGroupes_ = nb;
 }
 
 void FileAttente::SetNbPersonnes(int nb)
 {
-   nbPersonne_ = nb;
+	nbPersonne_ = nb;
 }
 
 void FileAttente::SetNbGroupesTotal(int nb)
 {
-   nbGroupesTotal_ = nb;
+	nbGroupesTotal_ = nb;
 }
 
 void FileAttente::SetNbPersonnesTotal(int nb)
 {
-   nbPersonnesTotal_ = nb;
+	nbPersonnesTotal_ = nb;
 }
 
 void FileAttente::SetPremier(ClientsEnAttente * p)
 {
-   pPremier_ = p;
+	pPremier_ = p;
 }
 
 ClientsEnAttente* FileAttente::GetPremier() const
 {
-   return pPremier_;
+	return pPremier_;
 }
 
 FileAttente::FileAttente()
 {
-   SetNbGroupes(0);  // il n'y a pas d'éléments dans la liste
-   SetNbPersonnes(0);
-   SetPremier(0);     // on pointe sur rien
-   SetDernier(0);
+	SetNbGroupes(0);  // il n'y a pas d'éléments dans la liste
+	SetNbPersonnes(0);
+	SetPremier(0);     // on pointe sur rien
+	SetDernier(0);
 }
 
 FileAttente::~FileAttente()
 {
-   pPremier_ = 0;
-   pDernier_ = 0;
-   delete pPremier_;
-   delete pDernier_;
+	pPremier_ = 0;
+	pDernier_ = 0;
+	delete pPremier_;
+	delete pDernier_;
 }
 // retourne le nombre d'éléments de la liste
 int FileAttente::ObtenirNbGroupes() const
 {
-   return nbGroupes_;
+	return nbGroupes_;
 }
 
 int FileAttente::ObtenirNbPersonnes() const
 {
-   return nbPersonne_;
+	return nbPersonne_;
 }
 
 int FileAttente::ObtenirNbPersonnesTotal() const
 {
-   return nbPersonnesTotal_;
+	return nbPersonnesTotal_;
 }
 
 int FileAttente::ObtenirNbGroupesTotal() const
 {
-   return nbGroupesTotal_;
+	return nbGroupesTotal_;
 }
 
 void FileAttente::Afficher(ostream & out) const
 {
-   ClientsEnAttente * pTemporaire = GetPremier();
+	ClientsEnAttente * pTemporaire = GetPremier();
 
-   while (pTemporaire != 0) 
-   {
-      vector<Section> tempo = pTemporaire->GetClientSection();
+	while (pTemporaire != 0)
+	{
+		vector<Section> tempo = pTemporaire->GetClientSection();
 
-      out << "Réservation : " << pTemporaire->GetNom() << endl
-         << "Nb de personnes : " << pTemporaire->GetNombrePersonne() << endl
-         << "Sections désirées : ";
-      for (unsigned int i = 0; i < tempo.size(); i++)
-      {
-         cout << AfficherSection(tempo[i]) << ", ";
-      }
-      cout << endl << endl;
-      pTemporaire = pTemporaire->GetSuivant();
-   }
-   out << "Il y a " << ObtenirNbGroupes() << " groupes dans la liste" << endl
-      << "Il y a " << ObtenirNbPersonnes() << " personnes en file " << endl;
+		out << "Réservation : " << pTemporaire->GetNom() << endl
+			<< "Nb de personnes : " << pTemporaire->GetNombrePersonne() << endl
+			<< "Sections désirées : ";
+		for (unsigned int i = 0; i < tempo.size(); i++)
+		{
+			cout << AfficherSection(tempo[i]) << ", ";
+		}
+		cout << endl << endl;
+		pTemporaire = pTemporaire->GetSuivant();
+	}
+	out << "Il y a " << ObtenirNbGroupes() << " groupes dans la liste" << endl
+		<< "Il y a " << ObtenirNbPersonnes() << " personnes en file " << endl;
 }
 void FileAttente::Ajouter(Client clientAMettreEnFile)
 {
 
-   ClientsEnAttente * pNouveau = new ClientsEnAttente(clientAMettreEnFile.nomReservation,
-                                                      clientAMettreEnFile.nombreDePersonnes,
-                                                      clientAMettreEnFile.sectionChoisis);
+	ClientsEnAttente * pNouveau = new ClientsEnAttente(clientAMettreEnFile.nomReservation,
+		clientAMettreEnFile.nombreDePersonnes,
+		clientAMettreEnFile.sectionChoisis);
 
-   if (EstVide())
-   {
-      SetPremier(pNouveau);
-      SetDernier(pNouveau);  // ajouté quand on a un pointe
-   }
-   else
-   {
-      pNouveau->SetPrécédent(GetDernier());
-      GetDernier()->SetSuivant(pNouveau);
-      SetDernier(pNouveau);
-   }
-   SetNbGroupes(ObtenirNbGroupes() + 1);
-   SetNbGroupesTotal(ObtenirNbGroupes());
+	if (EstVide())
+	{
+		SetPremier(pNouveau);
+		SetDernier(pNouveau);  // ajouté quand on a un pointe
+	}
+	else
+	{
+		pNouveau->SetPrécédent(GetDernier());
+		GetDernier()->SetSuivant(pNouveau);
+		SetDernier(pNouveau);
+	}
+	SetNbGroupes(ObtenirNbGroupes() + 1);
+	SetNbGroupesTotal(ObtenirNbGroupes());
 
-   SetNbPersonnes(ObtenirNbPersonnes() + clientAMettreEnFile.nombreDePersonnes);
-   SetNbPersonnesTotal(ObtenirNbPersonnes());
+	SetNbPersonnes(ObtenirNbPersonnes() + clientAMettreEnFile.nombreDePersonnes);
+	SetNbPersonnesTotal(ObtenirNbPersonnes());
 }
 
 Client Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable)
 {
-   Client c;
-   // clairement temporaire 
-   return c;
+	Client c;
+	// clairement temporaire 
+	return c;
 }
 
 bool FileAttente::Retirer(string nomClient, int nbPersonnes)
 {
-   bool existe = false;
+	bool existe = false;
 
-   if (VérifierSiPrésent(nomClient, nbPersonnes))
-   {
+	if (VérifierSiPrésent(nomClient, nbPersonnes))
+	{
 
-      existe = true;
-   }
+		existe = true;
+	}
 
-   return existe;
+	return existe;
 
-   //ClientsEnAttente * pTemporaire = GetPremier();
-   //string nom;
+	//ClientsEnAttente * pTemporaire = GetPremier();
+	//string nom;
 
-   //if (pTemporaire == 0)   // if (!pTemporaire)
-   //	throw exception("...La liste est vide...");
+	//if (pTemporaire == 0)   // if (!pTemporaire)
+	//	throw exception("...La liste est vide...");
 
-   //nom = pTemporaire->GetNom();
-   //SetPremier(GetPremier()->GetSuivant());
-   //if (GetPremier() != 0)
-   //{
-   //	GetPremier()->SetPrécédent(0);
-   //}
-   //else
-   //{
-   //	SetDernier(0);
-   //}
-   //SetNbPersonnes(ObtenirNbPersonnes() - pTemporaire->GetNombrePersonne());
-   ////--- le delete est CRUCIAL comme nous l'avons vu en fin de cours
-   //delete pTemporaire;  // retourne au système l'espace réservé
-   //SetNbGroupes(ObtenirNbGroupes() - 1);
+	//nom = pTemporaire->GetNom();
+	//SetPremier(GetPremier()->GetSuivant());
+	//if (GetPremier() != 0)
+	//{
+	//	GetPremier()->SetPrécédent(0);
+	//}
+	//else
+	//{
+	//	SetDernier(0);
+	//}
+	//SetNbPersonnes(ObtenirNbPersonnes() - pTemporaire->GetNombrePersonne());
+	////--- le delete est CRUCIAL comme nous l'avons vu en fin de cours
+	//delete pTemporaire;  // retourne au système l'espace réservé
+	//SetNbGroupes(ObtenirNbGroupes() - 1);
 
-   //return nom;
+	//return nom;
 }
 
 string FileAttente::GetClient(int indice) const
 {
-   // clairement temporaire
-   return "";
+	// clairement temporaire
+	return "";
 }
 
 bool FileAttente::EstVide() const
 {
-   return GetPremier() == 0;
+	return GetPremier() == 0;
 }
 
 bool FileAttente::VérifierSiPrésent(string nom, int nbPersonnes) const
 {
-   ClientsEnAttente * pBalayage = GetPremier();
+	ClientsEnAttente * pBalayage = GetPremier();
 
-   while (pBalayage != nullptr && !EstLeMemeNom(pBalayage, nom, nbPersonnes))
-   {
-      pBalayage = pBalayage->GetSuivant();
-   }
+	while (pBalayage != nullptr && !EstLeMemeNom(pBalayage, nom, nbPersonnes))
+	{
+		pBalayage = pBalayage->GetSuivant();
+	}
 
-   return pBalayage != nullptr;
+	return pBalayage != nullptr;
 }
 
 bool FileAttente::EstLeMemeNom(ClientsEnAttente * p, string nom, int nbPersonnes) const
 {
-   return (MettreEnMajuscules(p->GetNom()) == MettreEnMajuscules(nom) && p->GetNombrePersonne() == nbPersonnes);
+	return (MettreEnMajuscules(p->GetNom()) == MettreEnMajuscules(nom) && p->GetNombrePersonne() == nbPersonnes);
 }
 
 string FileAttente::MettreEnMajuscules(string nom) const
 {
-   for (unsigned int i = 0; i < nom.size(); ++i)
-   {
-      nom[i] = toupper(nom[i]);
-   }
-   return nom;
+	for (unsigned int i = 0; i < nom.size(); ++i)
+	{
+		nom[i] = toupper(nom[i]);
+	}
+	return nom;
 }
 
 int FileAttente::DonnerLeRang(string nom, int nbPersonnes) const
 {
-   ClientsEnAttente * pBalayage = GetPremier();
-   //int rang = 1; 
-   int rang = 0;
+	ClientsEnAttente * pBalayage = GetPremier();
+	//int rang = 1; 
+	int rang = 0;
 
-   while (pBalayage != nullptr && !EstLeMemeNom(pBalayage, nom, nbPersonnes))
-   {
-      pBalayage = pBalayage->GetSuivant();
-      rang++;
-   }
+	while (pBalayage != nullptr && !EstLeMemeNom(pBalayage, nom, nbPersonnes))
+	{
+		pBalayage = pBalayage->GetSuivant();
+		rang++;
+	}
 
-   //if (pBalayage == nullptr)
-   //{
-   //	rang = 0;
-   //}
+	//if (pBalayage == nullptr)
+	//{
+	//	rang = 0;
+	//}
 
-   return rang;
+	return rang;
 }
 
 void FileAttente::PasserDevantToutLeMonde()
 {
-   if (ObtenirNbGroupes() > 1)
-   {
-      ClientsEnAttente * pTricheur = GetDernier();
-      // modifier la file pour 'enlever' le dernier
-      SetDernier(GetDernier()->GetPrécédent());
-      GetDernier()->SetSuivant(nullptr);
+	if (ObtenirNbGroupes() > 1)
+	{
+		ClientsEnAttente * pTricheur = GetDernier();
+		// modifier la file pour 'enlever' le dernier
+		SetDernier(GetDernier()->GetPrécédent());
+		GetDernier()->SetSuivant(nullptr);
 
-      GetPremier()->SetPrécédent(pTricheur);
-      pTricheur->SetSuivant(GetPremier());
-      pTricheur->SetPrécédent(nullptr);
-      SetPremier(pTricheur);
-   }
+		GetPremier()->SetPrécédent(pTricheur);
+		pTricheur->SetSuivant(GetPremier());
+		pTricheur->SetPrécédent(nullptr);
+		SetPremier(pTricheur);
+	}
 }
 
 string FileAttente::AfficherSection(int i) const
 {
-   if (i == TerrasseNonFumeur)
-   {
-      return "TerrasseNonFumeur";
-   }
-   else if (i == TerrasseFumeur)
-   {
-      return "TerrasseFumeur";
-   }
-   else
-   {
-      return "SalleManger";
-   }
+	if (i == TerrasseNonFumeur)
+	{
+		return "TerrasseNonFumeur";
+	}
+	else if (i == TerrasseFumeur)
+	{
+		return "TerrasseFumeur";
+	}
+	else
+	{
+		return "SalleManger";
+	}
 }

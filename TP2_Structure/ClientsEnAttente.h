@@ -10,7 +10,7 @@ using namespace std;
 
 enum Section
 {
-	TerrasseNonFumeur  = 1, TerrasseFumeur = 10, SalleManger = 100
+	TerrasseNonFumeur = 1, TerrasseFumeur = 10, SalleManger = 100
 };
 
 struct Client
@@ -39,8 +39,8 @@ public:
 
 	ClientsEnAttente * GetPrécédent() const;
 	ClientsEnAttente * GetSuivant() const;
-	string GetNom() const; 
-	int GetNombrePersonne() const;	
+	string GetNom() const;
+	int GetNombrePersonne() const;
 	vector<Section> GetClientSection() const;
 };
 
