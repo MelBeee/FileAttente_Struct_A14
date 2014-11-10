@@ -10,7 +10,7 @@ using namespace std;
 
 enum Section
 {
-	TerrasseNonFumeur = 1, TerrasseFumeur = 10, SalleManger = 100
+	TerrasseNonFumeur  = 1, TerrasseFumeur = 10, SalleManger = 100
 };
 
 struct Client

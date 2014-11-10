@@ -68,8 +68,8 @@ void FileAttente::Afficher(ostream & out) const
 	{
 		vector<Section> tempo = pTemporaire->GetClientSection();
 
-		out << "Réservation : " << pTemporaire->GetNom() 
-			<< "Nb de personnes : " << pTemporaire->GetNombrePersonne() 
+		out << "Réservation : " << pTemporaire->GetNom() << endl
+			<< "Nb de personnes : " << pTemporaire->GetNombrePersonne() << endl
 			<< "Sections désirées : ";
 		for (unsigned int i = 0; i < tempo.size(); i++)
 		{

@@ -12,8 +12,8 @@ class FileAttente
 {
 	ClientsEnAttente * pPremier_;  // Premier de la file
 	ClientsEnAttente * pDernier_;  // Dernier de la file
-	int     nbGroupes_;// Nombre de noeuds dans la file
-	int		nbPersonne_;//Nombre de client dans la file
+	int nbGroupes_;// Nombre de noeuds dans la file
+	int nbPersonne_;//Nombre de client dans la file
 
 	void    SetPremier(ClientsEnAttente * p);
 	ClientsEnAttente*  GetPremier() const;
