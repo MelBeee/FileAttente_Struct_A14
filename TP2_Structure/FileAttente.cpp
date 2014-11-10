@@ -98,8 +98,8 @@ void FileAttente::Afficher(ostream & out) const
 		cout << endl << endl; 
 		pTemporaire = pTemporaire->GetSuivant();
 	}
-	out << "Il y a " << ObtenirNbGroupes() << " groupe dans la liste" << endl
-		<< "Il y a " << ObtenirNbPersonnes() << " en file " << endl; 
+	out << "Il y a " << ObtenirNbGroupes() << " groupes dans la liste" << endl
+		<< "Il y a " << ObtenirNbPersonnes() << " personnes en file " << endl; 
 }
 void FileAttente::Ajouter(Client clientAMettreEnFile)
 {

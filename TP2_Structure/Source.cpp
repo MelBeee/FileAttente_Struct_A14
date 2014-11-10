@@ -4,38 +4,49 @@
 int main()
 {
    setlocale(LC_ALL, "");
-   FileAttente laFile; 
+   FileAttente laFile;
    bool quitter = true;
-   Client nouveau; 
+   Client nouveau;
 
    while (quitter)
    {
       switch (MenuFaireChoix())
       {
       case 1:
-		 system("cls");
+         system("cls");
+         AfficherLigneSeparation();
          cout << " Ajout d'un client " << endl;
-		 laFile.Ajouter(CreationClient(nouveau));
+         AfficherLigneSeparation();
+         laFile.Ajouter(CreationClient(nouveau));
          break;
       case 2:
-		 system("cls");
+         system("cls");
+         AfficherLigneSeparation();
          cout << " Assignation d'une table " << endl;
+         AfficherLigneSeparation();
          AssignerTable();
          break;
       case 3:
-		 system("cls");
+         system("cls");
+         AfficherLigneSeparation();
          cout << " Retrait d'un client qui quitte " << endl;
-		 RetraitClient(laFile);
+         AfficherLigneSeparation();
+         RetraitClient(laFile);
          break;
       case 4:
-		 system("cls");
+         system("cls");
+         AfficherLigneSeparation();
          cout << " Affichage d'un client en attente " << endl;
-		 AfficherUnClient(laFile); 
+         AfficherLigneSeparation();
+         AfficherUnClient(laFile);
          break;
       case 5:
-		 system("cls");
+         system("cls");
+         AfficherLigneSeparation();
          cout << " Affichage de la file d'attente " << endl;
-		 laFile.Afficher(cout); 
+         AfficherLigneSeparation();
+         laFile.Afficher(cout);
+         Attendre(); 
          break;
       case 6:
          cout << " Quitter " << endl;

@@ -11,14 +11,14 @@ void Attendre()
 int MenuFaireChoix()
 {
 	int Choix;
-
+   AfficherLigneSeparation();
 	cout << " 1. Ajouter un client dans la file " << endl
 		<< " 2. Assigner une table " << endl
 		<< " 3. Retirer un client qui quitte " << endl
 		<< " 4. Afficher un client de la file " << endl
 		<< " 5. Afficher la file d'attente en entier " << endl
 		<< " 6. Quitter le programme " << endl;
-
+   AfficherLigneSeparation();
 	do
 	{
 		cout << " Faites votre choix : ";
@@ -81,7 +81,7 @@ int DeterminerSection()
 
 	do
 	{
-		cout << " Salla à manger : ";
+		cout << " Salle à manger : ";
 		cin >> section[2];
 
 		if (section[2] != 'o' && section[2] != 'n')
@@ -145,9 +145,11 @@ bool QuitterLeProgramme(FileAttente const laFile)
 
 void AffichageFinale(FileAttente const laFile)
 {
+   AfficherLigneSeparation();
 	cout << " Il y a eu " << laFile.ObtenirNbGroupesTotal() << " réservations comblés " << endl;
    cout << " Il y a eu " << laFile.ObtenirNbPersonnesTotal() << " clients servis dans le restaurant ce soir " << endl;
 	cout << " Il restait " << laFile.ObtenirNbPersonnes() << " clients dans la file d'attente lors de la fermeture du restaurant " << endl;
+   AfficherLigneSeparation();
 	Attendre();
 }
 
@@ -225,4 +227,9 @@ void AfficherUnClient(FileAttente const laFile)
 
 
 	laFile.GetClient(1);
+}
+
+void AfficherLigneSeparation()
+{
+   cout << " ========================================================================= " << endl;
 }
