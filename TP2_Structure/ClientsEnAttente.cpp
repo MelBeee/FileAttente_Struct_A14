@@ -70,7 +70,3 @@ ClientsEnAttente * ClientsEnAttente::GetSuivant() const
 	return pSuivant_;
 }
 
-ClientsEnAttente::Client ClientsEnAttente::GetClient() const
-{
-	return clientsTable_;
-}

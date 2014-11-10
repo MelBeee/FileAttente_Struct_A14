@@ -8,16 +8,16 @@
 #include <vector>
 using namespace std;
 
+enum Section
+{
+	TerrasseNonFumeur = 1, TerrasseFumeur = 10, SalleManger = 100
+};
+
 struct Client
 {
 	string nomReservation;
 	int nombreDePersonnes;
 	vector<Section> sectionChoisis;
-};
-
-enum Section
-{
-	TerrasseNonFumeur = 1, TerrasseFumeur = 10, SalleManger = 100
 };
 
 class ClientsEnAttente
@@ -36,12 +36,9 @@ public:
 	void SetPrécédent(ClientsEnAttente * p);
 	void SetSuivant(ClientsEnAttente *p);
 	void SetClient(Client c);
-	void SetClientSection(int section);
-
 
 	ClientsEnAttente * GetPrécédent() const;
 	ClientsEnAttente * GetSuivant() const;
-	Client GetClient() const;
 	string GetNom() const; 
 	int GetNombrePersonne() const;	
 	vector<Section> GetClientSection() const;

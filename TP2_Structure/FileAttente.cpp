@@ -71,7 +71,7 @@ void FileAttente::Afficher(ostream & out) const
 		out << "Réservation : " << pTemporaire->GetNom() 
 			<< "Nb de personnes : " << pTemporaire->GetNombrePersonne() 
 			<< "Sections désirées : ";
-		for (int i = 0; i < tempo.size(); i++)
+		for (unsigned int i = 0; i < tempo.size(); i++)
 		{
 			cout << tempo[i] << ", ";
 		}
@@ -105,7 +105,9 @@ void FileAttente::Ajouter(Client clientAMettreEnFile)
 
 Client Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable)
 {
-
+	Client c;
+	// clairement temporaire 
+	return c; 
 }
 
 bool FileAttente::Retirer(string nomClient, int nbPersonnes)
@@ -146,7 +148,8 @@ bool FileAttente::Retirer(string nomClient, int nbPersonnes)
 
 string FileAttente::GetClient(int indice) const
 {
-
+	// clairement temporaire
+	return "";
 }
 
 bool FileAttente::EstVide() const
@@ -173,7 +176,7 @@ bool FileAttente::EstLeMemeNom(ClientsEnAttente * p, string nom, int nbPersonnes
 
 string FileAttente::MettreEnMajuscules(string nom) const
 {
-	for (int i = 0; i < nom.size(); ++i)
+	for (unsigned int i = 0; i < nom.size(); ++i)
 	{
 		nom[i] = toupper(nom[i]);
 	}
@@ -186,7 +189,7 @@ int FileAttente::DonnerLeRang(string nom, int nbPersonnes) const
 	//int rang = 1; 
 	int rang = 0; 
 
-	while (pBalayage != nullptr && !EstLeMemeNom(pBalayage, nom))
+	while (pBalayage != nullptr && !EstLeMemeNom(pBalayage, nom, nbPersonnes))
 	{
 		pBalayage = pBalayage->GetSuivant();
 		rang++;
