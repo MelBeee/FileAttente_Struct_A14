@@ -14,6 +14,7 @@ class FileAttente
 	ClientsEnAttente * pDernier_;  // Dernier de la file
 	int nbGroupes_;// Nombre de noeuds dans la file
 	int nbPersonne_;//Nombre de client dans la file
+	int nbPersonneTotale_;//Nombre de client dans la file au total
 
 	void    SetPremier(ClientsEnAttente * p);
 	ClientsEnAttente*  GetPremier() const;
@@ -40,13 +41,16 @@ public:
 	//--- et retourner le nombre client qu'elle contient
 	int    ObtenirNbPersonnes() const;
 
+	//--- et retourner le nombre client qu'elle contient
+	int    ObtenirNbPersonnesTotal() const;
+
 	string  MettreEnMajuscules(string nom) const;
 	bool    EstLeMemeNom(ClientsEnAttente * p, string nom, int nbPersonnes) const;
-	void Ajouter(Client clientAMettreEnFile);
-	Client Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable);
-	bool Retirer(string nomClient, int nbPersonnes);
-	string GetClient(int indice) const; 
-	bool EstVide() const;
+	void	Ajouter(Client clientAMettreEnFile);
+	Client	Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable);
+	bool	Retirer(string nomClient, int nbPersonnes);
+	string	GetClient(int indice) const; 
+	bool	EstVide() const;
 
 	//--- Méthode qui vérifie si un nom est dans la liste
 	bool   VérifierSiPrésent(string nom, int nbPersonnes) const;

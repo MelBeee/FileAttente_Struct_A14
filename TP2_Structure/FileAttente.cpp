@@ -60,6 +60,11 @@ int FileAttente::ObtenirNbPersonnes() const
 	return nbPersonne_;
 }
 
+int FileAttente::ObtenirNbPersonnesTotal() const
+{
+	return nbPersonneTotale_;
+}
+
 void FileAttente::Afficher(ostream & out) const
 {
 	ClientsEnAttente * pTemporaire = GetPremier();
