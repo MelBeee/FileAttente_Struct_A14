@@ -39,10 +39,10 @@ int main()
          break;
       case 6:
          cout << " Quitter " << endl;
-         quitter = QuitterLeProgramme();
+         quitter = QuitterLeProgramme(laFile);
          if (!quitter)
          {
-            AffichageFinale();
+            AffichageFinale(laFile);
          }
          break;
       }

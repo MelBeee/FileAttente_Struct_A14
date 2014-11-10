@@ -117,12 +117,12 @@ void AssignerTable()
 	Attendre();
 }
 
-bool QuitterLeProgramme()
+bool QuitterLeProgramme(FileAttente const laFile)
 {
 	bool quitter = false;
 	char choix;
 
-	if (!quitter)  // si file d,attente non vide
+	if (laFile.ObtenirNbGroupes() != 0)  // si file d,attente non vide
 	{
 		do
 		{
@@ -143,10 +143,10 @@ bool QuitterLeProgramme()
 }
 
 
-void AffichageFinale()
+void AffichageFinale(FileAttente const laFile)
 {
-	cout << " Il y a eu " << " réservations comblés " << endl;
-	cout << " Il y a eu " << " clients servis dans le restaurant ce soir " << endl;
+	cout << " Il y a eu " << laFile.ObtenirNbGroupes() << " réservations comblés " << endl;
+	cout << " Il y a eu " << laFile.ObtenirNbPersonnes() << " clients servis dans le restaurant ce soir " << endl;
 	cout << " Il restait " << " clients dans la file d'attente lors de la fermeture du restaurant " << endl;
 	Attendre();
 }
