@@ -88,7 +88,7 @@ int DeterminerSection()
 			cout << " Choix invalide, recommencez (o/n) " << endl;
 	} while (section[2] != 'o' && section[2] != 'n');
 
-	if (section[0] == 'o') // Terrasse non fumeur  1
+	if (section[0] == 'o') // Terrasse non fumeur 1
 	{
 		sections += 1;
 	}
