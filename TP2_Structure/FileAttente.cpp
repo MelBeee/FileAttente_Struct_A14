@@ -98,7 +98,7 @@ void FileAttente::Afficher(ostream & out) const
 		cout << endl << endl; 
 		pTemporaire = pTemporaire->GetSuivant();
 	}
-	out << "Il y a " << ObtenirNbGroupes() << " elements dans la liste" << endl
+	out << "Il y a " << ObtenirNbGroupes() << " groupe dans la liste" << endl
 		<< "Il y a " << ObtenirNbPersonnes() << " en file " << endl; 
 }
 void FileAttente::Ajouter(Client clientAMettreEnFile)
@@ -122,7 +122,7 @@ void FileAttente::Ajouter(Client clientAMettreEnFile)
 	SetNbGroupes(ObtenirNbGroupes() + 1);
 	SetNbGroupesTotal(ObtenirNbGroupes());
 
-	SetNbPersonnes(ObtenirNbPersonnes() + nbPersonne_);
+   SetNbPersonnes(ObtenirNbPersonnes() + clientAMettreEnFile.nombreDePersonnes);
 	SetNbPersonnesTotal(ObtenirNbPersonnes());
 }
 
