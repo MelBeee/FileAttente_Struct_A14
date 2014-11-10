@@ -93,7 +93,7 @@ void FileAttente::Afficher(ostream & out) const
 			<< "Sections désirées : ";
 		for (unsigned int i = 0; i < tempo.size(); i++)
 		{
-			cout << AfficherSection(tempo[i]) << ", ";
+			/*cout << AfficherSection(tempo[i]) << ", ";*/
 		}
 		cout << endl << endl; 
 		pTemporaire = pTemporaire->GetSuivant();
