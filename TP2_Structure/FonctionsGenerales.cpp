@@ -32,12 +32,6 @@ bool GetInt(int & n)
 		caractere = false; 
 	}
 
-	//if (!buffer.eof())
-	//{
-	//	cout << "Buffer end of file" << endl;
-	//	caractere = false;
-	//}
-
 	return caractere;
 }
 
