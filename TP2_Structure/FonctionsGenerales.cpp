@@ -156,7 +156,7 @@ char Sections(int & section, string nom)
 	{
 		cout << nom ;
 		cin >> selectionne;
-
+		
 		if (selectionne != 'o' && selectionne != 'n')
 			cout << " Choix invalide, recommencez (o/n) " << endl;
 	} while (selectionne != 'o' && selectionne  != 'n');
@@ -165,10 +165,42 @@ char Sections(int & section, string nom)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+//								SetClientSection()							  //
+////////////////////////////////////////////////////////////////////////////////
+void SetClientSection(int section, Client& c)
+{
+	// si section > 100, ca veux dire que l'utilisateur a dit oui a SalleAManger
+	// on pushback donc SalleAManger dans le vecteur<section> du Client
+	if (section >= 100)
+	{
+		c.sectionChoisis.push_back(SalleManger);
+		section -= 100;
+	}
+	// si section > 10, ca veux dire que l'utilisateur a dit oui a TerrasseFumeur
+	// on pushback donc TerrasseFumeur dans le vecteur<section> du Client
+	if (section >= 10)
+	{
+		c.sectionChoisis.push_back(TerrasseFumeur);
+		section -= 10;
+	}
+	// si section > 1, ca veux dire que l'utilisateur a dit oui a TerrasseNonFumeur
+	// on pushback donc TerrasseNonFumeur dans le vecteur<section> du Client
+	if (section >= 1)
+	{
+		c.sectionChoisis.push_back(TerrasseNonFumeur);
+		section -= 1;
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////
 //							   AssignerTable()								  //
 ////////////////////////////////////////////////////////////////////////////////
 void AssignerTable()
 {
+	system("cls");
+	AfficherLigneSeparation();
+	cout << " Assignation d'une table " << endl;
+	AfficherLigneSeparation();
 
 	Attendre();
 }
@@ -178,19 +210,25 @@ void AssignerTable()
 ////////////////////////////////////////////////////////////////////////////////
 bool QuitterLeProgramme(FileAttente const laFile)
 {
+	system("cls");
+	AfficherLigneSeparation();
+	cout << " Quitter " << endl;
+	AfficherLigneSeparation();
+	// false pour quitter, true pour ne pas quitter
 	bool quitter = false;
+	// choix si on quitte ou non lorsqu'il reste des clients en file
 	char choix;
 
-	if (laFile.ObtenirNbGroupes() != 0)  // si file d,attente non vide
+	if (laFile.ObtenirNbGroupes() != 0)  // si file d'attente non vide
 	{
-		do
+		do // refaire tant que l'utilisateur a pas entrer o ou n
 		{
 			cout << " Il y a encore des clients en file, êtes-vous sur de vouloir quitter ? (o/n) ";
 			cin >> choix;
 			if (choix != 'o' && choix != 'n')
 				cout << " Choix invalide, recommencez " << endl;
 		} while (choix != 'o' && choix != 'n');
-
+		// si le choix est non, on quitte, si oui, on conitnue
 		if (choix == 'n')
 		{
 			quitter = true;
@@ -201,9 +239,12 @@ bool QuitterLeProgramme(FileAttente const laFile)
 	return quitter;
 }
 
-
+////////////////////////////////////////////////////////////////////////////////
+//								AffichageFinale()							  //
+////////////////////////////////////////////////////////////////////////////////
 void AffichageFinale(FileAttente const laFile)
 {
+	// affiche les infofinales en utilisant les fonctions de la file
 	AfficherLigneSeparation();
 	cout << " Il y a eu " << laFile.ObtenirNbGroupesTotal() << " réservations comblés " << endl;
 	cout << " Il y a eu " << laFile.ObtenirNbPersonnesTotal() << " clients servis dans le restaurant ce soir " << endl;
@@ -212,80 +253,98 @@ void AffichageFinale(FileAttente const laFile)
 	Attendre();
 }
 
+////////////////////////////////////////////////////////////////////////////////
+//								RetraitClient()								  //
+////////////////////////////////////////////////////////////////////////////////
 void RetraitClient(FileAttente& laFile)
 {
+	system("cls");
+	AfficherLigneSeparation();
+	cout << " Retrait d'un client qui quitte " << endl;
+	AfficherLigneSeparation();
+
 	string nom;
 	int nbre;
 
-	do
-	{
-		cout << " Quel était le nom de votre réservation ? ";
-		cin >> nom;
-		cout << " Pour combien de personnes avez vous réservé ? ";
-		cin >> nbre;
-		if (!laFile.VérifierSiPrésent(nom, nbre))
-			cout << " Vous n'avez pas donné les bonnes informations, recommencez. " << endl;
-	} while (!laFile.VérifierSiPrésent(nom, nbre));
-
+	DemanderQuiEstClient(nom, nbre, laFile);
+	// maintenant qu'on a trouver les bonnes données, on le retire avec la fonction retirer
 	laFile.Retirer(nom, nbre);
 
 	cout << " Aurevoir " << nom << endl;
+	Attendre(); 
 }
 
-
-void SetClientSection(int section, Client& c)
-{
-	if (section >= 100)
-	{
-		c.sectionChoisis.push_back(SalleManger);
-		section -= 100;
-	}
-	if (section >= 10)
-	{
-		c.sectionChoisis.push_back(TerrasseFumeur);
-		section -= 10;
-	}
-	if (section >= 1)
-	{
-		c.sectionChoisis.push_back(TerrasseNonFumeur);
-		section -= 1;
-	}
-}
-
+////////////////////////////////////////////////////////////////////////////////
+//								CreationClient()							  //
+////////////////////////////////////////////////////////////////////////////////
 Client CreationClient(Client n)
 {
+	// Affichage du titre du choix choisi 
+	system("cls");
+	AfficherLigneSeparation();
+	cout << " Ajout d'un client " << endl;
+	AfficherLigneSeparation();
+	
 	int sections;
 
+	// Demander les infos du client pour ensuite le créer 
 	DemanderInfoClient(n.nomReservation, n.nombreDePersonnes, sections);
 	SetClientSection(sections, n);
 
 	return n;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+//								AfficherUnClient()							  //
+////////////////////////////////////////////////////////////////////////////////
 void AfficherUnClient(FileAttente const laFile)
 {
-	int pos;
+	system("cls");
+	AfficherLigneSeparation();
+	cout << " Affichage d'un client en attente " << endl;
+	AfficherLigneSeparation();
 
+	int nbre;
+	string nom;
 
+	// si la file est vide on peut pas afficher de client 
 	if (laFile.EstVide())
 	{
 		cout << " La file est vide ";
 	}
 	else
 	{
-		do
-		{
-			cout << "Quelle est la position du client dans la file ? ";
-			cin >> pos;
-		} while (pos != 1); // changer pour le faire tant et aussi longtemps qu'on a pas une position valide.
+		// demande qui est client 
+		DemanderQuiEstClient(nom, nbre, laFile);
+		// affiche le client
+		laFile.GetClient(laFile.DonnerLeRang(nom, nbre));
 	}
 
-
-
-	laFile.GetClient(1);
 }
 
+////////////////////////////////////////////////////////////////////////////////
+//							DemanderQuiEstClient()							  //
+////////////////////////////////////////////////////////////////////////////////
+void DemanderQuiEstClient(string & nom, int & nbre, FileAttente const laFile)
+{
+	// demander tant qu'il n'a pas entrer des données qui existe
+	do
+	{
+		cout << " Quel était le nom de votre réservation ? ";
+		cin >> nom;
+		cout << " Pour combien de personnes avez vous réservé ? ";
+		cin >> nbre;
+		// utilise la fonction verifier si présent pour analyser données entrées par le user
+		if (!laFile.VérifierSiPrésent(nom, nbre))
+			cout << " Vous n'avez pas donné les bonnes informations, recommencez. " << endl;
+	} while (!laFile.VérifierSiPrésent(nom, nbre));
+}
+
+////////////////////////////////////////////////////////////////////////////////
+//						AfficherLigneSeparation()							  //
+////////////////////////////////////////////////////////////////////////////////
 void AfficherLigneSeparation()
 {
+	// cout de paresseux :)
 	cout << " ========================================================================= " << endl;
 }

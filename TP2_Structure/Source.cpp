@@ -13,6 +13,13 @@
 #include <string>
 using namespace std; 
 
+////////////////////////////////////////////////////////////////////////////////
+// A FAIRE / FINIR															  //
+// Retirer(client) / retirer(nom, nombre) / GetClient / AfficherUnClient	  //
+// AfficherUnSeulClient														  //
+// Commenter FileAttente.h .cpp / ClientsEnAttente.h .cpp					  //
+// Tester tout																  //
+////////////////////////////////////////////////////////////////////////////////
 int main()
 {
 	// Pour faire afficher les caractères spéciaux
@@ -31,31 +38,15 @@ int main()
 		switch (MenuFaireChoix())
 		{
 		case 1:
-			system("cls");
-			AfficherLigneSeparation();
-			cout << " Ajout d'un client " << endl;
-			AfficherLigneSeparation();
 			laFile.Ajouter(CreationClient(nouveau));
 			break;
 		case 2:
-			system("cls");
-			AfficherLigneSeparation();
-			cout << " Assignation d'une table " << endl;
-			AfficherLigneSeparation();
 			AssignerTable();
 			break;
 		case 3:
-			system("cls");
-			AfficherLigneSeparation();
-			cout << " Retrait d'un client qui quitte " << endl;
-			AfficherLigneSeparation();
 			RetraitClient(laFile);
 			break;
 		case 4:
-			system("cls");
-			AfficherLigneSeparation();
-			cout << " Affichage d'un client en attente " << endl;
-			AfficherLigneSeparation();
 			AfficherUnClient(laFile);
 			break;
 		case 5:
@@ -67,7 +58,6 @@ int main()
 			Attendre();
 			break;
 		case 6:
-			cout << " Quitter " << endl;
 			quitter = QuitterLeProgramme(laFile);
 			if (!quitter)
 			{
