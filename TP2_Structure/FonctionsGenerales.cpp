@@ -10,6 +10,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 #include "FonctionsGenerales.h"
 
+
+////////////////////////////////////////////////////////////////////////////////
+//								Attendre()									  //
+////////////////////////////////////////////////////////////////////////////////
 void Attendre()
 {
 	cout << endl << "Appuyer sur une touche pour continuer" << endl;
@@ -17,27 +21,35 @@ void Attendre()
 	system("cls");
 }
 
+////////////////////////////////////////////////////////////////////////////////
+//								GetInt()									  //
+////////////////////////////////////////////////////////////////////////////////
 bool GetInt(int & n)
 {
 	string str;
 	getline(cin, str);
-	bool caractere = true; 
+	bool caractere = true;
 
 	stringstream buffer(str);
 	buffer >> n;
 
 	if (!buffer)
 	{
-		cout << "Caractère incorrecte" << endl;
-		caractere = false; 
+		caractere = false;
 	}
 
 	return caractere;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+//								MenuFaireChoix()							  //
+////////////////////////////////////////////////////////////////////////////////
 int MenuFaireChoix()
 {
+	// Initialisation a -1 pour rentrer dans la boucle
 	int Choix = -1;
+
+	// Affichage du menu
 	AfficherLigneSeparation();
 	cout << " 1. Ajouter un client dans la file " << endl
 		<< " 2. Assigner une table " << endl
@@ -47,83 +59,81 @@ int MenuFaireChoix()
 		<< " 6. Quitter le programme " << endl;
 	AfficherLigneSeparation();
 
+	// Faire un choix, recommencez tant que le caractère entré n'est pas un chiffre
+	// entre 1 et 6 et pas un caractère
 	do
 	{
 		cout << " Faites votre choix : ";
-	} while (!GetInt(Choix) && Choix < 1 || Choix > 6);
+		if (!GetInt(Choix) && Choix < 1 || Choix > 6)
+			cout << " Nombre invalide, recommencez " << endl;
+	} while (Choix < 1 || Choix > 6);
 
 	system("cls");
 
 	return Choix;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+//							   DemanderInfoClient()							  //
+////////////////////////////////////////////////////////////////////////////////
 void DemanderInfoClient(string& nom, int& nbre, int& sections)
 {
 	cout << " Bienvenue ! Veuillez entrer les informations suivantes s'il vous plait " << endl;
 
+	// Demander le nom de la reservation a l'utilisateur
 	cout << " Le nom de la réservation : ";
 	cin >> nom;
-
 	do
 	{
+		// demander le nombre de personne a l'utilisateur 
+		// tant qu'il rentre un nombre invalide
 		cout << " Combien de personne à table : ";
-		cin >> nbre;
+		cin >> nbre; 
 
-		if (nbre < 1)
+		if ( nbre < 1)
 			cout << " Nombre invalide, recommencez " << endl;
-	} while (nbre < 1);
+	} while ( nbre < 1);
 
+	// demander les sections a l'utilisateur
 	cout << " Est-ce que vous aimeriez manger dans les sections suivantes (o/n) " << endl;
 	sections = DeterminerSection();
 
 	Attendre();
 }
 
+////////////////////////////////////////////////////////////////////////////////
+//							   DemanderInfoClient()							  //
+////////////////////////////////////////////////////////////////////////////////
 int DeterminerSection()
 {
-	const int nbresection = 3;
-	char section[nbresection];
+	// tableau de char pour stocker les sections que le client veux
+	char section[3];
 	int sections = 0;
+	// string d'affichage
+	string nonfumeur = "Terrasse NonFumeur ? ";
+	string fumeur = "Terrasse Fumeur ? ";
+	string sallemanger = "Salle à Manger ? ";
 
-	do
-	{
-		cout << " Terrasse non fumeur : ";
-		cin >> section[0];
+	section[0] = Sections(sections, nonfumeur);
+	section[1] = Sections(sections, fumeur);
+	section[2] = Sections(sections, sallemanger);
 
-		if (section[0] != 'o' && section[0] != 'n')
-			cout << " Choix invalide, recommencez (o/n) " << endl;
-	} while (section[0] != 'o' && section[0] != 'n');
-
-	do
-	{
-		cout << " Terrasse fumeur : ";
-		cin >> section[1];
-
-		if (section[1] != 'o' && section[1] != 'n')
-			cout << " Choix invalide, recommencez (o/n) " << endl;
-	} while (section[1] != 'o' && section[1] != 'n');
-
-	do
-	{
-		cout << " Salle à manger : ";
-		cin >> section[2];
-
-		if (section[2] != 'o' && section[2] != 'n')
-			cout << " Choix invalide, recommencez (o/n) " << endl;
-	} while (section[2] != 'o' && section[2] != 'n');
-
-	if (section[0] == 'o') // Terrasse non fumeur 1
+	// Si l'utilisateur à dit oui a la terrasse nonfumeur, on augmente de 1
+	if (section[0] == 'o') 
 	{
 		sections += 1;
 	}
-	if (section[1] == 'o') // Terrasse fumeur  10
+	// Si l'utilisateur à dit oui a la terrasse fumeur, on augmente de 10
+	if (section[1] == 'o') 
 	{
 		sections += 10;
 	}
-	if (section[2] == 'o') // Salle a Manger   100
+	// Si l'utilisateur à dit oui a la salle a manger, on augmente de 100
+	if (section[2] == 'o') 
 	{
 		sections += 100;
 	}
+	// Si l'utilisateur a dit non a tout les sections, il est indéci donc oui a tout
 	if (section[0] == 'n' && section[1] == 'n' && section[2] == 'n')
 	{
 		cout << " Vous avez dit non à tout nos sections. " << endl
@@ -135,12 +145,37 @@ int DeterminerSection()
 	return sections;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+//								    Sections()								  //
+////////////////////////////////////////////////////////////////////////////////
+char Sections(int & section, string nom)
+{
+	char selectionne;
+	// tant que le caractère n'est pas o ou n on redemande a l'utilisateur
+	do
+	{
+		cout << nom ;
+		cin >> selectionne;
+
+		if (selectionne != 'o' && selectionne != 'n')
+			cout << " Choix invalide, recommencez (o/n) " << endl;
+	} while (selectionne != 'o' && selectionne  != 'n');
+
+	return selectionne;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+//							   AssignerTable()								  //
+////////////////////////////////////////////////////////////////////////////////
 void AssignerTable()
 {
 
 	Attendre();
 }
 
+////////////////////////////////////////////////////////////////////////////////
+//						   QuitterLeProgramme()								  //
+////////////////////////////////////////////////////////////////////////////////
 bool QuitterLeProgramme(FileAttente const laFile)
 {
 	bool quitter = false;
@@ -219,12 +254,9 @@ void SetClientSection(int section, Client& c)
 
 Client CreationClient(Client n)
 {
-	string nom;
-	int nbre, sections;
+	int sections;
 
-	DemanderInfoClient(nom, nbre, sections);
-	n.nomReservation = nom;
-	n.nombreDePersonnes = nbre;
+	DemanderInfoClient(n.nomReservation, n.nombreDePersonnes, sections);
 	SetClientSection(sections, n);
 
 	return n;
