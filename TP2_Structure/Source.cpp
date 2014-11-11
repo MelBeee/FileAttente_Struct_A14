@@ -31,6 +31,28 @@ int main()
 	// Instance de la structure Client pour ajouter des nouveaux clients à la file
 	Client nouveau;
 
+   vector<Section> vec;
+   vec.push_back(Section::SalleManger);
+   vec.push_back(Section::TerrasseFumeur);
+   vec.push_back(Section::TerrasseNonFumeur);
+
+   Client a; 
+   a.nomReservation = "a";
+   a.nombreDePersonnes = 1;
+   a.sectionChoisis = vec;
+   Client b; 
+   b.nomReservation = "b";
+   b.nombreDePersonnes = 1;
+   b.sectionChoisis = vec;
+   Client c;
+   c.nomReservation = "c";
+   c.nombreDePersonnes = 1;
+   c.sectionChoisis = vec;
+
+   laFile.Ajouter(a);
+   laFile.Ajouter(b);
+   laFile.Ajouter(c);
+
 	// tant que quitter est a true, on continue 
 	while (quitter)
 	{
