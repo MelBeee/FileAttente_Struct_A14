@@ -1,3 +1,13 @@
+////////////////////////////////////////////////////////////////////////////////
+//								Source.cpp									  //
+//				  Fait par Mélissa Boucher et Xavier Brosseau				  //
+//							Créé le 29 octobre 2014							  //
+//						Derniere modif 11 novembre 2014						  //
+//																		      //
+//			Menu utilisateur servant à tester les différentes fonctions		  //
+//			de la file d'attente dans le cadre d'une utilisateur d'une		  //	 
+//			file de clients et d'attribuation de table dans un restaurant.	  //
+////////////////////////////////////////////////////////////////////////////////
 #include "FonctionsGenerales.h"
 
 void Attendre()
@@ -7,10 +17,33 @@ void Attendre()
 	system("cls");
 }
 
+bool GetInt(int & n)
+{
+	string str;
+	getline(cin, str);
+	bool caractere = true; 
+
+	stringstream buffer(str);
+	buffer >> n;
+
+	if (!buffer)
+	{
+		cout << "Caractère incorrecte" << endl;
+		caractere = false; 
+	}
+
+	//if (!buffer.eof())
+	//{
+	//	cout << "Buffer end of file" << endl;
+	//	caractere = false;
+	//}
+
+	return caractere;
+}
 
 int MenuFaireChoix()
 {
-	int Choix;
+	int Choix = -1;
 	AfficherLigneSeparation();
 	cout << " 1. Ajouter un client dans la file " << endl
 		<< " 2. Assigner une table " << endl
@@ -19,14 +52,11 @@ int MenuFaireChoix()
 		<< " 5. Afficher la file d'attente en entier " << endl
 		<< " 6. Quitter le programme " << endl;
 	AfficherLigneSeparation();
+
 	do
 	{
 		cout << " Faites votre choix : ";
-		cin >> Choix;
-
-		if (Choix < 1 || Choix > 6)
-			cout << " Choix Invalide, recommencez " << endl;
-	} while (Choix < 1 || Choix > 6);
+	} while (!GetInt(Choix) && Choix < 1 || Choix > 6);
 
 	system("cls");
 

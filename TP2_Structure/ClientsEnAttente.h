@@ -1,7 +1,13 @@
-// Déclaration du noeud du client
-//
-// par Pierre Prud'homme, octobre 2014
-//-------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////
+//								Source.cpp									  //
+//				  Fait par Mélissa Boucher et Xavier Brosseau				  //
+//							Créé le 29 octobre 2014							  //
+//						Derniere modif 11 novembre 2014						  //
+//																		      //
+//			Menu utilisateur servant à tester les différentes fonctions		  //
+//			de la file d'attente dans le cadre d'une utilisateur d'une		  //	 
+//			file de clients et d'attribuation de table dans un restaurant.	  //
+////////////////////////////////////////////////////////////////////////////////
 #ifndef _CLIENTSENATTENTE_H_
 #define _CLIENTSENATTENTE_H_
 #include <string>
