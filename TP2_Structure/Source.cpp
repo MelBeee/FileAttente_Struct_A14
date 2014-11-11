@@ -48,10 +48,16 @@ int main()
    c.nomReservation = "c";
    c.nombreDePersonnes = 1;
    c.sectionChoisis = vec;
+   Client d;
+   d.nomReservation = "d";
+   d.nombreDePersonnes = 1;
+   d.sectionChoisis = vec;
 
    laFile.Ajouter(a);
    laFile.Ajouter(b);
    laFile.Ajouter(c);
+   laFile.Ajouter(d);
+
 
 	// tant que quitter est a true, on continue 
 	while (quitter)

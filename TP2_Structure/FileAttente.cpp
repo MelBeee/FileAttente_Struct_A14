@@ -143,27 +143,51 @@ bool FileAttente::Retirer(string nomClient, int nbPersonnes)
 {
 	ClientsEnAttente * pTemporaire = GetPremier();
 	bool existe = false;
-	//string nom;
-	//int nbPers;
 
 	if (VérifierSiPrésent(nomClient, nbPersonnes))
 	{
-		while (pTemporaire != GetDernier() && !existe) ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		while (pTemporaire != 0 && !existe)
 		{
-			//nom = pTemporaire->GetNom();
-			//nbPers = pTemporaire->GetNombrePersonne();
-			
-			if (/*nom == nomClient && nbPers == nbPersonnes*/ EstLeMemeNom(pTemporaire,nomClient,nbPersonnes))
+			if (pTemporaire != 0 && EstLeMemeNom(pTemporaire, nomClient, nbPersonnes))
 			{
 				cout << "XXXXXXXX Good\n";
 				existe = true;
+
 			}
 			else
 			{
 				cout << "XXXXXXXX pas good\n";
+				pTemporaire = pTemporaire->GetSuivant();
 			}
-			
-			pTemporaire = pTemporaire->GetSuivant();
+		}
+		if (existe)
+		{
+			if (pTemporaire->GetPrécédent() != 0) //si le pTempo n'est pas le 1er
+			{
+				if (pTemporaire->GetSuivant() != 0) //si le pTempo n'est pas le dernier
+				{
+					pTemporaire->GetSuivant()->SetPrécédent(pTemporaire->GetPrécédent());
+					pTemporaire->GetPrécédent()->SetSuivant(pTemporaire->GetSuivant());
+				}
+				else
+				{
+					SetDernier(pTemporaire->GetPrécédent()); //si le pTempo est le dernier
+					pTemporaire->GetPrécédent()->SetSuivant(0);
+				}
+			}
+			else
+			{
+				if (pTemporaire->GetSuivant != 0)
+				{
+					SetPremier(pTemporaire->GetSuivant()); //si le pTempo est le premier de la file					
+					pTemporaire->GetSuivant()->SetPrécédent(0);
+				}
+			}
+
+
+			SetNbPersonnes(ObtenirNbPersonnes() - pTemporaire->GetNombrePersonne());
+			SetNbGroupes(ObtenirNbGroupes() - 1);
+			delete pTemporaire;
 		}
 	}
 
@@ -174,17 +198,17 @@ bool FileAttente::Retirer(string nomClient, int nbPersonnes)
 	string nom;
 
 	if (pTemporaire == 0)   // if (!pTemporaire)
-		throw exception("...La liste est vide...");
+	throw exception("...La liste est vide...");
 
 	nom = pTemporaire->GetNom();
 	SetPremier(GetPremier()->GetSuivant());
 	if (GetPremier() != 0)
 	{
-		GetPremier()->SetPrécédent(0);
+	GetPremier()->SetPrécédent(0);
 	}
 	else
 	{
-		SetDernier(0);
+	SetDernier(0);
 	}
 	SetNbPersonnes(ObtenirNbPersonnes() - pTemporaire->GetNombrePersonne());
 	//--- le delete est CRUCIAL comme nous l'avons vu en fin de cours
