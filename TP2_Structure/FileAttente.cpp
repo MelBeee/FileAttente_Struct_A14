@@ -149,16 +149,10 @@ bool FileAttente::Retirer(string nomClient, int nbPersonnes)
 		while (pTemporaire != 0 && !existe)
 		{
 			if (pTemporaire != 0 && EstLeMemeNom(pTemporaire, nomClient, nbPersonnes))
-			{
-				cout << "XXXXXXXX Good\n";
 				existe = true;
 
-			}
 			else
-			{
-				cout << "XXXXXXXX pas good\n";
 				pTemporaire = pTemporaire->GetSuivant();
-			}
 		}
 		if (existe)
 		{
@@ -175,12 +169,17 @@ bool FileAttente::Retirer(string nomClient, int nbPersonnes)
 					pTemporaire->GetPrécédent()->SetSuivant(0);
 				}
 			}
-			else
+			else //si le pTempo est le premier de la file	
 			{
-				if (pTemporaire->GetSuivant != 0)
+				if (pTemporaire->GetSuivant() != 0)
 				{
-					SetPremier(pTemporaire->GetSuivant()); //si le pTempo est le premier de la file					
+					SetPremier(pTemporaire->GetSuivant());
 					pTemporaire->GetSuivant()->SetPrécédent(0);
+				}
+				else
+				{
+					SetPremier(0);
+					SetDernier(0);
 				}
 			}
 
@@ -190,33 +189,7 @@ bool FileAttente::Retirer(string nomClient, int nbPersonnes)
 			delete pTemporaire;
 		}
 	}
-
 	return existe;
-
-	/*
-	ClientsEnAttente * pTemporaire = GetPremier();
-	string nom;
-
-	if (pTemporaire == 0)   // if (!pTemporaire)
-	throw exception("...La liste est vide...");
-
-	nom = pTemporaire->GetNom();
-	SetPremier(GetPremier()->GetSuivant());
-	if (GetPremier() != 0)
-	{
-	GetPremier()->SetPrécédent(0);
-	}
-	else
-	{
-	SetDernier(0);
-	}
-	SetNbPersonnes(ObtenirNbPersonnes() - pTemporaire->GetNombrePersonne());
-	//--- le delete est CRUCIAL comme nous l'avons vu en fin de cours
-	delete pTemporaire;  // retourne au système l'espace réservé
-	SetNbGroupes(ObtenirNbGroupes() - 1);
-
-	return nom;
-	*/
 }
 
 string FileAttente::GetClient(int indice) const
