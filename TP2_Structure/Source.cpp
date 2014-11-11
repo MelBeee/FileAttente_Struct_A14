@@ -14,11 +14,11 @@
 using namespace std; 
 
 ////////////////////////////////////////////////////////////////////////////////
-// A FAIRE / FINIR															  //
-// Retirer(client) / retirer(nom, nombre) / GetClient / AfficherUnClient	  //
-// AfficherUnSeulClient														  //
-// Commenter FileAttente.h .cpp / ClientsEnAttente.h .cpp					  //
-// Tester tout																  //
+// A FAIRE / FINIR															               //
+// Retirer(client) / retirer(nom, nombre) / GetClient / AfficherUnClient	   //
+// AfficherUnSeulClient														               //
+// Commenter FileAttente.h .cpp / ClientsEnAttente.h .cpp					      //
+// Tester tout																                  //
 ////////////////////////////////////////////////////////////////////////////////
 int main()
 {
@@ -69,13 +69,13 @@ int main()
 			laFile.Ajouter(CreationClient(nouveau));
 			break;
 		case 2:
-			AssignerTable();
+			AssignerTable(laFile);
 			break;
 		case 3:
 			RetraitClient(laFile);
 			break;
 		case 4:
-			AfficherUnClient(laFile);
+			AfficherUnClient(laFile, cout);
 			break;
 		case 5:
 			system("cls");

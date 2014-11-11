@@ -1,18 +1,18 @@
 ////////////////////////////////////////////////////////////////////////////////
-//								Source.cpp									  //
-//				  Fait par Mélissa Boucher et Xavier Brosseau				  //
-//							Créé le 29 octobre 2014							  //
-//						Derniere modif 11 novembre 2014						  //
-//																		      //
-//			Menu utilisateur servant à tester les différentes fonctions		  //
-//			de la file d'attente dans le cadre d'une utilisateur d'une		  //	 
-//			file de clients et d'attribuation de table dans un restaurant.	  //
+//								Source.cpp									                  //
+//				  Fait par Mélissa Boucher et Xavier Brosseau				         //
+//							Créé le 29 octobre 2014							               //
+//						Derniere modif 11 novembre 2014						            //
+//																		                        //
+//			Menu utilisateur servant à tester les différentes fonctions		      //
+//			de la file d'attente dans le cadre d'une utilisateur d'une		      //	 
+//			file de clients et d'attribuation de table dans un restaurant.	      //
 ////////////////////////////////////////////////////////////////////////////////
 #include "FonctionsGenerales.h"
 
 
 ////////////////////////////////////////////////////////////////////////////////
-//								Attendre()									  //
+//								Attendre()									                  //
 ////////////////////////////////////////////////////////////////////////////////
 void Attendre()
 {
@@ -22,7 +22,7 @@ void Attendre()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-//								GetInt()									  //
+//								GetInt()									                     //
 ////////////////////////////////////////////////////////////////////////////////
 bool GetInt(int & n)
 {
@@ -42,7 +42,7 @@ bool GetInt(int & n)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-//								MenuFaireChoix()							  //
+//								MenuFaireChoix()							                  //
 ////////////////////////////////////////////////////////////////////////////////
 int MenuFaireChoix()
 {
@@ -74,7 +74,7 @@ int MenuFaireChoix()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-//							   DemanderInfoClient()							  //
+//							   DemanderInfoClient()							               //
 ////////////////////////////////////////////////////////////////////////////////
 void DemanderInfoClient(string& nom, int& nbre, int& sections)
 {
@@ -102,7 +102,7 @@ void DemanderInfoClient(string& nom, int& nbre, int& sections)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-//							   DemanderInfoClient()							  //
+//							   DemanderInfoClient()							               //
 ////////////////////////////////////////////////////////////////////////////////
 int DeterminerSection()
 {
@@ -195,14 +195,29 @@ void SetClientSection(int section, Client& c)
 ////////////////////////////////////////////////////////////////////////////////
 //							   AssignerTable()								  //
 ////////////////////////////////////////////////////////////////////////////////
-void AssignerTable()
+void AssignerTable(FileAttente laFile)
 {
 	system("cls");
 	AfficherLigneSeparation();
 	cout << " Assignation d'une table " << endl;
 	AfficherLigneSeparation();
 
-	Attendre();
+   int nbrePersonne, int section; 
+   Section sectiontable;
+   
+   cout << "Combien de personnes peuvent s'asseoir a cette table ? ";
+   cin >> nbrePersonne;
+   cout << " Dans quelle section se trouve la table ? ";
+   cin >> section; 
+
+   // changer section
+   Client tempo = laFile.Retirer(nbrePersonne, sectiontable);
+
+   cout << " Bonne appétit " << tempo.nomReservation << endl; 
+
+   laFile.Retirer(tempo.nomReservation, tempo.nombreDePersonnes);
+   
+   Attendre();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -297,7 +312,7 @@ Client CreationClient(Client n)
 ////////////////////////////////////////////////////////////////////////////////
 //								AfficherUnClient()							  //
 ////////////////////////////////////////////////////////////////////////////////
-void AfficherUnClient(FileAttente const laFile)
+void AfficherUnClient(FileAttente const laFile, ostream & out)
 {
 	system("cls");
 	AfficherLigneSeparation();

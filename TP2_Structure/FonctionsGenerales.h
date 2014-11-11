@@ -40,7 +40,12 @@ void Attendre();
 //		Demande a l'utilisateur oui ou non pour les differentes sections	      //
 ////////////////////////////////////////////////////////////////////////////////
 char Sections(int & section, string nom);
-void AssignerTable();
+////////////////////////////////////////////////////////////////////////////////
+//								AssignerTable()									            //
+//		         Intrant : laFile		Extrant : Aucun		                     //
+//			      //
+////////////////////////////////////////////////////////////////////////////////
+void AssignerTable(FileAttente laFile);
 ////////////////////////////////////////////////////////////////////////////////
 //							QuitterLeProgramme()							                  //
 //			Intrant : laFile		Extrant : bool quitter ou non			            //
@@ -84,7 +89,7 @@ Client CreationClient(Client n);
 //					Intrant : laFile	Extrant : Aucun						            //
 //			 Fonction qui affiche un client demander par l'utilisateur	   	   //
 ////////////////////////////////////////////////////////////////////////////////
-void AfficherUnClient(FileAttente const laFile);
+void AfficherUnClient(FileAttente const laFile, ostream & out);
 ////////////////////////////////////////////////////////////////////////////////
 //						  AfficherLigneSeparation()							            //
 //					Intrant : Aucun		Extrant : Aucun						         //
