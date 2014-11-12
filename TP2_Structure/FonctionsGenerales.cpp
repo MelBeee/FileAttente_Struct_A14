@@ -213,14 +213,26 @@ void AssignerTable(FileAttente laFile)
 		cin >> section;
 	} while (section < 1 || section > 3);
 
+   if (section = 1)
+   {
+      sectiontable = Section::TerrasseFumeur;
+   }
+   else if (section = 2)
+   {
+      sectiontable = Section::TerrasseNonFumeur;
+   }
+   else
+   {
+      sectiontable = Section::SalleManger;
+   }
 
+   laFile.Retirer(nbrePersonne, sectiontable);
 
-	// changer section
-	Client tempo = laFile.Retirer(nbrePersonne, sectiontable);
+ //  Client tempo = laFile.Retirer(nbrePersonne, sectiontable);
+	//// changer section
+ //  cout << " Bonne appétit " << tempo.nomReservation << endl;
 
-	cout << " Bonne appétit " << tempo.nomReservation << endl;
-
-	laFile.Retirer(tempo.nomReservation, tempo.nombreDePersonnes);
+	//laFile.Retirer(tempo.nomReservation, tempo.nombreDePersonnes);
 
 	Attendre();
 }

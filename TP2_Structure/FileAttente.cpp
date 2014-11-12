@@ -291,11 +291,10 @@ string FileAttente::AfficherSection(int i) const
    }
 }
 
-Client FileAttente::Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable)
+void FileAttente::Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable)
 {
    ClientsEnAttente * pBalayage = GetPremier();
-   bool trouver = false; 
-   vector<Section> Comparaison;
+   bool trouver = false;          
 
    if (pBalayage == nullptr)
    {
@@ -303,14 +302,14 @@ Client FileAttente::Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable)
    }
    else
    {
-      for (int i = nbPlacesDeLaTable; i > 0; i--)
+      for (int i = nbPlacesDeLaTable; i > 0 && !trouver; i--)
       {
-         while (pBalayage != nullptr && pBalayage->GetNombrePersonne() != i)
+         while (pBalayage != nullptr && pBalayage->GetNombrePersonne() != i && !pBalayage->ChoixSection(*pBalayage, sectionDeLaTable)) // && pBalayage->GetSection() !=sectiondelatable   ([1] != || [2] != || [3] !=  )
          {
             pBalayage = pBalayage->GetSuivant(); 
          }
 
-         if (pBalayage->GetNombrePersonne() != i)
+         if (pBalayage->GetNombrePersonne() == i && pBalayage->ChoixSection(*pBalayage, sectionDeLaTable))
          {
             trouver = true;
          }
@@ -318,13 +317,15 @@ Client FileAttente::Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable)
       }
 
       if (!trouver)
+      {
          throw exception("Pas de groupe correspondant aux demandes");
-
-      Client unClient;
-      unClient.nomReservation = pBalayage->GetNom();
-      unClient.nombreDePersonnes = pBalayage->GetNombrePersonne();
-      unClient.sectionChoisis = pBalayage->GetClientSection();
-
-      return unClient; 
+      }
+      else
+      {      
+         cout << " Bonne appetit " << pBalayage->GetNom() << endl; 
+         Retirer(pBalayage->GetNom(), pBalayage->GetNombrePersonne());
+      }
    }
+  /* return pBalayage->GetClient();*/
 }
+

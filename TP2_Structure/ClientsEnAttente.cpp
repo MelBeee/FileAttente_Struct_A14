@@ -75,7 +75,12 @@ ClientsEnAttente * ClientsEnAttente::GetSuivant() const
 	return pSuivant_;
 }
 
-bool ChoixSection(ClientsEnAttente c, Section s)
+Client ClientsEnAttente::GetClient() const
+{
+   return clientsTable_;
+}
+
+bool ClientsEnAttente::ChoixSection(ClientsEnAttente c, Section s)
 {
 	bool present = false;
 	for (int i = 0; i < c.GetClientSection().size(); i++)
