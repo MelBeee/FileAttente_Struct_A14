@@ -226,7 +226,7 @@ void AssignerTable(FileAttente laFile)
       sectiontable = Section::SalleManger;
    }
 
-   laFile.Retirer(nbrePersonne, sectiontable);
+   laFile.Assigner(nbrePersonne, sectiontable);
 
  //  Client tempo = laFile.Retirer(nbrePersonne, sectiontable);
 	//// changer section

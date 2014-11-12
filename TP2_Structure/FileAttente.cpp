@@ -291,7 +291,7 @@ string FileAttente::AfficherSection(int i) const
    }
 }
 
-void FileAttente::Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable)
+void FileAttente::Assigner(int nbPlacesDeLaTable, Section sectionDeLaTable)
 {
    ClientsEnAttente * pBalayage = GetPremier();
    bool trouver = false;          
@@ -304,12 +304,12 @@ void FileAttente::Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable)
    {
       for (int i = nbPlacesDeLaTable; i > 0 && !trouver; i--)
       {
-         while (pBalayage != nullptr && pBalayage->GetNombrePersonne() != i && !pBalayage->ChoixSection(*pBalayage, sectionDeLaTable)) // && pBalayage->GetSection() !=sectiondelatable   ([1] != || [2] != || [3] !=  )
+         while (pBalayage != nullptr && pBalayage->GetNombrePersonne() != i && pBalayage->ChoixSection(*pBalayage, sectionDeLaTable)) // && pBalayage->GetSection() !=sectiondelatable   ([1] != || [2] != || [3] !=  )
          {
             pBalayage = pBalayage->GetSuivant(); 
          }
 
-         if (pBalayage->GetNombrePersonne() == i && pBalayage->ChoixSection(*pBalayage, sectionDeLaTable))
+         if (pBalayage->GetNombrePersonne() == i && !pBalayage->ChoixSection(*pBalayage, sectionDeLaTable))
          {
             trouver = true;
          }

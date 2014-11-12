@@ -59,7 +59,7 @@ public:
 	string  MettreEnMajuscules(string nom) const;
 	bool    EstLeMemeNom(ClientsEnAttente * p, string nom, int nbPersonnes) const;
 	void	Ajouter(Client clientAMettreEnFile);
-	void 	Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable);
+   void 	Assigner(int nbPlacesDeLaTable, Section sectionDeLaTable);
 	bool	Retirer(string nomClient, int nbPersonnes);
 	string	GetClient(int indice) const;
 	bool	EstVide() const;
