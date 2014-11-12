@@ -1,12 +1,11 @@
 ////////////////////////////////////////////////////////////////////////////////
-//								Source.cpp									  //
-//				  Fait par Mélissa Boucher et Xavier Brosseau				  //
-//							Créé le 29 octobre 2014							  //
-//						Derniere modif 11 novembre 2014						  //
-//																		      //
-//			Menu utilisateur servant à tester les différentes fonctions		  //
-//			de la file d'attente dans le cadre d'une utilisateur d'une		  //	 
-//			file de clients et d'attribuation de table dans un restaurant.	  //
+//								      ClientsEnAttente.h								      //
+//				      Fait par Mélissa Boucher et Xavier Brosseau				      //
+//							      Créé le 29 octobre 2014							         //
+//						      Derniere modif 16 novembre 2014						      //
+//																		                        //
+//			Déclaration de la classe ClientsEnAttente qui permet de créer        //
+//       des clients a ajouter dans la file d'attente. Structure Client       //
 ////////////////////////////////////////////////////////////////////////////////
 #ifndef _CLIENTSENATTENTE_H_
 #define _CLIENTSENATTENTE_H_

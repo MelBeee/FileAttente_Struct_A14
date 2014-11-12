@@ -1,12 +1,10 @@
 ////////////////////////////////////////////////////////////////////////////////
-//								Source.cpp									                  //
+//								FonctionsGenerales.cpp									                  //
 //				  Fait par Mélissa Boucher et Xavier Brosseau				         //
 //							Créé le 29 octobre 2014							               //
-//						Derniere modif 11 novembre 2014						            //
+//						Derniere modif 16 novembre 2014						            //
 //																		                        //
-//			Menu utilisateur servant à tester les différentes fonctions		      //
-//			de la file d'attente dans le cadre d'une utilisateur d'une		      //	 
-//			file de clients et d'attribuation de table dans un restaurant.	      //
+//				      //
 ////////////////////////////////////////////////////////////////////////////////
 #include "FonctionsGenerales.h"
 
@@ -195,7 +193,7 @@ void SetClientSection(int section, Client& c)
 ////////////////////////////////////////////////////////////////////////////////
 //							   AssignerTable()								  //
 ////////////////////////////////////////////////////////////////////////////////
-void AssignerTable(FileAttente laFile)
+void AssignerTable(FileAttente & laFile)
 {
    system("cls");
    AfficherLigneSeparation();
@@ -204,7 +202,7 @@ void AssignerTable(FileAttente laFile)
 
    if (laFile.EstVide())
    {
-      throw exception(" La file est vide ! ");
+      cout << "La file est vide" << endl;
    }
    else
    {
@@ -249,7 +247,7 @@ void AssignerTable(FileAttente laFile)
 ////////////////////////////////////////////////////////////////////////////////
 //						   QuitterLeProgramme()								  //
 ////////////////////////////////////////////////////////////////////////////////
-bool QuitterLeProgramme(FileAttente const laFile)
+bool QuitterLeProgramme(FileAttente & const laFile)
 {
    system("cls");
    AfficherLigneSeparation();
@@ -262,7 +260,7 @@ bool QuitterLeProgramme(FileAttente const laFile)
 
    if (laFile.EstVide())
    {
-      throw exception("La file est vide (Quitter)");
+      cout << "La file est vide" << endl;
    }
 
    if (!laFile.EstVide())  // si file d'attente non vide
@@ -281,6 +279,7 @@ bool QuitterLeProgramme(FileAttente const laFile)
       }
       else
       {
+         
          quitter = false;
       }
    }
@@ -297,7 +296,7 @@ bool QuitterLeProgramme(FileAttente const laFile)
 ////////////////////////////////////////////////////////////////////////////////
 //								AffichageFinale()							  //
 ////////////////////////////////////////////////////////////////////////////////
-void AffichageFinale(FileAttente const laFile)
+void AffichageFinale(FileAttente & const laFile)
 {
    // affiche les infofinales en utilisant les fonctions de la file
    AfficherLigneSeparation();
@@ -311,7 +310,7 @@ void AffichageFinale(FileAttente const laFile)
 ////////////////////////////////////////////////////////////////////////////////
 //								RetraitClient()								               //
 ////////////////////////////////////////////////////////////////////////////////
-void RetraitClient(FileAttente& laFile)
+void RetraitClient(FileAttente & laFile)
 {
    system("cls");
    AfficherLigneSeparation();
@@ -331,7 +330,7 @@ void RetraitClient(FileAttente& laFile)
    }
    else
    {
-      throw exception(" La file est vide ! ");
+      cout << " La file est vide " << endl; 
    }
 
    Attendre();
@@ -360,7 +359,7 @@ Client CreationClient(Client n)
 ////////////////////////////////////////////////////////////////////////////////
 //								AfficherUnClient()							               //
 ////////////////////////////////////////////////////////////////////////////////
-void AfficherUnClient(FileAttente const laFile, ostream & out)
+void AfficherUnClient(FileAttente & const laFile, ostream & out)
 {
    system("cls");
    AfficherLigneSeparation();
@@ -373,7 +372,7 @@ void AfficherUnClient(FileAttente const laFile, ostream & out)
    // si la file est vide on peut pas afficher de client 
    if (laFile.EstVide())
    {
-      throw exception(" La file est vide ! ");
+      cout << " La file est vide ! " << endl; 
    }
    else
    {
@@ -391,7 +390,7 @@ void AfficherUnClient(FileAttente const laFile, ostream & out)
    Attendre();
 }
 
-void AfficherLaFileEnEntier(ostream & out, FileAttente laFile)
+void AfficherLaFileEnEntier(ostream & out, FileAttente & laFile)
 {
    system("cls");
    AfficherLigneSeparation();
@@ -401,7 +400,7 @@ void AfficherLaFileEnEntier(ostream & out, FileAttente laFile)
 
    if (laFile.EstVide())
    {
-      throw exception(" La file est vide ! ");
+      cout << "La file est vide " << endl; 
    }
    else
    {
@@ -418,11 +417,11 @@ void AfficherLaFileEnEntier(ostream & out, FileAttente laFile)
 ////////////////////////////////////////////////////////////////////////////////
 //							DemanderQuiEstClient()							               //
 ////////////////////////////////////////////////////////////////////////////////
-void DemanderQuiEstClient(string & nom, int & nbre, FileAttente const laFile)
+void DemanderQuiEstClient(string & nom, int & nbre, FileAttente & const laFile)
 {
    if (laFile.EstVide())
    {
-      throw exception(" La file est vide ! ");
+      cout << " La file est vide " << endl; 
    }
    // demander tant qu'il n'a pas entrer des données qui existe
    do

@@ -1,12 +1,10 @@
 ////////////////////////////////////////////////////////////////////////////////
-//								Source.cpp									  //
+//								FileAttente.cpp									  //
 //				  Fait par Mélissa Boucher et Xavier Brosseau				  //
 //							Créé le 29 octobre 2014							  //
-//						Derniere modif 11 novembre 2014						  //
+//						Derniere modif 16 novembre 2014						  //
 //																		      //
-//			Menu utilisateur servant à tester les différentes fonctions		  //
-//			de la file d'attente dans le cadre d'une utilisateur d'une		  //	 
-//			file de clients et d'attribuation de table dans un restaurant.	  //
+//			  //
 ////////////////////////////////////////////////////////////////////////////////
 #include "FileAttente.h"
 
@@ -332,46 +330,3 @@ Client FileAttente::Assigner(int nbPlacesDeLaTable, Section sectionDeLaTable)
 
    return c;
 }
-
-
-//void FileAttente::Assigner(int nbPlacesDeLaTable, Section sectionDeLaTable)
-//{
-//   ClientsEnAttente * pBalayage = GetPremier();
-//   bool trouver = false;
-//
-//   if (EstVide())
-//   {
-//      throw exception("La liste est vide");
-//   }
-//   else
-//   {
-//      for (int i = nbPlacesDeLaTable; i > 0 && !trouver; i--)
-//      {
-//         while (!EstVide() && pBalayage->GetNombrePersonne() != i && pBalayage->ChoixSection(*pBalayage, sectionDeLaTable)) // && pBalayage->GetSection() !=sectiondelatable   ([1] != || [2] != || [3] !=  )
-//         {
-//            pBalayage = pBalayage->GetSuivant();
-//         }
-//         if (!EstVide())
-//         {
-//            if (pBalayage->GetNombrePersonne() == i && !pBalayage->ChoixSection(*pBalayage, sectionDeLaTable))
-//            {
-//               trouver = true;
-//            }
-//         }
-//
-//         // if(pBalayage->GetClientSection != section)
-//      }
-//
-//      if (!trouver)
-//      {
-//         throw exception("Pas de groupe correspondant aux demandes");
-//      }
-//      else
-//      {
-//         cout << " Bonne appetit " << pBalayage->GetNom() << endl;
-//         Retirer(pBalayage->GetNom(), pBalayage->GetNombrePersonne());
-//      }
-//   }
-//   /* return pBalayage->GetClient();*/
-//}
-

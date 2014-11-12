@@ -1,12 +1,12 @@
 ////////////////////////////////////////////////////////////////////////////////
-//								Source.cpp									  //
-//				  Fait par Mélissa Boucher et Xavier Brosseau				  //
-//							Créé le 29 octobre 2014							  //
-//						Derniere modif 11 novembre 2014						  //
-//																		      //
-//			Menu utilisateur servant à tester les différentes fonctions		  //
-//			de la file d'attente dans le cadre d'une utilisateur d'une		  //	 
-//			file de clients et d'attribuation de table dans un restaurant.	  //
+//								Source.cpp									                  //
+//				  Fait par Mélissa Boucher et Xavier Brosseau				         //
+//							Créé le 29 octobre 2014							               //
+//						Derniere modif 16 novembre 2014						            //
+//																		                        //
+//			Menu utilisateur servant à tester les différentes fonctions		      //
+//			de la file d'attente dans le cadre d'une utilisateur d'une		      //	 
+//			file de clients et d'attribuation de table dans un restaurant.	      //
 ////////////////////////////////////////////////////////////////////////////////
 #include "FonctionsGenerales.h"
 #include <iostream>
@@ -54,19 +54,19 @@ int main()
 		b.nomReservation = "b";
 		b.nombreDePersonnes = 10;
 		b.sectionChoisis = vecto;
-		Client c;
-		c.nomReservation = "c";
-		c.nombreDePersonnes = 5;
-		c.sectionChoisis = vec;
-		Client d;
-		d.nomReservation = "d";
-		d.nombreDePersonnes = 6;
-		d.sectionChoisis = vecty;
+		//Client c;
+		//c.nomReservation = "c";
+		//c.nombreDePersonnes = 5;
+		//c.sectionChoisis = vec;
+		//Client d;
+		//d.nomReservation = "d";
+		//d.nombreDePersonnes = 6;
+		//d.sectionChoisis = vecty;
 
 		laFile.Ajouter(a);
 		laFile.Ajouter(b);
-		laFile.Ajouter(c);
-		laFile.Ajouter(d);
+		//laFile.Ajouter(c);
+		//laFile.Ajouter(d);
 
 
 		// tant que quitter est a true, on continue 
