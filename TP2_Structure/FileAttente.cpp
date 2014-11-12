@@ -91,6 +91,9 @@ void FileAttente::Afficher(ostream & out) const
 	ClientsEnAttente * pTemporaire = GetPremier();
 	int indice = 0;
 
+	if (pTemporaire == nullptr)
+		throw exception("ggguugugu");
+
 	while (pTemporaire != 0)
 	{
 		cout << GetClient(indice) << endl;
@@ -284,6 +287,7 @@ Client FileAttente::Assigner(int nbPlacesDeLaTable, Section sectionDeLaTable)
 	ClientsEnAttente * pTemporaire = GetPremier();
 	ClientsEnAttente * meilleursChoix = nullptr;
 	bool trouver = false;
+	Client c;
 
 	for (int i = nbPlacesDeLaTable; i > 0 && !trouver; i--)
 	{
@@ -310,10 +314,17 @@ Client FileAttente::Assigner(int nbPlacesDeLaTable, Section sectionDeLaTable)
 	else
 	{
 		cout << " Bonne appetit " << meilleursChoix->GetNom() << endl;
+		
+		c.nombreDePersonnes = meilleursChoix->GetNombrePersonne();
+		c.nomReservation = meilleursChoix->GetNom();
+		c.sectionChoisis = meilleursChoix->GetClientSection();
+
 		Retirer(meilleursChoix->GetNom(), meilleursChoix->GetNombrePersonne());
 	}
 
-	return meilleursChoix->GetClient();
+
+
+	return c;
 }
 
 
