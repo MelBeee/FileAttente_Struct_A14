@@ -83,7 +83,7 @@ Client ClientsEnAttente::GetClient() const
 bool ClientsEnAttente::ChoixSection(ClientsEnAttente c, Section s)
 {
 	bool present = false;
-	for (int i = 0; i < c.GetClientSection().size(); i++)
+	for (unsigned int i = 0; i < c.GetClientSection().size(); i++)
 	{
 		if (c.GetClientSection().at(i) == s)
 		{
