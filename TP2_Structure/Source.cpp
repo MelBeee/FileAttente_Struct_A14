@@ -42,15 +42,15 @@ int main()
 	a.sectionChoisis = vec;
 	Client b;
 	b.nomReservation = "b";
-	b.nombreDePersonnes = 1;
+	b.nombreDePersonnes = 10;
 	b.sectionChoisis = vec;
 	Client c;
 	c.nomReservation = "c";
-	c.nombreDePersonnes = 1;
+	c.nombreDePersonnes = 5;
 	c.sectionChoisis = vec;
 	Client d;
 	d.nomReservation = "d";
-	d.nombreDePersonnes = 1;
+	d.nombreDePersonnes = 6;
 	d.sectionChoisis = vec;
 
 	laFile.Ajouter(a);
