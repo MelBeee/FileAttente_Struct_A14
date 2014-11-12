@@ -88,11 +88,11 @@ void DemanderInfoClient(string& nom, int& nbre, int& sections)
 		// demander le nombre de personne a l'utilisateur 
 		// tant qu'il rentre un nombre invalide
 		cout << " Combien de personne à table : ";
-		cin >> nbre; 
+		cin >> nbre;
 
-		if ( nbre < 1)
+		if (nbre < 1)
 			cout << " Nombre invalide, recommencez " << endl;
-	} while ( nbre < 1);
+	} while (nbre < 1);
 
 	// demander les sections a l'utilisateur
 	cout << " Est-ce que vous aimeriez manger dans les sections suivantes (o/n) " << endl;
@@ -119,17 +119,17 @@ int DeterminerSection()
 	section[2] = Sections(sections, sallemanger);
 
 	// Si l'utilisateur à dit oui a la terrasse nonfumeur, on augmente de 1
-	if (section[0] == 'o') 
+	if (section[0] == 'o')
 	{
 		sections += 1;
 	}
 	// Si l'utilisateur à dit oui a la terrasse fumeur, on augmente de 10
-	if (section[1] == 'o') 
+	if (section[1] == 'o')
 	{
 		sections += 10;
 	}
 	// Si l'utilisateur à dit oui a la salle a manger, on augmente de 100
-	if (section[2] == 'o') 
+	if (section[2] == 'o')
 	{
 		sections += 100;
 	}
@@ -154,12 +154,12 @@ char Sections(int & section, string nom)
 	// tant que le caractère n'est pas o ou n on redemande a l'utilisateur
 	do
 	{
-		cout << nom ;
+		cout << nom;
 		cin >> selectionne;
-		
+
 		if (selectionne != 'o' && selectionne != 'n')
 			cout << " Choix invalide, recommencez (o/n) " << endl;
-	} while (selectionne != 'o' && selectionne  != 'n');
+	} while (selectionne != 'o' && selectionne != 'n');
 
 	return selectionne;
 }
@@ -202,22 +202,27 @@ void AssignerTable(FileAttente laFile)
 	cout << " Assignation d'une table " << endl;
 	AfficherLigneSeparation();
 
-   int nbrePersonne, int section; 
-   Section sectiontable;
-   
-   cout << "Combien de personnes peuvent s'asseoir a cette table ? ";
-   cin >> nbrePersonne;
-   cout << " Dans quelle section se trouve la table ? ";
-   cin >> section; 
+	int nbrePersonne, section;
+	Section sectiontable;
 
-   // changer section
-   Client tempo = laFile.Retirer(nbrePersonne, sectiontable);
+	cout << "Combien de personnes peuvent s'asseoir a cette table ? ";
+	cin >> nbrePersonne;
+	do
+	{
+		cout << " Dans quelle section se trouve la table ? (Fumeur 1 , NonFumeur 2, SalleManger 3) ";
+		cin >> section;
+	} while (section < 1 || section > 3);
 
-   cout << " Bonne appétit " << tempo.nomReservation << endl; 
 
-   laFile.Retirer(tempo.nomReservation, tempo.nombreDePersonnes);
-   
-   Attendre();
+
+	// changer section
+	Client tempo = laFile.Retirer(nbrePersonne, sectiontable);
+
+	cout << " Bonne appétit " << tempo.nomReservation << endl;
+
+	laFile.Retirer(tempo.nomReservation, tempo.nombreDePersonnes);
+
+	Attendre();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -286,7 +291,7 @@ void RetraitClient(FileAttente& laFile)
 	laFile.Retirer(nom, nbre);
 
 	cout << " Aurevoir " << nom << endl;
-	Attendre(); 
+	Attendre();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -299,7 +304,7 @@ Client CreationClient(Client n)
 	AfficherLigneSeparation();
 	cout << " Ajout d'un client " << endl;
 	AfficherLigneSeparation();
-	
+
 	int sections;
 
 	// Demander les infos du client pour ensuite le créer 

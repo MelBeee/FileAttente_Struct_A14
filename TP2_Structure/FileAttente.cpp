@@ -202,9 +202,17 @@ string FileAttente::GetClient(int indice) const
       compteur++; 
    }
 
-   string Client; 
+   string nom = "Nom de la réservation : " + pBalayage->GetNom() ; 
+   string nombre = "\n Nombre de personne : " + pBalayage->GetNombrePersonne();
+   string section = "\n Sections possibles : | ";
+   for (unsigned int i = 0; i < pBalayage->GetClientSection().size(); i++)
+   {
+	   section += pBalayage->GetClientSection()[i] + " | ";
+   }
 
-   return Client;
+   nom = nom + nombre + section + "\n \n"; 
+
+   return nom;
 }
 
 bool FileAttente::EstVide() const
@@ -294,6 +302,7 @@ Client FileAttente::Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable)
 {
    ClientsEnAttente * pBalayage = GetPremier();
    bool trouver = false; 
+   vector<Section> Comparaison;
 
    if (pBalayage == nullptr)
    {
