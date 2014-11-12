@@ -31,7 +31,7 @@ int main()
 	// Instance de la structure Client pour ajouter des nouveaux clients à la file
 	Client nouveau;
 
-	vector<Section> vec;
+	/*vector<Section> vec;
 	vec.push_back(Section::SalleManger);
 	vec.push_back(Section::TerrasseFumeur);
 	vec.push_back(Section::TerrasseNonFumeur);
@@ -56,7 +56,7 @@ int main()
 	laFile.Ajouter(a);
 	laFile.Ajouter(b);
 	laFile.Ajouter(c);
-	laFile.Ajouter(d);
+	laFile.Ajouter(d);*/
 
 
 	// tant que quitter est a true, on continue 

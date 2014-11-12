@@ -202,32 +202,41 @@ void AssignerTable(FileAttente laFile)
 	cout << " Assignation d'une table " << endl;
 	AfficherLigneSeparation();
 
-	int nbrePersonne, section;
-	Section sectiontable;
-
-	cout << "Combien de personnes peuvent s'asseoir a cette table ? ";
-	cin >> nbrePersonne;
-	do
-	{
-		cout << " Dans quelle section se trouve la table ? (Fumeur 1 , NonFumeur 2, SalleManger 3) ";
-		cin >> section;
-	} while (section < 1 || section > 3);
-
-   if (section = 1)
+   if (laFile.EstVide())
    {
-      sectiontable = Section::TerrasseFumeur;
-   }
-   else if (section = 2)
-   {
-      sectiontable = Section::TerrasseNonFumeur;
+      cout << "La file est vide" << endl; 
    }
    else
    {
-      sectiontable = Section::SalleManger;
+      int nbrePersonne, section;
+      Section sectiontable;
+
+      cout << "Combien de personnes peuvent s'asseoir a cette table ? ";
+      cin >> nbrePersonne;
+      do
+      {
+         cout << " Dans quelle section se trouve la table ? (Fumeur 1 , NonFumeur 2, SalleManger 3) ";
+         cin >> section;
+      } while (section < 1 || section > 3);
+
+      if (section = 1)
+      {
+         sectiontable = Section::TerrasseFumeur;
+      }
+      else if (section = 2)
+      {
+         sectiontable = Section::TerrasseNonFumeur;
+      }
+      else
+      {
+         sectiontable = Section::SalleManger;
+      }
+
+      laFile.Assigner(nbrePersonne, sectiontable);
+
    }
 
-   laFile.Assigner(nbrePersonne, sectiontable);
-
+	
  //  Client tempo = laFile.Retirer(nbrePersonne, sectiontable);
 	//// changer section
  //  cout << " Bonne appétit " << tempo.nomReservation << endl;
@@ -286,23 +295,31 @@ void AffichageFinale(FileAttente const laFile)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-//								RetraitClient()								  //
+//								RetraitClient()								               //
 ////////////////////////////////////////////////////////////////////////////////
 void RetraitClient(FileAttente& laFile)
 {
-	system("cls");
-	AfficherLigneSeparation();
-	cout << " Retrait d'un client qui quitte " << endl;
-	AfficherLigneSeparation();
+   system("cls");
+   AfficherLigneSeparation();
+   cout << " Retrait d'un client qui quitte " << endl;
+   AfficherLigneSeparation();
 
-	string nom;
-	int nbre;
+   if (!laFile.EstVide())
+   {
+	   string nom;
+	   int nbre;
 
-	DemanderQuiEstClient(nom, nbre, laFile);
-	// maintenant qu'on a trouver les bonnes données, on le retire avec la fonction retirer
-	laFile.Retirer(nom, nbre);
+	   DemanderQuiEstClient(nom, nbre, laFile);
+	   // maintenant qu'on a trouver les bonnes données, on le retire avec la fonction retirer
+	   laFile.Retirer(nom, nbre);
 
-	cout << " Aurevoir " << nom << endl;
+	   cout << " Aurevoir " << nom << endl;
+   }
+   else
+   {
+      cout << " La file est vide " << endl; 
+   }
+	
 	Attendre();
 }
 
@@ -337,21 +354,24 @@ void AfficherUnClient(FileAttente const laFile, ostream & out)
 	AfficherLigneSeparation();
 
 	int nbre;
-	string nom;
+	string nom, infoClient;
 
 	// si la file est vide on peut pas afficher de client 
 	if (laFile.EstVide())
 	{
-		cout << " La file est vide ";
+		cout << " La file est vide " << endl;
 	}
 	else
 	{
 		// demande qui est client 
 		DemanderQuiEstClient(nom, nbre, laFile);
 		// affiche le client
-		laFile.GetClient(laFile.DonnerLeRang(nom, nbre));
+		infoClient = laFile.GetClient(laFile.DonnerLeRang(nom, nbre));
+
+
 	}
 
+   Attendre(); 
 }
 
 ////////////////////////////////////////////////////////////////////////////////
