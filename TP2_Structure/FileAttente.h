@@ -66,7 +66,7 @@ public:
 	void	Ajouter(Client clientAMettreEnFile);
 
    //--- assigner un groupe a une table
-   void 	Assigner(int nbPlacesDeLaTable, Section sectionDeLaTable);
+   Client 	Assigner(int nbPlacesDeLaTable, Section sectionDeLaTable);
 
    //--- retirer un groupe de la file
 	bool	Retirer(string nomClient, int nbPersonnes);
