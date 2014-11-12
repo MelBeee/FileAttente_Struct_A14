@@ -132,13 +132,6 @@ void FileAttente::Ajouter(Client clientAMettreEnFile)
    SetNbPersonnesTotal(ObtenirNbPersonnes());
 }
 
-Client Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable)
-{
-   Client c;
-   // clairement temporaire 
-   return c;
-}
-
 bool FileAttente::Retirer(string nomClient, int nbPersonnes)
 {
    ClientsEnAttente * pTemporaire = GetPremier();
