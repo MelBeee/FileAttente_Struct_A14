@@ -89,23 +89,14 @@ int FileAttente::ObtenirNbGroupesTotal() const
 void FileAttente::Afficher(ostream & out) const
 {
    ClientsEnAttente * pTemporaire = GetPremier();
+   int indice = 0;
 
    while (pTemporaire != 0)
    {
-      vector<Section> tempo = pTemporaire->GetClientSection();
-
-      out << "Nom de la Réservation : " << pTemporaire->GetNom() << endl
-         << "Nb de personnes : " << pTemporaire->GetNombrePersonne() << endl
-         << "Sections désirées : ";
-      for (unsigned int i = 0; i < tempo.size(); i++)
-      {
-         cout << AfficherSection(tempo[i]) << ", ";
-      }
-      cout << endl << endl;
+      cout << GetClient(indice) << endl;
+      indice++;
       pTemporaire = pTemporaire->GetSuivant();
    }
-   out << "Il y a " << ObtenirNbGroupes() << " groupes dans la liste" << endl
-      << "Il y a " << ObtenirNbPersonnes() << " personnes en file " << endl;
 }
 void FileAttente::Ajouter(Client clientAMettreEnFile)
 {
@@ -195,17 +186,16 @@ string FileAttente::GetClient(int indice) const
       compteur++;
    }
 
-   string nom = "Nom de la réservation : " + pBalayage->GetNom();
-   string nombre = "\n Nombre de personne : " + pBalayage->GetNombrePersonne();
-   string section = "\n Sections possibles : | ";
+   string nom = " Nom de la réservation : " + pBalayage->GetNom();
+   string nombre = " Nombre de personne : " + to_string(pBalayage->GetNombrePersonne());
+   string section = " Sections possibles : | ";
    for (unsigned int i = 0; i < pBalayage->GetClientSection().size(); i++)
    {
-      section += pBalayage->GetClientSection()[i] + " | ";
+      section += AfficherSection(i) + " | ";
    }
 
-   nom = nom + nombre + section + "\n \n";
 
-   return nom;
+   return (nom + "\n" + nombre + "\n" + section + "\n");
 }
 
 bool FileAttente::EstVide() const

@@ -31,10 +31,17 @@ int main()
 	// Instance de la structure Client pour ajouter des nouveaux clients à la file
 	Client nouveau;
 
-	/*vector<Section> vec;
+	vector<Section> vec;
 	vec.push_back(Section::SalleManger);
 	vec.push_back(Section::TerrasseFumeur);
 	vec.push_back(Section::TerrasseNonFumeur);
+
+   vector<Section> vecty;
+   vecty.push_back(Section::SalleManger);
+
+   vector<Section> vecto;
+   vecto.push_back(Section::TerrasseFumeur);
+   vecto.push_back(Section::SalleManger);
 
 	Client a;
 	a.nomReservation = "a";
@@ -43,7 +50,7 @@ int main()
 	Client b;
 	b.nomReservation = "b";
 	b.nombreDePersonnes = 10;
-	b.sectionChoisis = vec;
+   b.sectionChoisis = vecto;
 	Client c;
 	c.nomReservation = "c";
 	c.nombreDePersonnes = 5;
@@ -51,12 +58,12 @@ int main()
 	Client d;
 	d.nomReservation = "d";
 	d.nombreDePersonnes = 6;
-	d.sectionChoisis = vec;
+   d.sectionChoisis = vecty;
 
 	laFile.Ajouter(a);
 	laFile.Ajouter(b);
 	laFile.Ajouter(c);
-	laFile.Ajouter(d);*/
+	laFile.Ajouter(d);
 
 
 	// tant que quitter est a true, on continue 
@@ -78,16 +85,10 @@ int main()
 			AfficherUnClient(laFile, cout);
 			break;
 		case 5:
-			system("cls");
-			AfficherLigneSeparation();
-			cout << " Affichage de la file d'attente " << endl;
-			AfficherLigneSeparation();
-			laFile.Afficher(cout);
-			Attendre();
+         AfficherLaFileEnEntier(cout, laFile);
 			break;
 		case 6:
-			quitter = QuitterLeProgramme(laFile);
-			if (!quitter)
+         if (!QuitterLeProgramme(laFile))
 			{
 				AffichageFinale(laFile);
 			}
