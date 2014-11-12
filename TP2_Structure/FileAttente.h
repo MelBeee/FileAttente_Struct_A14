@@ -34,6 +34,7 @@ class FileAttente
 	void	SetNbGroupesTotal(int nb);
 	void	SetNbPersonnesTotal(int nb);
 
+
 public:
 	//--- Constructeur par défaut
 	FileAttente();

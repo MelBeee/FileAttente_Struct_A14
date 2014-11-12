@@ -88,7 +88,7 @@ int FileAttente::ObtenirNbGroupesTotal() const
 
 void FileAttente::Afficher(ostream & out) const
 {
-		ClientsEnAttente * pTemporaire = GetPremier();
+	ClientsEnAttente * pTemporaire = GetPremier();
 	int indice = 0;
 
 	while (pTemporaire != 0)
@@ -179,7 +179,7 @@ bool FileAttente::Retirer(string nomClient, int nbPersonnes)
 
 string FileAttente::GetClient(int indice) const
 {
-		ClientsEnAttente * pBalayage = GetPremier();
+	ClientsEnAttente * pBalayage = GetPremier();
 	int compteur = 0;
 	while (compteur != indice)
 	{
@@ -288,23 +288,35 @@ Client FileAttente::Assigner(int nbPlacesDeLaTable, Section sectionDeLaTable)
 	ClientsEnAttente * meilleursChoix = nullptr;
 	bool trouver = false;
 
-	for (int i = nbPlacesDeLaTable; i > 0; i--)
+	for (int i = nbPlacesDeLaTable; i > 0 && !trouver; i--)
 	{
-		while (pTemporaire != nullptr)
+		pTemporaire = GetPremier();
+		while (pTemporaire != nullptr && !trouver)
 		{
-			if (pTemporaire->GetSuivant() != nullptr &&
-				pTemporaire->GetNombrePersonne() == i)
+			if (pTemporaire->GetNombrePersonne() == i)
 			{
 				for (int j = 0; j < pTemporaire->GetClientSection().size() && !trouver; j++)
 				{
 					trouver = AfficherSection(sectionDeLaTable) == AfficherSection(pTemporaire->GetClientSection().at(j));
-
-					pTemporaire = pTemporaire->GetSuivant();
+					if (trouver)
+						meilleursChoix = pTemporaire;
 				}
-
 			}
+			pTemporaire = pTemporaire->GetSuivant();
 		}
 	}
+
+	if (!trouver)
+	{
+		throw exception("Pas de groupe correspondant aux demandes");
+	}
+	else
+	{
+		cout << " Bonne appetit " << meilleursChoix->GetNom() << endl;
+		Retirer(meilleursChoix->GetNom(), meilleursChoix->GetNombrePersonne());
+	}
+
+	return meilleursChoix->GetClient();
 }
 
 
