@@ -63,7 +63,6 @@ int MenuFaireChoix()
    {
       cout << " Faites votre choix : ";
       GetInt(Choix);
-      cout << endl;
    } while (Choix < 1 || Choix > 6);
 
    system("cls");
@@ -209,8 +208,12 @@ void AssignerTable(FileAttente & laFile)
       int nbrePersonne, section;
       Section sectiontable;
 
-      cout << "Combien de personnes peuvent s'asseoir a cette table ? ";
-      cin >> nbrePersonne;
+      do
+      {
+         cout << "Combien de personnes peuvent s'asseoir a cette table ? ";
+         cin >> nbrePersonne;
+      } while (nbrePersonne < 1);
+
       do
       {
          cout << " Dans quelle section se trouve la table ? (Fumeur 1 , NonFumeur 2, SalleManger 3) ";
