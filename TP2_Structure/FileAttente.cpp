@@ -192,12 +192,23 @@ string FileAttente::GetClient(int indice) const
 	string section = " Sections possibles : | ";
 	for (unsigned int i = 0; i < pBalayage->GetClientSection().size(); i++)
 	{
-		section += AfficherSection(i) + " | ";
+      section += AfficherSection(pBalayage->GetClientSection()[i]) + " | ";
 	}
-
-
 	return (nom + "\n" + nombre + "\n" + section + "\n");
 }
+
+string FileAttente::AfficherSection(int i) const
+{
+   string section;
+   switch (i)
+   {
+   case TerrasseNonFumeur: section = "Terrasse NonFumeur"; break;
+   case TerrasseFumeur: section = "Terrasse Fumeur"; break;
+   case SalleManger: section = "Salle A Manger"; break;
+   }
+   return section;
+}
+
 
 bool FileAttente::EstVide() const
 {
@@ -266,21 +277,7 @@ void FileAttente::PasserDevantToutLeMonde()
 	}
 }
 
-string FileAttente::AfficherSection(int i) const
-{
-	if (i == TerrasseNonFumeur)
-	{
-		return "TerrasseNonFumeur";
-	}
-	else if (i == TerrasseFumeur)
-	{
-		return "TerrasseFumeur";
-	}
-	else
-	{
-		return "SalleManger";
-	}
-}
+
 
 Client FileAttente::Assigner(int nbPlacesDeLaTable, Section sectionDeLaTable)
 {
