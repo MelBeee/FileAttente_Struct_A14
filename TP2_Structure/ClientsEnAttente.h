@@ -48,6 +48,8 @@ public:
 	string GetNom() const;
 	int GetNombrePersonne() const;
 	vector<Section> GetClientSection() const;
+	
+	bool ChoixSection(ClientsEnAttente c, Section s);
 };
 
 #endif
