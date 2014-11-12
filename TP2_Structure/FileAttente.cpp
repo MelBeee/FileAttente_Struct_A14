@@ -89,25 +89,6 @@ int FileAttente::ObtenirNbGroupesTotal() const
 void FileAttente::Afficher(ostream & out) const
 {
 		ClientsEnAttente * pTemporaire = GetPremier();
-
-	while (pTemporaire != 0)
-	{
-		vector<Section> tempo = pTemporaire->GetClientSection();
-
-		out << "Nom de la Réservation : " << pTemporaire->GetNom() << endl
-			<< "Nb de personnes : " << pTemporaire->GetNombrePersonne() << endl
-			<< "Sections désirées : ";
-		for (unsigned int i = 0; i < tempo.size(); i++)
-		{
-			cout << AfficherSection(tempo[i]) << ", ";
-		}
-		cout << endl << endl;
-		pTemporaire = pTemporaire->GetSuivant();
-	}
-	out << "Il y a " << ObtenirNbGroupes() << " groupes dans la liste" << endl
-		<< "Il y a " << ObtenirNbPersonnes() << " personnes en file " << endl;
-	== == == =
-		ClientsEnAttente * pTemporaire = GetPremier();
 	int indice = 0;
 
 	while (pTemporaire != 0)
@@ -116,7 +97,7 @@ void FileAttente::Afficher(ostream & out) const
 		indice++;
 		pTemporaire = pTemporaire->GetSuivant();
 	}
-	>> >> >> > origin / master
+
 }
 void FileAttente::Ajouter(Client clientAMettreEnFile)
 {
