@@ -88,7 +88,8 @@ int main()
          AfficherLaFileEnEntier(cout, laFile);
 			break;
 		case 6:
-         if (!QuitterLeProgramme(laFile))
+         quitter = QuitterLeProgramme(laFile);
+         if (!quitter)
 			{
 				AffichageFinale(laFile);
 			}
