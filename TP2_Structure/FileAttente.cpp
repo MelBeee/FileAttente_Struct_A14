@@ -308,11 +308,14 @@ void FileAttente::Assigner(int nbPlacesDeLaTable, Section sectionDeLaTable)
          {
             pBalayage = pBalayage->GetSuivant(); 
          }
+		 if (pBalayage != nullptr)
+		 {
+			 if (pBalayage->GetNombrePersonne() == i && !pBalayage->ChoixSection(*pBalayage, sectionDeLaTable))
+			 {
+				trouver = true;
+			 }
+		 }
 
-         if (pBalayage->GetNombrePersonne() == i && !pBalayage->ChoixSection(*pBalayage, sectionDeLaTable))
-         {
-            trouver = true;
-         }
             // if(pBalayage->GetClientSection != section)
       }
 
