@@ -191,19 +191,19 @@ string FileAttente::GetClient(int indice) const
    int compteur = 0;
    while (compteur != indice)
    {
-      pBalayage = pBalayage->GetSuivant(); 
-      compteur++; 
+      pBalayage = pBalayage->GetSuivant();
+      compteur++;
    }
 
-   string nom = "Nom de la réservation : " + pBalayage->GetNom() ; 
+   string nom = "Nom de la réservation : " + pBalayage->GetNom();
    string nombre = "\n Nombre de personne : " + pBalayage->GetNombrePersonne();
    string section = "\n Sections possibles : | ";
    for (unsigned int i = 0; i < pBalayage->GetClientSection().size(); i++)
    {
-	   section += pBalayage->GetClientSection()[i] + " | ";
+      section += pBalayage->GetClientSection()[i] + " | ";
    }
 
-   nom = nom + nombre + section + "\n \n"; 
+   nom = nom + nombre + section + "\n \n";
 
    return nom;
 }
@@ -217,7 +217,7 @@ bool FileAttente::VérifierSiPrésent(string nom, int nbPersonnes) const
 {
    ClientsEnAttente * pBalayage = GetPremier();
 
-   while (pBalayage != nullptr && !EstLeMemeNom(pBalayage, nom, nbPersonnes))
+   while (!EstVide() && !EstLeMemeNom(pBalayage, nom, nbPersonnes))
    {
       pBalayage = pBalayage->GetSuivant();
    }
@@ -245,7 +245,7 @@ int FileAttente::DonnerLeRang(string nom, int nbPersonnes) const
    //int rang = 1; 
    int rang = 0;
 
-   while (pBalayage != nullptr && !EstLeMemeNom(pBalayage, nom, nbPersonnes))
+   while (!EstVide() && !EstLeMemeNom(pBalayage, nom, nbPersonnes))
    {
       pBalayage = pBalayage->GetSuivant();
       rang++;
@@ -294,9 +294,9 @@ string FileAttente::AfficherSection(int i) const
 void FileAttente::Assigner(int nbPlacesDeLaTable, Section sectionDeLaTable)
 {
    ClientsEnAttente * pBalayage = GetPremier();
-   bool trouver = false;          
+   bool trouver = false;
 
-   if (pBalayage == nullptr)
+   if (EstVide())
    {
       throw exception("La liste est vide");
    }
@@ -304,19 +304,19 @@ void FileAttente::Assigner(int nbPlacesDeLaTable, Section sectionDeLaTable)
    {
       for (int i = nbPlacesDeLaTable; i > 0 && !trouver; i--)
       {
-         while (pBalayage != nullptr && pBalayage->GetNombrePersonne() != i && pBalayage->ChoixSection(*pBalayage, sectionDeLaTable)) // && pBalayage->GetSection() !=sectiondelatable   ([1] != || [2] != || [3] !=  )
+         while (!EstVide() && pBalayage->GetNombrePersonne() != i && pBalayage->ChoixSection(*pBalayage, sectionDeLaTable)) // && pBalayage->GetSection() !=sectiondelatable   ([1] != || [2] != || [3] !=  )
          {
-            pBalayage = pBalayage->GetSuivant(); 
+            pBalayage = pBalayage->GetSuivant();
          }
-		 if (pBalayage != nullptr)
-		 {
-			 if (pBalayage->GetNombrePersonne() == i && !pBalayage->ChoixSection(*pBalayage, sectionDeLaTable))
-			 {
-				trouver = true;
-			 }
-		 }
+         if (!EstVide())
+         {
+            if (pBalayage->GetNombrePersonne() == i && !pBalayage->ChoixSection(*pBalayage, sectionDeLaTable))
+            {
+               trouver = true;
+            }
+         }
 
-            // if(pBalayage->GetClientSection != section)
+         // if(pBalayage->GetClientSection != section)
       }
 
       if (!trouver)
@@ -324,11 +324,11 @@ void FileAttente::Assigner(int nbPlacesDeLaTable, Section sectionDeLaTable)
          throw exception("Pas de groupe correspondant aux demandes");
       }
       else
-      {      
-         cout << " Bonne appetit " << pBalayage->GetNom() << endl; 
+      {
+         cout << " Bonne appetit " << pBalayage->GetNom() << endl;
          Retirer(pBalayage->GetNom(), pBalayage->GetNombrePersonne());
       }
    }
-  /* return pBalayage->GetClient();*/
+   /* return pBalayage->GetClient();*/
 }
 

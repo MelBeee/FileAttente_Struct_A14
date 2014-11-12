@@ -56,12 +56,25 @@ public:
 	//--- et retourner le nombre client qu'elle contient
 	int    ObtenirNbGroupesTotal() const;
 
+   //--- mettre le string passé en caractère en majuscule, pour verifier si les noms sont pareils
 	string  MettreEnMajuscules(string nom) const;
+
+   //--- vérifie si le client passé en parametre et le client de l'instance sont pareil
 	bool    EstLeMemeNom(ClientsEnAttente * p, string nom, int nbPersonnes) const;
+
+   //--- ajoute un nouveau client dans la file d'attente
 	void	Ajouter(Client clientAMettreEnFile);
+
+   //--- assigner un groupe a une table
    void 	Assigner(int nbPlacesDeLaTable, Section sectionDeLaTable);
+
+   //--- retirer un groupe de la file
 	bool	Retirer(string nomClient, int nbPersonnes);
+
+   //--- retourner un client 
 	string	GetClient(int indice) const;
+
+   //--- verifie si la file est vide
 	bool	EstVide() const;
 
 	//--- Méthode qui vérifie si un nom est dans la liste
