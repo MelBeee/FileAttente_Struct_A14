@@ -88,7 +88,8 @@ int FileAttente::ObtenirNbGroupesTotal() const
 
 void FileAttente::Afficher(ostream & out) const
 {
-	ClientsEnAttente * pTemporaire = GetPremier();
+	<< << << < HEAD
+		ClientsEnAttente * pTemporaire = GetPremier();
 
 	while (pTemporaire != 0)
 	{
@@ -106,6 +107,17 @@ void FileAttente::Afficher(ostream & out) const
 	}
 	out << "Il y a " << ObtenirNbGroupes() << " groupes dans la liste" << endl
 		<< "Il y a " << ObtenirNbPersonnes() << " personnes en file " << endl;
+	== == == =
+		ClientsEnAttente * pTemporaire = GetPremier();
+	int indice = 0;
+
+	while (pTemporaire != 0)
+	{
+		cout << GetClient(indice) << endl;
+		indice++;
+		pTemporaire = pTemporaire->GetSuivant();
+	}
+	>> >> >> > origin / master
 }
 void FileAttente::Ajouter(Client clientAMettreEnFile)
 {
@@ -187,7 +199,7 @@ bool FileAttente::Retirer(string nomClient, int nbPersonnes)
 
 string FileAttente::GetClient(int indice) const
 {
-	ClientsEnAttente * pBalayage = GetPremier();
+		ClientsEnAttente * pBalayage = GetPremier();
 	int compteur = 0;
 	while (compteur != indice)
 	{
@@ -195,17 +207,16 @@ string FileAttente::GetClient(int indice) const
 		compteur++;
 	}
 
-	string nom = "Nom de la réservation : " + pBalayage->GetNom();
-	string nombre = "\n Nombre de personne : " + pBalayage->GetNombrePersonne();
-	string section = "\n Sections possibles : | ";
+	string nom = " Nom de la réservation : " + pBalayage->GetNom();
+	string nombre = " Nombre de personne : " + to_string(pBalayage->GetNombrePersonne());
+	string section = " Sections possibles : | ";
 	for (unsigned int i = 0; i < pBalayage->GetClientSection().size(); i++)
 	{
-		section += pBalayage->GetClientSection()[i] + " | ";
+		section += AfficherSection(i) + " | ";
 	}
 
-	nom = nom + nombre + section + "\n \n";
 
-	return nom;
+	return (nom + "\n" + nombre + "\n" + section + "\n");
 }
 
 bool FileAttente::EstVide() const
@@ -302,14 +313,14 @@ Client FileAttente::Assigner(int nbPlacesDeLaTable, Section sectionDeLaTable)
 		while (pTemporaire != nullptr)
 		{
 			if (pTemporaire->GetSuivant() != nullptr &&
-				pTemporaire->GetNombrePersonne() == i)				
+				pTemporaire->GetNombrePersonne() == i)
 			{
 				for (int j = 0; j < pTemporaire->GetClientSection().size() && !trouver; j++)
 				{
 					trouver = AfficherSection(sectionDeLaTable) == AfficherSection(pTemporaire->GetClientSection().at(j));
 
 					pTemporaire = pTemporaire->GetSuivant();
-				}	
+				}
 
 			}
 		}

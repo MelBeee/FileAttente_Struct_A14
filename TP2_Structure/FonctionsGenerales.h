@@ -112,4 +112,6 @@ bool GetInt(int & n);
 ////////////////////////////////////////////////////////////////////////////////
 void DemanderQuiEstClient(string & nom, int & nbre, FileAttente const laFile);
 
+void AfficherLaFileEnEntier(ostream & out, FileAttente laFile);
+
 #endif
