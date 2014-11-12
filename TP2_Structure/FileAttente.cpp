@@ -88,7 +88,6 @@ int FileAttente::ObtenirNbGroupesTotal() const
 
 void FileAttente::Afficher(ostream & out) const
 {
-	<< << << < HEAD
 		ClientsEnAttente * pTemporaire = GetPremier();
 
 	while (pTemporaire != 0)
