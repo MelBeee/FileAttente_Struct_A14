@@ -54,16 +54,20 @@ FileAttente::FileAttente()
 {
 	SetNbGroupes(0);  // il n'y a pas d'éléments dans la liste
 	SetNbPersonnes(0);
-	SetPremier(0);     // on pointe sur rien
-	SetDernier(0);
+   SetPremier(nullptr);     // on pointe sur rien
+	SetDernier(nullptr);
 }
 
 FileAttente::~FileAttente()
 {
-	pPremier_ = 0;
-	pDernier_ = 0;
-	delete pPremier_;
-	delete pDernier_;
+   cout << "Ma file est détuite" << endl; 
+   //ClientsEnAttente * pBalais = GetPremier();
+
+   //while (pBalais != nullptr)
+   //{
+   //   pBalais = pBalais->GetSuivant();
+   //   delete pBalais->GetPrécédent();
+   //}
 }
 // retourne le nombre d'éléments de la liste
 int FileAttente::ObtenirNbGroupes() const
@@ -132,6 +136,10 @@ bool FileAttente::Retirer(string nomClient, int nbPersonnes)
 	ClientsEnAttente * pTemporaire = GetPremier();
 	bool existe = false;
 
+   if (pTemporaire == 0)
+   {
+      throw exception("La liste est vide");
+   }
 	if (VérifierSiPrésent(nomClient, nbPersonnes))
 	{
 		while (pTemporaire != 0 && !existe)
@@ -296,7 +304,7 @@ Client FileAttente::Assigner(int nbPlacesDeLaTable, Section sectionDeLaTable)
 		{
 			if (pTemporaire->GetNombrePersonne() == i)
 			{
-				for (int j = 0; j < pTemporaire->GetClientSection().size() && !trouver; j++)
+				for (unsigned int j = 0; j < pTemporaire->GetClientSection().size() && !trouver; j++)
 				{
 					trouver = AfficherSection(sectionDeLaTable) == AfficherSection(pTemporaire->GetClientSection().at(j));
 					if (trouver)

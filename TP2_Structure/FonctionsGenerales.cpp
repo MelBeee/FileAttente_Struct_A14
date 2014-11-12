@@ -64,8 +64,8 @@ int MenuFaireChoix()
    do
    {
       cout << " Faites votre choix : ";
-      if (!GetInt(Choix) && Choix < 1 || Choix > 6)
-         cout << " Nombre invalide, recommencez " << endl;
+      GetInt(Choix);
+      cout << endl;
    } while (Choix < 1 || Choix > 6);
 
    system("cls");
@@ -256,9 +256,14 @@ bool QuitterLeProgramme(FileAttente const laFile)
    cout << " Quitter " << endl;
    AfficherLigneSeparation();
    // false pour quitter, true pour ne pas quitter
-   bool quitter = false;
+   bool quitter;
    // choix si on quitte ou non lorsqu'il reste des clients en file
    char choix;
+
+   if (laFile.EstVide())
+   {
+      throw exception("La file est vide (Quitter)");
+   }
 
    if (!laFile.EstVide())  // si file d'attente non vide
    {
@@ -274,7 +279,16 @@ bool QuitterLeProgramme(FileAttente const laFile)
       {
          quitter = true;
       }
+      else
+      {
+         quitter = false;
+      }
    }
+   else
+   {
+      quitter = false;
+   }
+
 
    system("cls");
    return quitter;

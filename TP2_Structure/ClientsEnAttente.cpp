@@ -23,10 +23,11 @@ ClientsEnAttente::ClientsEnAttente(string nom, int nbPersonne, vector<Section> s
 // Destructeur
 ClientsEnAttente::~ClientsEnAttente()
 {
-	pPrécédent_ = 0;
-	pSuivant_ = 0;
-	delete pPrécédent_;
-	delete pSuivant_;
+   cout << " Mon client est détruit " << endl; 
+	//pPrécédent_ = 0;
+	//pSuivant_ = 0;
+	//delete pPrécédent_;
+	//delete pSuivant_;
 }
 
 // Mutateurs

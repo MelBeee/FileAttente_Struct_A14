@@ -11,6 +11,7 @@
 #ifndef _CLIENTSENATTENTE_H_
 #define _CLIENTSENATTENTE_H_
 #include <string>
+#include <iostream>
 #include <vector>
 using namespace std;
 
