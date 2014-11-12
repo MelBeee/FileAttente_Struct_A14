@@ -204,7 +204,7 @@ void AssignerTable(FileAttente laFile)
 
    if (laFile.EstVide())
    {
-      cout << "La file est vide" << endl;
+      throw exception(" La file est vide ! ");
    }
    else
    {
@@ -260,7 +260,7 @@ bool QuitterLeProgramme(FileAttente const laFile)
    // choix si on quitte ou non lorsqu'il reste des clients en file
    char choix;
 
-   if (laFile.ObtenirNbGroupes() != 0)  // si file d'attente non vide
+   if (!laFile.EstVide())  // si file d'attente non vide
    {
       do // refaire tant que l'utilisateur a pas entrer o ou n
       {
@@ -317,7 +317,7 @@ void RetraitClient(FileAttente& laFile)
    }
    else
    {
-      cout << " La file est vide " << endl;
+      throw exception(" La file est vide ! ");
    }
 
    Attendre();
@@ -359,7 +359,7 @@ void AfficherUnClient(FileAttente const laFile, ostream & out)
    // si la file est vide on peut pas afficher de client 
    if (laFile.EstVide())
    {
-      cout << " La file est vide " << endl;
+      throw exception(" La file est vide ! ");
    }
    else
    {
@@ -384,7 +384,16 @@ void AfficherLaFileEnEntier(ostream & out, FileAttente laFile)
    cout << " Affichage de la file d'attente " << endl;
    AfficherLigneSeparation();
    cout << endl;
-   laFile.Afficher(cout);
+
+   if (laFile.EstVide())
+   {
+      throw exception(" La file est vide ! ");
+   }
+   else
+   {
+      laFile.Afficher(cout);
+   }
+
    AfficherLigneSeparation();
    out << " Il y a " << laFile.ObtenirNbGroupes() << " groupes dans la liste" << endl
       << " Il y a " << laFile.ObtenirNbPersonnes() << " personnes en file " << endl;
@@ -397,6 +406,10 @@ void AfficherLaFileEnEntier(ostream & out, FileAttente laFile)
 ////////////////////////////////////////////////////////////////////////////////
 void DemanderQuiEstClient(string & nom, int & nbre, FileAttente const laFile)
 {
+   if (laFile.EstVide())
+   {
+      throw exception(" La file est vide ! ");
+   }
    // demander tant qu'il n'a pas entrer des données qui existe
    do
    {
