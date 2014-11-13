@@ -250,7 +250,7 @@ void AssignerTable(FileAttente & laFile)
 ////////////////////////////////////////////////////////////////////////////////
 //						   QuitterLeProgramme()								  //
 ////////////////////////////////////////////////////////////////////////////////
-bool QuitterLeProgramme(FileAttente & const laFile)
+bool QuitterLeProgramme(FileAttente & laFile)
 {
    system("cls");
    AfficherLigneSeparation();
@@ -299,7 +299,7 @@ bool QuitterLeProgramme(FileAttente & const laFile)
 ////////////////////////////////////////////////////////////////////////////////
 //								AffichageFinale()							  //
 ////////////////////////////////////////////////////////////////////////////////
-void AffichageFinale(FileAttente & const laFile)
+void AffichageFinale(FileAttente & laFile)
 {
    // affiche les infofinales en utilisant les fonctions de la file
    AfficherLigneSeparation();
@@ -362,7 +362,7 @@ Client CreationClient(Client n)
 ////////////////////////////////////////////////////////////////////////////////
 //								AfficherUnClient()							               //
 ////////////////////////////////////////////////////////////////////////////////
-void AfficherUnClient(FileAttente & const laFile, ostream & out)
+void AfficherUnClient(FileAttente & laFile, ostream & out)
 {
    system("cls");
    AfficherLigneSeparation();
@@ -420,7 +420,7 @@ void AfficherLaFileEnEntier(ostream & out, FileAttente & laFile)
 ////////////////////////////////////////////////////////////////////////////////
 //							DemanderQuiEstClient()							               //
 ////////////////////////////////////////////////////////////////////////////////
-void DemanderQuiEstClient(string & nom, int & nbre, FileAttente & const laFile)
+void DemanderQuiEstClient(string & nom, int & nbre, FileAttente & laFile)
 {
    if (laFile.EstVide())
    {

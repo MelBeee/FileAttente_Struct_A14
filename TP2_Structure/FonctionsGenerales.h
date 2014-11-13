@@ -52,14 +52,14 @@ void AssignerTable(FileAttente & laFile);
 //		Fonction qui vérifie s'il reste des gens en file, si oui on			      //
 //			demande a l'utilsiateur s'il veux quand meme quitter			         // 
 ////////////////////////////////////////////////////////////////////////////////
-bool QuitterLeProgramme(FileAttente & const laFile);
+bool QuitterLeProgramme(FileAttente & laFile);
 ////////////////////////////////////////////////////////////////////////////////
 //							AffichageFinale()								                  //
 //					Intrant : laFile	Extrant : Aucun						            //
 //		Affiche le nombre de réservation totale, le nombre de client total	   //
 //		et le nombre de personne restant dans la file au moment de quitter      //
 ////////////////////////////////////////////////////////////////////////////////
-void AffichageFinale(FileAttente & const laFile);
+void AffichageFinale(FileAttente & laFile);
 ////////////////////////////////////////////////////////////////////////////////
 //								RetraitClient()								               //
 //					Intrant : laFile	Extrant : Aucun						            //
@@ -89,7 +89,7 @@ Client CreationClient(Client n);
 //					Intrant : laFile	Extrant : Aucun						            //
 //			 Fonction qui affiche un client demander par l'utilisateur	   	   //
 ////////////////////////////////////////////////////////////////////////////////
-void AfficherUnClient(FileAttente & const laFile, ostream & out);
+void AfficherUnClient(FileAttente & laFile, ostream & out);
 ////////////////////////////////////////////////////////////////////////////////
 //						  AfficherLigneSeparation()							            //
 //					Intrant : Aucun		Extrant : Aucun						         //
@@ -110,7 +110,7 @@ bool GetInt(int & n);
 //		Fonction qui demande nom et nombre d'une reservation tant qu'il		   //
 //      n'y a pas trouver une équivalente a celle entré par l'utilisateur	   //
 ////////////////////////////////////////////////////////////////////////////////
-void DemanderQuiEstClient(string & nom, int & nbre, FileAttente & const laFile);
+void DemanderQuiEstClient(string & nom, int & nbre, FileAttente & laFile);
 
 void AfficherLaFileEnEntier(ostream & out, FileAttente & laFile);
 ////////////////////////////////////////////////////////////////////////////////

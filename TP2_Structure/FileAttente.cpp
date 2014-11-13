@@ -185,10 +185,10 @@ string FileAttente::GetClient(int indice) const
 
 	string nom = " Nom de la réservation : " + pBalayage->GetNom();
 	string nombre = " Nombre de personne : " + to_string(pBalayage->GetNombrePersonne());
-	string section = " Sections possibles : | ";
+	string section = " Sections possibles : |";
 	for (unsigned int i = 0; i < pBalayage->GetClientSection().size(); i++)
 	{
-		section += AfficherSection(pBalayage->GetClientSection()[i]) + " |";
+		section += AfficherSection(pBalayage->GetClientSection()[i]) + "|";
 	}
 	return (nom + "\n" + nombre + "\n" + section + "\n");
 }
