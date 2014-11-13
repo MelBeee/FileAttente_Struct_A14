@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
-//								FonctionsGenerales.cpp									                  //
+//								FonctionsGenerales.cpp									      //
 //				  Fait par Mélissa Boucher et Xavier Brosseau				         //
 //							Créé le 29 octobre 2014							               //
 //						Derniere modif 16 novembre 2014						            //
@@ -47,8 +47,7 @@ int MenuFaireChoix()
    // Initialisation a -1 pour rentrer dans la boucle
    int Choix = -1;
 
-   // Affichage du menu
-   AfficherLigneSeparation();
+   AfficherLigneSeparation(); // Affichage du menu
    cout << " 1. Ajouter un client dans la file " << endl
       << " 2. Assigner une table " << endl
       << " 3. Retirer un client qui quitte 7" << endl
@@ -77,8 +76,7 @@ void DemanderInfoClient(string& nom, int& nbre, int& sections)
 {
    cout << " Bienvenue ! Veuillez entrer les informations suivantes s'il vous plait " << endl;
 
-   // Demander le nom de la reservation a l'utilisateur
-   cout << " Le nom de la réservation : ";
+   cout << " Le nom de la réservation : "; // Demander le nom de la reservation a l'utilisateur
    cin >> nom;
    do
    {
@@ -115,18 +113,15 @@ int DeterminerSection()
    section[1] = Sections(sections, fumeur);
    section[2] = Sections(sections, sallemanger);
 
-   // Si l'utilisateur à dit oui a la terrasse nonfumeur, on augmente de 1
-   if (section[0] == 'o')
+   if (section[0] == 'o') // Si l'utilisateur à dit oui a la terrasse nonfumeur, on augmente de 1
    {
       sections += 1;
    }
-   // Si l'utilisateur à dit oui a la terrasse fumeur, on augmente de 10
-   if (section[1] == 'o')
+   if (section[1] == 'o') // Si l'utilisateur à dit oui a la terrasse fumeur, on augmente de 10
    {
       sections += 10;
    }
-   // Si l'utilisateur à dit oui a la salle a manger, on augmente de 100
-   if (section[2] == 'o')
+   if (section[2] == 'o')// Si l'utilisateur à dit oui a la salle a manger, on augmente de 100
    {
       sections += 100;
    }
@@ -143,13 +138,13 @@ int DeterminerSection()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-//								    Sections()								  //
+//								    Sections()								                  //
 ////////////////////////////////////////////////////////////////////////////////
 char Sections(int & section, string nom)
 {
    char selectionne;
-   // tant que le caractère n'est pas o ou n on redemande a l'utilisateur
-   do
+
+   do // tant que le caractère n'est pas o ou n on redemande a l'utilisateur
    {
       cout << nom;
       cin >> selectionne;
@@ -162,28 +157,22 @@ char Sections(int & section, string nom)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-//								SetClientSection()							  //
+//								SetClientSection()							               //
 ////////////////////////////////////////////////////////////////////////////////
 void SetClientSection(int section, Client& c)
 {
-   // si section > 100, ca veux dire que l'utilisateur a dit oui a SalleAManger
-   // on pushback donc SalleAManger dans le vecteur<section> du Client
-   if (section >= 100)
-   {
+   if (section >= 100) // si section > 100, ca veux dire que l'utilisateur a dit oui a SalleAManger
+   {   // on pushback donc SalleAManger dans le vecteur<section> du Client
       c.sectionChoisis.push_back(SalleManger);
       section -= 100;
    }
-   // si section > 10, ca veux dire que l'utilisateur a dit oui a TerrasseFumeur
-   // on pushback donc TerrasseFumeur dans le vecteur<section> du Client
-   if (section >= 10)
-   {
+   if (section >= 10) // si section > 10, ca veux dire que l'utilisateur a dit oui a TerrasseFumeur
+   {   // on pushback donc TerrasseFumeur dans le vecteur<section> du Client
       c.sectionChoisis.push_back(TerrasseFumeur);
       section -= 10;
    }
-   // si section > 1, ca veux dire que l'utilisateur a dit oui a TerrasseNonFumeur
-   // on pushback donc TerrasseNonFumeur dans le vecteur<section> du Client
-   if (section >= 1)
-   {
+   if (section >= 1) // si section > 1, ca veux dire que l'utilisateur a dit oui a TerrasseNonFumeur
+   {   // on pushback donc TerrasseNonFumeur dans le vecteur<section> du Client
       c.sectionChoisis.push_back(TerrasseNonFumeur);
       section -= 1;
    }
@@ -200,49 +189,31 @@ void AssignerTable(FileAttente & laFile)
    AfficherLigneSeparation();
 
    if (laFile.EstVide())
+      throw exception("La file est vide");
+
+   int nbrePersonne, section;
+   Section sectiontable;
+
+   do
    {
-      cout << "La file est vide" << endl;
-   }
-   else
+      cout << "Combien de personnes peuvent s'asseoir a cette table ? ";
+      cin >> nbrePersonne;
+   } while (nbrePersonne < 1);
+
+   do
    {
-      int nbrePersonne, section;
-      Section sectiontable;
+      cout << " Dans quelle section se trouve la table ? (Fumeur 1 , NonFumeur 2, SalleManger 3) ";
+      cin >> section;
+   } while (section < 1 || section > 3);
 
-      do
-      {
-         cout << "Combien de personnes peuvent s'asseoir a cette table ? ";
-         cin >> nbrePersonne;
-      } while (nbrePersonne < 1);
-
-      do
-      {
-         cout << " Dans quelle section se trouve la table ? (Fumeur 1 , NonFumeur 2, SalleManger 3) ";
-         cin >> section;
-      } while (section < 1 || section > 3);
-
-      if (section = 1)
-      {
-         sectiontable = Section::TerrasseFumeur;
-      }
-      else if (section = 2)
-      {
-         sectiontable = Section::TerrasseNonFumeur;
-      }
-      else
-      {
-         sectiontable = Section::SalleManger;
-      }
-
-      laFile.Assigner(nbrePersonne, sectiontable);
-
+   switch (section)
+   {
+   case 1: sectiontable = Section::TerrasseFumeur; break;
+   case 2: sectiontable = Section::TerrasseNonFumeur; break;
+   case 3: sectiontable = Section::SalleManger; break;
    }
 
-
-   //  Client tempo = laFile.Retirer(nbrePersonne, sectiontable);
-   //// changer section
-   //  cout << " Bonne appétit " << tempo.nomReservation << endl;
-
-   //laFile.Retirer(tempo.nomReservation, tempo.nombreDePersonnes);
+   laFile.Assigner(nbrePersonne, sectiontable);
 
    Attendre();
 }
@@ -256,41 +227,23 @@ bool QuitterLeProgramme(FileAttente & laFile)
    AfficherLigneSeparation();
    cout << " Quitter " << endl;
    AfficherLigneSeparation();
-   // false pour quitter, true pour ne pas quitter
-   bool quitter;
-   // choix si on quitte ou non lorsqu'il reste des clients en file
-   char choix;
+
+   bool quitter = false; // false pour quitter, true pour ne pas quitter
+   char choix; // choix si on quitte ou non lorsqu'il reste des clients en file
 
    if (laFile.EstVide())
-   {
-      cout << "La file est vide" << endl;
-   }
+      throw exception("La file est vide");
 
-   if (!laFile.EstVide())  // si file d'attente non vide
+   do // refaire tant que l'utilisateur a pas entrer o ou n
    {
-      do // refaire tant que l'utilisateur a pas entrer o ou n
-      {
-         cout << " Il y a encore des clients en file, êtes-vous sur de vouloir quitter ? (o/n) ";
-         cin >> choix;
-         if (choix != 'o' && choix != 'n')
-            cout << " Choix invalide, recommencez " << endl;
-      } while (choix != 'o' && choix != 'n');
-      // si le choix est non, on quitte, si oui, on conitnue
-      if (choix == 'n')
-      {
-         quitter = true;
-      }
-      else
-      {
-         
-         quitter = false;
-      }
-   }
-   else
-   {
-      quitter = false;
-   }
+      cout << " Il y a encore des clients en file, êtes-vous sur de vouloir quitter ? (o/n) ";
+      cin >> choix;
+      if (choix != 'o' && choix != 'n')
+         cout << " Choix invalide, recommencez " << endl;
+   } while (choix != 'o' && choix != 'n');
 
+   if (choix == 'n') // si le choix est non, on quitte, si oui, on conitnue
+      quitter = true;
 
    system("cls");
    return quitter;
@@ -301,8 +254,7 @@ bool QuitterLeProgramme(FileAttente & laFile)
 ////////////////////////////////////////////////////////////////////////////////
 void AffichageFinale(FileAttente & laFile)
 {
-   // affiche les infofinales en utilisant les fonctions de la file
-   AfficherLigneSeparation();
+   AfficherLigneSeparation(); // affiche les info finales en utilisant les fonctions de la file
    cout << " Il y a eu " << laFile.ObtenirNbGroupesTotal() << " réservations comblés " << endl;
    cout << " Il y a eu " << laFile.ObtenirNbPersonnesTotal() << " clients servis dans le restaurant ce soir " << endl;
    cout << " Il restait " << laFile.ObtenirNbPersonnes() << " clients dans la file d'attente lors de la fermeture du restaurant " << endl;
@@ -320,21 +272,16 @@ void RetraitClient(FileAttente & laFile)
    cout << " Retrait d'un client qui quitte " << endl;
    AfficherLigneSeparation();
 
-   if (!laFile.EstVide())
-   {
-      string nom;
-      int nbre;
+   if (laFile.EstVide())
+      throw exception("La file est vide");
 
-      DemanderQuiEstClient(nom, nbre, laFile);
-      // maintenant qu'on a trouver les bonnes données, on le retire avec la fonction retirer
-      laFile.Retirer(nom, nbre);
+   string nom;
+   int nbre;
 
-      cout << " Aurevoir " << nom << endl;
-   }
-   else
-   {
-      cout << " La file est vide " << endl; 
-   }
+   DemanderQuiEstClient(nom, nbre, laFile); // maintenant qu'on a trouver les bonnes données
+   laFile.Retirer(nom, nbre); //on le retire avec la fonction retirer
+
+   cout << " Aurevoir " << nom << endl;
 
    Attendre();
 }
@@ -344,16 +291,14 @@ void RetraitClient(FileAttente & laFile)
 ////////////////////////////////////////////////////////////////////////////////
 Client CreationClient(Client n)
 {
-   // Affichage du titre du choix choisi 
    system("cls");
    AfficherLigneSeparation();
-   cout << " Ajout d'un client " << endl;
+   cout << " Ajout d'un client " << endl;   // Affichage du titre du choix choisi 
    AfficherLigneSeparation();
 
    int sections;
 
-   // Demander les infos du client pour ensuite le créer 
-   DemanderInfoClient(n.nomReservation, n.nombreDePersonnes, sections);
+   DemanderInfoClient(n.nomReservation, n.nombreDePersonnes, sections);   // Demander les infos du client pour ensuite le créer 
    SetClientSection(sections, n);
 
    return n;
@@ -372,27 +317,24 @@ void AfficherUnClient(FileAttente & laFile, ostream & out)
    int nbre;
    string nom, infoClient;
 
-   // si la file est vide on peut pas afficher de client 
-   if (laFile.EstVide())
-   {
+   if (laFile.EstVide()) // si la file est vide on peut pas afficher de client 
       throw exception("La file est vide");
-   }
-   else
-   {
-      // demande qui est client 
-      DemanderQuiEstClient(nom, nbre, laFile);
-      // affiche le client
-      system("cls");
-      AfficherLigneSeparation();
-      cout << " Affichage d'un client en attente " << endl;
-      AfficherLigneSeparation();
-      cout << laFile.GetClient(laFile.DonnerLeRang(nom, nbre));
-      AfficherLigneSeparation();
-   }
+
+   DemanderQuiEstClient(nom, nbre, laFile);   // demande qui est client 
+
+   system("cls");
+   AfficherLigneSeparation();
+   cout << " Affichage d'un client en attente " << endl;
+   AfficherLigneSeparation();
+   cout << laFile.GetClient(laFile.DonnerLeRang(nom, nbre));   // affiche le client
+   AfficherLigneSeparation();
 
    Attendre();
 }
 
+////////////////////////////////////////////////////////////////////////////////
+//							AfficherLaFileEnEntier()							            //
+////////////////////////////////////////////////////////////////////////////////
 void AfficherLaFileEnEntier(ostream & out, FileAttente & laFile)
 {
    system("cls");
@@ -402,13 +344,9 @@ void AfficherLaFileEnEntier(ostream & out, FileAttente & laFile)
    cout << endl;
 
    if (laFile.EstVide())
-   {
-      cout << "La file est vide " << endl; 
-   }
-   else
-   {
-      laFile.Afficher(cout);
-   }
+      throw exception("La file est vide");
+
+   laFile.Afficher(cout);
 
    AfficherLigneSeparation();
    out << " Il y a " << laFile.ObtenirNbGroupes() << " groupes dans la liste" << endl
@@ -423,18 +361,15 @@ void AfficherLaFileEnEntier(ostream & out, FileAttente & laFile)
 void DemanderQuiEstClient(string & nom, int & nbre, FileAttente & laFile)
 {
    if (laFile.EstVide())
-   {
-      cout << " La file est vide " << endl; 
-   }
-   // demander tant qu'il n'a pas entrer des données qui existe
-   do
+      throw exception("La file est vide");
+
+   do // demander tant qu'il n'a pas entrer des données qui existe
    {
       cout << " Quel était le nom de votre réservation ? ";
       cin >> nom;
       cout << " Pour combien de personnes avez vous réservé ? ";
       cin >> nbre;
-      // utilise la fonction verifier si présent pour analyser données entrées par le user
-      if (!laFile.VérifierSiPrésent(nom, nbre))
+      if (!laFile.VérifierSiPrésent(nom, nbre)) // utilise la fonction verifier si présent pour analyser données entrées par le user
          cout << " Vous n'avez pas donné les bonnes informations, recommencez. " << endl;
    } while (!laFile.VérifierSiPrésent(nom, nbre));
 }
@@ -444,42 +379,44 @@ void DemanderQuiEstClient(string & nom, int & nbre, FileAttente & laFile)
 ////////////////////////////////////////////////////////////////////////////////
 void AfficherLigneSeparation()
 {
-   // cout de paresseux :)
-	for (int i = 0; i < 50; i++)
-	{
-		cout << "=";
-	}
+   for (int i = 0; i < 50; i++) // cout de paresseux :)
+   {
+      cout << "=";
+   }
    cout << endl;
 }
 
 
-bool SwitchMenu(bool quitter, FileAttente & laFile, Client nouveau)
+bool SwitchMenu(bool quitter)
 {
-	switch (MenuFaireChoix())
-	{
-	case 1:
-		laFile.Ajouter(CreationClient(nouveau));
-		break;
-	case 2:
-		AssignerTable(laFile); 
-		break;
-	case 3:
-		RetraitClient(laFile); // pouvoir quitter la boucle ? 
-		break;
-	case 4:
-		AfficherUnClient(laFile, cout); // pouvoir quitter la boucle ? 
-		break;
-	case 5:
-		AfficherLaFileEnEntier(cout, laFile);
-		break;
-	case 6:
-		quitter = QuitterLeProgramme(laFile);
-		if (!quitter)
-		{
-			AffichageFinale(laFile);
-		}
-		break;
-	}
+   Client nouveau; // Instance de la structure Client pour ajouter des nouveaux clients à la file
+   FileAttente laFile;	// Création de l'instance de la classe FileAttente
 
-	return quitter; 
+   switch (MenuFaireChoix())
+   {
+   case 1:
+      laFile.Ajouter(CreationClient(nouveau));
+      break;
+   case 2:
+      AssignerTable(laFile);
+      break;
+   case 3:
+      RetraitClient(laFile); // pouvoir quitter la boucle ? 
+      break;
+   case 4:
+      AfficherUnClient(laFile, cout); // pouvoir quitter la boucle ? 
+      break;
+   case 5:
+      AfficherLaFileEnEntier(cout, laFile);
+      break;
+   case 6:
+      quitter = QuitterLeProgramme(laFile);
+      if (!quitter)
+      {
+         AffichageFinale(laFile);
+      }
+      break;
+   }
+
+   return quitter;
 }

@@ -14,37 +14,26 @@
 using namespace std;
 
 ////////////////////////////////////////////////////////////////////////////////
-// A FAIRE / FINIR															               //
-// Retirer(client) / retirer(nom, nombre) / GetClient / AfficherUnClient	   //
-// AfficherUnSeulClient														               //
-// Commenter FileAttente.h .cpp / ClientsEnAttente.h .cpp					      //
+// A FAIRE / FINIR															               //	
+// Commenter FileAttente.h .cpp / ClientsEnAttente.h .cpp                     //
+// qques fcts dans fonctions generales	                                       //
 // Tester tout																                  //
 ////////////////////////////////////////////////////////////////////////////////
 int main()
 {
-
-	// Pour faire afficher les caractères spéciaux
-	setlocale(LC_ALL, "");
-	// Création de l'instance de la classe FileAttente
-	FileAttente laFile;
-	// Variable servant à savoir si on quitte le programme ou non
-	bool quitter = true;
-	// Instance de la structure Client pour ajouter des nouveaux clients à la file
-	Client nouveau;
-
-	// tant que quitter est a true, on continue 
-	while (quitter)
+	setlocale(LC_ALL, ""); // Pour faire afficher les caractères spéciaux
+	bool quitter = true; // Variable servant à savoir si on quitte le programme ou non
+	
+	while (quitter) // tant que quitter est a true, on continue 
 	{
 		try
 		{
-			// switch du choix de l'utilisateur
-			quitter = SwitchMenu(quitter, laFile, nouveau); 
+			quitter = SwitchMenu(quitter); // switch du choix de l'utilisateur
 		}
 		catch (exception e)
 		{
 			cout << e.what();
 		}
 	}
-
 }
 
