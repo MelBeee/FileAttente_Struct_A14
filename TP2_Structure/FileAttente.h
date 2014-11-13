@@ -1,9 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////
-//								FileAttente.h									  //
-//				  Fait par Mélissa Boucher et Xavier Brosseau				  //
-//							Créé le 29 octobre 2014							  //
-//						Derniere modif 16 novembre 2014						  //
-//																		      //
+//								FileAttente.h									               //
+//				  Fait par Mélissa Boucher et Xavier Brosseau				         //
+//							Créé le 29 octobre 2014							               //
+//						Derniere modif 16 novembre 2014						            //
+//																		                        //
 //			Déclaration de la classe  //
 ////////////////////////////////////////////////////////////////////////////////
 #ifndef _FILEATTENTE_H_
