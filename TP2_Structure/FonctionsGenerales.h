@@ -113,5 +113,11 @@ bool GetInt(int & n);
 void DemanderQuiEstClient(string & nom, int & nbre, FileAttente & const laFile);
 
 void AfficherLaFileEnEntier(ostream & out, FileAttente & laFile);
+////////////////////////////////////////////////////////////////////////////////
+//						  AfficherLigneSeparation()							            //
+//					Intrant : Aucun		Extrant : Aucun						         //
+//		Fonctions de paresseux ! :) Affiche une ligne de = pour séparer		   //
+////////////////////////////////////////////////////////////////////////////////
+bool SwitchMenu(bool quitter, FileAttente & laFile, Client nouveau);
 
 #endif

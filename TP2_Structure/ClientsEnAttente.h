@@ -9,6 +9,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 #ifndef _CLIENTSENATTENTE_H_
 #define _CLIENTSENATTENTE_H_
+#pragma warning (disable:4227)
 #include <string>
 #include <iostream>
 #include <vector>
@@ -33,11 +34,8 @@ class ClientsEnAttente
 	ClientsEnAttente * pSuivant_;    // et de celui qui le suit
 
 public:
-	//--- Constructeurs
-
-
+	//--- Constructeur
 	ClientsEnAttente(string nom, int nbPersonne, vector<Section> sections);
-	~ClientsEnAttente();
 
 	void SetPrécédent(ClientsEnAttente * p);
 	void SetSuivant(ClientsEnAttente *p);

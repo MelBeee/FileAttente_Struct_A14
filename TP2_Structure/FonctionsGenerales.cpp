@@ -445,5 +445,41 @@ void DemanderQuiEstClient(string & nom, int & nbre, FileAttente & const laFile)
 void AfficherLigneSeparation()
 {
    // cout de paresseux :)
-   cout << " ========================================================================= " << endl;
+	for (int i = 0; i < 50; i++)
+	{
+		cout << "=";
+	}
+   cout << endl;
+}
+
+
+bool SwitchMenu(bool quitter, FileAttente & laFile, Client nouveau)
+{
+	switch (MenuFaireChoix())
+	{
+	case 1:
+		laFile.Ajouter(CreationClient(nouveau));
+		break;
+	case 2:
+		AssignerTable(laFile);
+		break;
+	case 3:
+		RetraitClient(laFile);
+		break;
+	case 4:
+		AfficherUnClient(laFile, cout);
+		break;
+	case 5:
+		AfficherLaFileEnEntier(cout, laFile);
+		break;
+	case 6:
+		quitter = QuitterLeProgramme(laFile);
+		if (!quitter)
+		{
+			AffichageFinale(laFile);
+		}
+		break;
+	}
+
+	return quitter; 
 }

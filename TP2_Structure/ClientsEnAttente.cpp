@@ -18,19 +18,7 @@ ClientsEnAttente::ClientsEnAttente(string nom, int nbPersonne, vector<Section> s
 	clientsTable_.sectionChoisis = sections;
 }
 
-// Destructeur
-ClientsEnAttente::~ClientsEnAttente()
-{
-   cout << " Mon client est détruit " << endl; 
-	//pPrécédent_ = 0;
-	//pSuivant_ = 0;
-	//delete pPrécédent_;
-	//delete pSuivant_;
-}
-
 // Mutateurs
-
-
 void ClientsEnAttente::SetPrécédent(ClientsEnAttente * p)
 {
 	pPrécédent_ = p;
@@ -45,6 +33,7 @@ void ClientsEnAttente::SetClient(Client c)
 {
 	clientsTable_.nomReservation = c.nomReservation;
 	clientsTable_.nombreDePersonnes = c.nombreDePersonnes;
+	clientsTable_.sectionChoisis = c.sectionChoisis;
 }
 
 // Accesseurs

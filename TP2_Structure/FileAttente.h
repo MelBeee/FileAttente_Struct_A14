@@ -21,24 +21,21 @@ class FileAttente
 	int nbPersonnesTotal_ = 0;//Nombre de client dans la file au total
 	int nbGroupesTotal_ = 0;//Nombre de Groupe dans la file au total
 
-	void    SetPremier(ClientsEnAttente * p);
+	void SetPremier(ClientsEnAttente * p);
 	ClientsEnAttente*  GetPremier() const;
 
-	void    SetDernier(ClientsEnAttente * p);
+	void SetDernier(ClientsEnAttente * p);
 	ClientsEnAttente*  GetDernier() const;
 
-	void    SetNbGroupes(int nb);
-	void	SetNbPersonnes(int nb);
-	void	SetNbGroupesTotal(int nb);
-	void	SetNbPersonnesTotal(int nb);
+	void SetNbGroupes(int nb);
+	void SetNbPersonnes(int nb);
+	void SetNbGroupesTotal(int nb);
+	void SetNbPersonnesTotal(int nb);
 
 
 public:
 	//--- Constructeur par défaut
 	FileAttente();
-
-	//--- Destructeur par défaut
-	~FileAttente();
 
 	//--- La liste peut s'afficher elle-même
 	void   Afficher(ostream & out) const;
@@ -55,25 +52,25 @@ public:
 	//--- et retourner le nombre client qu'elle contient
 	int    ObtenirNbGroupesTotal() const;
 
-   //--- mettre le string passé en caractère en majuscule, pour verifier si les noms sont pareils
+	//--- mettre le string passé en caractère en majuscule, pour verifier si les noms sont pareils
 	string  MettreEnMajuscules(string nom) const;
 
-   //--- vérifie si le client passé en parametre et le client de l'instance sont pareil
+	//--- vérifie si le client passé en parametre et le client de l'instance sont pareil
 	bool    EstLeMemeNom(ClientsEnAttente * p, string nom, int nbPersonnes) const;
 
-   //--- ajoute un nouveau client dans la file d'attente
+	//--- ajoute un nouveau client dans la file d'attente
 	void	Ajouter(Client clientAMettreEnFile);
 
-   //--- assigner un groupe a une table
-   Client 	Assigner(int nbPlacesDeLaTable, Section sectionDeLaTable);
+	//--- assigner un groupe a une table
+	Client 	Assigner(int nbPlacesDeLaTable, Section sectionDeLaTable);
 
-   //--- retirer un groupe de la file
+	//--- retirer un groupe de la file
 	bool	Retirer(string nomClient, int nbPersonnes);
 
-   //--- retourner un client 
+	//--- retourner un client 
 	string	GetClient(int indice) const;
 
-   //--- verifie si la file est vide
+	//--- verifie si la file est vide
 	bool	EstVide() const;
 
 	//--- Méthode qui vérifie si un nom est dans la liste
