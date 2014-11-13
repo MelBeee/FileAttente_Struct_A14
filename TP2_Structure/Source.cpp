@@ -23,16 +23,19 @@ int main()
 {
 	setlocale(LC_ALL, ""); // Pour faire afficher les caractères spéciaux
 	bool quitter = true; // Variable servant à savoir si on quitte le programme ou non
+   Client nouveau; // Instance de la structure Client pour ajouter des nouveaux clients à la file
+   FileAttente laFile;	// Création de l'instance de la classe FileAttente
 	
 	while (quitter) // tant que quitter est a true, on continue 
 	{
 		try
 		{
-			quitter = SwitchMenu(quitter); // switch du choix de l'utilisateur
+			quitter = SwitchMenu(quitter, laFile, nouveau); // switch du choix de l'utilisateur
 		}
 		catch (exception e)
 		{
 			cout << e.what();
+         Attendre();
 		}
 	}
 }

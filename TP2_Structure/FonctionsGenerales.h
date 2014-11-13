@@ -118,6 +118,6 @@ void AfficherLaFileEnEntier(ostream & out, FileAttente & laFile);
 //					Intrant : Aucun		Extrant : Aucun						         //
 //		Fonctions de paresseux ! :) Affiche une ligne de = pour séparer		   //
 ////////////////////////////////////////////////////////////////////////////////
-bool SwitchMenu(bool quitter);
+bool SwitchMenu(bool quitter, FileAttente & laFile, Client nouveau);
 
 #endif

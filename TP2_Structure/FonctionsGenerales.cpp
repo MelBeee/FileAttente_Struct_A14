@@ -179,7 +179,7 @@ void SetClientSection(int section, Client& c)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-//							   AssignerTable()								  //
+//							   AssignerTable()								               //
 ////////////////////////////////////////////////////////////////////////////////
 void AssignerTable(FileAttente & laFile)
 {
@@ -189,7 +189,7 @@ void AssignerTable(FileAttente & laFile)
    AfficherLigneSeparation();
 
    if (laFile.EstVide())
-      throw exception("La file est vide");
+      throw exception("La file est vide \n");
 
    int nbrePersonne, section;
    Section sectiontable;
@@ -219,7 +219,7 @@ void AssignerTable(FileAttente & laFile)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-//						   QuitterLeProgramme()								  //
+//						   QuitterLeProgramme()								               //
 ////////////////////////////////////////////////////////////////////////////////
 bool QuitterLeProgramme(FileAttente & laFile)
 {
@@ -231,26 +231,25 @@ bool QuitterLeProgramme(FileAttente & laFile)
    bool quitter = false; // false pour quitter, true pour ne pas quitter
    char choix; // choix si on quitte ou non lorsqu'il reste des clients en file
 
-   if (laFile.EstVide())
-      throw exception("La file est vide");
-
-   do // refaire tant que l'utilisateur a pas entrer o ou n
+   if (!laFile.EstVide())
    {
-      cout << " Il y a encore des clients en file, êtes-vous sur de vouloir quitter ? (o/n) ";
-      cin >> choix;
-      if (choix != 'o' && choix != 'n')
-         cout << " Choix invalide, recommencez " << endl;
-   } while (choix != 'o' && choix != 'n');
+      do // refaire tant que l'utilisateur a pas entrer o ou n
+      {
+         cout << " Il y a encore des clients en file, êtes-vous sur de vouloir quitter ? (o/n) ";
+         cin >> choix;
+         if (choix != 'o' && choix != 'n')
+            cout << " Choix invalide, recommencez " << endl;
+      } while (choix != 'o' && choix != 'n');
 
-   if (choix == 'n') // si le choix est non, on quitte, si oui, on conitnue
-      quitter = true;
-
+      if (choix == 'n') // si le choix est non, on quitte, si oui, on conitnue
+         quitter = true;
+   }
    system("cls");
    return quitter;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-//								AffichageFinale()							  //
+//								AffichageFinale()							                  //
 ////////////////////////////////////////////////////////////////////////////////
 void AffichageFinale(FileAttente & laFile)
 {
@@ -273,7 +272,7 @@ void RetraitClient(FileAttente & laFile)
    AfficherLigneSeparation();
 
    if (laFile.EstVide())
-      throw exception("La file est vide");
+      throw exception("La file est vide \n");
 
    string nom;
    int nbre;
@@ -287,7 +286,7 @@ void RetraitClient(FileAttente & laFile)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-//								CreationClient()							  //
+//								CreationClient()							                  //
 ////////////////////////////////////////////////////////////////////////////////
 Client CreationClient(Client n)
 {
@@ -318,7 +317,7 @@ void AfficherUnClient(FileAttente & laFile, ostream & out)
    string nom, infoClient;
 
    if (laFile.EstVide()) // si la file est vide on peut pas afficher de client 
-      throw exception("La file est vide");
+      throw exception("La file est vide \n");
 
    DemanderQuiEstClient(nom, nbre, laFile);   // demande qui est client 
 
@@ -344,7 +343,7 @@ void AfficherLaFileEnEntier(ostream & out, FileAttente & laFile)
    cout << endl;
 
    if (laFile.EstVide())
-      throw exception("La file est vide");
+      throw exception("La file est vide \n");
 
    laFile.Afficher(cout);
 
@@ -361,7 +360,7 @@ void AfficherLaFileEnEntier(ostream & out, FileAttente & laFile)
 void DemanderQuiEstClient(string & nom, int & nbre, FileAttente & laFile)
 {
    if (laFile.EstVide())
-      throw exception("La file est vide");
+      throw exception("La file est vide \n");
 
    do // demander tant qu'il n'a pas entrer des données qui existe
    {
@@ -375,7 +374,7 @@ void DemanderQuiEstClient(string & nom, int & nbre, FileAttente & laFile)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-//						AfficherLigneSeparation()							  //
+//						AfficherLigneSeparation()							               //
 ////////////////////////////////////////////////////////////////////////////////
 void AfficherLigneSeparation()
 {
@@ -387,11 +386,8 @@ void AfficherLigneSeparation()
 }
 
 
-bool SwitchMenu(bool quitter)
+bool SwitchMenu(bool quitter, FileAttente & laFile, Client nouveau)
 {
-   Client nouveau; // Instance de la structure Client pour ajouter des nouveaux clients à la file
-   FileAttente laFile;	// Création de l'instance de la classe FileAttente
-
    switch (MenuFaireChoix())
    {
    case 1:
@@ -417,6 +413,5 @@ bool SwitchMenu(bool quitter)
       }
       break;
    }
-
    return quitter;
 }
