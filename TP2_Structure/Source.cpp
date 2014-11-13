@@ -8,6 +8,7 @@
 //			de la file d'attente dans le cadre d'une utilisateur d'une		      //	 
 //			file de clients et d'attribuation de table dans un restaurant.	      //
 ////////////////////////////////////////////////////////////////////////////////
+#pragma warning (disable:4227)
 #include "FonctionsGenerales.h"
 #include <iostream>
 #include <string>
