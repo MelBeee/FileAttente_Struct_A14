@@ -215,7 +215,8 @@ bool FileAttente::VérifierSiPrésent(string nom, int nbPersonnes) const
 {
 	ClientsEnAttente * pBalayage = GetPremier();
 
-	while (!EstVide() && !EstLeMemeNom(pBalayage, nom, nbPersonnes))
+   
+   while (pBalayage != nullptr && !EstVide() && !EstLeMemeNom(pBalayage, nom, nbPersonnes))
 	{
 		pBalayage = pBalayage->GetSuivant();
 	}

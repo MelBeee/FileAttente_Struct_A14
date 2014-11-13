@@ -51,7 +51,7 @@ int MenuFaireChoix()
    AfficherLigneSeparation();
    cout << " 1. Ajouter un client dans la file " << endl
       << " 2. Assigner une table " << endl
-      << " 3. Retirer un client qui quitte " << endl
+      << " 3. Retirer un client qui quitte 7" << endl
       << " 4. Afficher un client de la file " << endl
       << " 5. Afficher la file d'attente en entier " << endl
       << " 6. Quitter le programme " << endl;
@@ -375,7 +375,7 @@ void AfficherUnClient(FileAttente & laFile, ostream & out)
    // si la file est vide on peut pas afficher de client 
    if (laFile.EstVide())
    {
-      cout << " La file est vide ! " << endl; 
+      throw exception("La file est vide");
    }
    else
    {
@@ -461,13 +461,13 @@ bool SwitchMenu(bool quitter, FileAttente & laFile, Client nouveau)
 		laFile.Ajouter(CreationClient(nouveau));
 		break;
 	case 2:
-		AssignerTable(laFile);
+		AssignerTable(laFile); 
 		break;
 	case 3:
-		RetraitClient(laFile);
+		RetraitClient(laFile); // pouvoir quitter la boucle ? 
 		break;
 	case 4:
-		AfficherUnClient(laFile, cout);
+		AfficherUnClient(laFile, cout); // pouvoir quitter la boucle ? 
 		break;
 	case 5:
 		AfficherLaFileEnEntier(cout, laFile);
