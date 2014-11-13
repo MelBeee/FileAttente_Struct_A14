@@ -4,10 +4,9 @@
 //							Créé le 29 octobre 2014							               //
 //						Derniere modif 16 novembre 2014						            //
 //																		                        //
-//				      //
+//				     Définitions des fonctions utilisé dans le main	            //
 ////////////////////////////////////////////////////////////////////////////////
 #include "FonctionsGenerales.h"
-
 
 ////////////////////////////////////////////////////////////////////////////////
 //								Attendre()									                  //

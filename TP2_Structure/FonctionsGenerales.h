@@ -8,12 +8,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 #ifndef _FONCTIONSGENERALES_H_
 #define _FONCTIONSGENERALES_H_
-#include <sstream>
-#include <iostream>
-#include <string>
 #include "FileAttente.h"
-using namespace std;
-
 ////////////////////////////////////////////////////////////////////////////////
 //								MenuFaireChoix()							                  //
 //		Intrant : Aucun		Extrant : Int (Choix fait par l'utilisateur		   //
@@ -41,9 +36,10 @@ void Attendre();
 ////////////////////////////////////////////////////////////////////////////////
 char Sections(int & section, string nom);
 ////////////////////////////////////////////////////////////////////////////////
-//								AssignerTable()									            //
-//		         Intrant : laFile		Extrant : Aucun		                     //
-//			      //
+//								   AssignerTable()									         //
+//		            Intrant : laFile		Extrant : Aucun		                  //
+//	            Fonction general qui appel les autres fonctions                //
+//                permettant l'assignation a une table                        //
 ////////////////////////////////////////////////////////////////////////////////
 void AssignerTable(FileAttente & laFile);
 ////////////////////////////////////////////////////////////////////////////////
@@ -79,7 +75,7 @@ void SetClientSection(int section, Client& c);
 ////////////////////////////////////////////////////////////////////////////////
 int DeterminerSection();
 ////////////////////////////////////////////////////////////////////////////////
-//							SetClientSection()								               //
+//							CreationClient()								                  //
 //					Intrant : Client	Extrant : Client					               //
 //	   Fonction qui englobe tout les fonctions pour créer un nouveau client    //
 ////////////////////////////////////////////////////////////////////////////////
@@ -111,7 +107,11 @@ bool GetInt(int & n);
 //      n'y a pas trouver une équivalente a celle entré par l'utilisateur	   //
 ////////////////////////////////////////////////////////////////////////////////
 void DemanderQuiEstClient(string & nom, int & nbre, FileAttente & laFile);
-
+////////////////////////////////////////////////////////////////////////////////
+//						  AfficherLaFileEnEntier()							               //
+//					Intrant : ostream, laFile		Extrant : Aucun			         //
+//		               Afficher la file d'attente en entier	             	   //
+////////////////////////////////////////////////////////////////////////////////
 void AfficherLaFileEnEntier(ostream & out, FileAttente & laFile);
 ////////////////////////////////////////////////////////////////////////////////
 //						  AfficherLigneSeparation()							            //

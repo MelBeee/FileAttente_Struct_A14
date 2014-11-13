@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////////////////
-//								Source.cpp									                  //
-//				  Fait par Mélissa Boucher et Xavier Brosseau				         //
-//							Créé le 29 octobre 2014							               //
-//						Derniere modif 16 novembre 2014						            //
+//				   			      Source.cpp									            //
+//				   Fait par Mélissa Boucher et Xavier Brosseau				         //
+//						      Créé le 29 octobre 2014							            //
+//						   Derniere modif 16 novembre 2014						         //
 //																		                        //
 //			Menu utilisateur servant à tester les différentes fonctions		      //
 //			de la file d'attente dans le cadre d'une utilisateur d'une		      //	 
@@ -16,7 +16,6 @@ using namespace std;
 ////////////////////////////////////////////////////////////////////////////////
 // A FAIRE / FINIR															               //	
 // Commenter FileAttente.h .cpp / ClientsEnAttente.h .cpp                     //
-// qques fcts dans fonctions generales	                                       //
 // Tester tout																                  //
 ////////////////////////////////////////////////////////////////////////////////
 int main()

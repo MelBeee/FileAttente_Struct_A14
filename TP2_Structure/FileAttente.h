@@ -9,8 +9,6 @@
 #ifndef _FILEATTENTE_H_
 #define _FILEATTENTE_H_
 #include "ClientsEnAttente.h"
-#include <iostream>
-using namespace std;
 
 class FileAttente
 {

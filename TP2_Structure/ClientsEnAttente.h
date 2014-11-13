@@ -14,12 +14,19 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
+////////////////////////////////////////////////////////////////////////////////
+//								      enum Section					                     //
+//		      enumeration pour les choix de sections que l'utilisateur a        //
+////////////////////////////////////////////////////////////////////////////////
 enum Section
 {
 	TerrasseNonFumeur = 1, TerrasseFumeur = 10, SalleManger = 100
 };
 
+////////////////////////////////////////////////////////////////////////////////
+//								      enum Section					                     //
+//		      enumeration pour les choix de sections que l'utilisateur a        //
+////////////////////////////////////////////////////////////////////////////////
 struct Client
 {
 	string nomReservation;
@@ -27,6 +34,11 @@ struct Client
 	vector<Section> sectionChoisis;
 };
 
+////////////////////////////////////////////////////////////////////////////////
+//								MenuFaireChoix()							                  //
+//		Intrant : Aucun		Extrant : Int (Choix fait par l'utilisateur		   //
+//	   Fonction qui permet a l'utilisateur de faire un choix dans le menu	   //
+////////////////////////////////////////////////////////////////////////////////
 class ClientsEnAttente
 {
 	Client clientsTable_;
