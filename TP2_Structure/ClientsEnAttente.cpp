@@ -1,18 +1,20 @@
 ////////////////////////////////////////////////////////////////////////////////
-//								ClientsEnAttente.cpp									  //
-//				  Fait par Mélissa Boucher et Xavier Brosseau				  //
-//							Créé le 29 octobre 2014							  //
-//						Derniere modif 16 novembre 2014						  //
-//																		      //
-//				  //
+//									ClientsEnAttente.cpp											//
+//					 Fait par Mélissa Boucher et Xavier Brosseau							//
+//								Créé le 29 octobre 2014											//
+//							Derniere modif 16 novembre 2014									//
+//																										//
+//			Définition des fonctions/méthodes de la classe ClientsEnAttente		//
+//				Qui nous permettent de construire une instance de class ou			//
+//			d'acceder aux informations/changer les informations d'un Client		//
 ////////////////////////////////////////////////////////////////////////////////
 #include "ClientsEnAttente.h"
 
 
-							//--- CONSTRUCTEURS ---\\
+									//--- CONSTRUCTEURS ---\\
 
 ////////////////////////////////////////////////////////////////////////////////
-//								  Paramétrique								  //
+//											Paramétrique					  					   //
 ////////////////////////////////////////////////////////////////////////////////
 ClientsEnAttente::ClientsEnAttente(string nom, int nbPersonne, vector<Section> sections)
 {
@@ -23,7 +25,7 @@ ClientsEnAttente::ClientsEnAttente(string nom, int nbPersonne, vector<Section> s
 	clientsTable_.sectionChoisis = sections;
 }
 ////////////////////////////////////////////////////////////////////////////////
-//								  Par Défaut								  //
+//											Par Défaut												//
 ////////////////////////////////////////////////////////////////////////////////
 ClientsEnAttente::ClientsEnAttente()
 {
@@ -35,7 +37,7 @@ ClientsEnAttente::ClientsEnAttente()
 	clients_Table.sectionChoisis = vect;
 }
 
-							//--- MUTATEURS ---\\
+									//--- MUTATEURS ---\\
 
 ////////////////////////////////////////////////////////////////////////////////
 //								  SetPrécédent								  //
@@ -61,7 +63,7 @@ void ClientsEnAttente::SetClient(Client c)
 	clientsTable_.sectionChoisis = c.sectionChoisis;
 }
 
-							//--- Accesseurs ---\\
+								//--- Accesseurs ---\\
 
 ////////////////////////////////////////////////////////////////////////////////
 //								  GetNom									  //
@@ -103,7 +105,7 @@ ClientsEnAttente * ClientsEnAttente::GetSuivant() const
 ////////////////////////////////////////////////////////////////////////////////
 Client ClientsEnAttente::GetClient() const
 {
-   return clientsTable_;
+	return clientsTable_;
 }
 ////////////////////////////////////////////////////////////////////////////////
 //							  ChoixSection									  //

@@ -24,8 +24,8 @@ enum Section
 };
 
 ////////////////////////////////////////////////////////////////////////////////
-//								      enum Section					                     //
-//		      enumeration pour les choix de sections que l'utilisateur a        //
+//									 Structure de Client				                     //
+//		      Structure comportant les données a stocker pour un client	      //
 ////////////////////////////////////////////////////////////////////////////////
 struct Client
 {
@@ -35,31 +35,89 @@ struct Client
 };
 
 ////////////////////////////////////////////////////////////////////////////////
-//								MenuFaireChoix()							                  //
-//		Intrant : Aucun		Extrant : Int (Choix fait par l'utilisateur		   //
-//	   Fonction qui permet a l'utilisateur de faire un choix dans le menu	   //
+//								Class ClientsEnAttente							        	   //
 ////////////////////////////////////////////////////////////////////////////////
 class ClientsEnAttente
 {
-	Client clientsTable_;
+	Client clientsTable_;				// Instance de struct Client
 	ClientsEnAttente * pPrécédent_;  // Chaque noeud retient l'adresse de celui qui le précède
 	ClientsEnAttente * pSuivant_;    // et de celui qui le suit
 
 public:
-	//--- Constructeur
+	////////////////////////////////////////////////////////////////////////////////
+	//								 ConstructeurParamétrique										//
+	//	Intrants: Nom du client, nombre de personne a table et les sections voulus //
+	//		      Permet de créer un ClientsEnAttente avec des valeurs demandées    //
+	////////////////////////////////////////////////////////////////////////////////
 	ClientsEnAttente(string nom, int nbPersonne, vector<Section> sections);
+	////////////////////////////////////////////////////////////////////////////////
+	//									 Constructeur ParDéfaut				                  //
+	//								Intrants: Aucun Extrants: Aucun								//
+	//		   Permet de créer un ClientsEnAttente avec des valeurs par défaut		//
+	////////////////////////////////////////////////////////////////////////////////
+	ClientsEnAttente(); 
 
+	////////////////////////////////////////////////////////////////////////////////
+	//									MutateurSetPrécédent()				                  //
+	//					Intrants: un pointeur sur un Client Extrants: Aucun				//
+	//		   Permet d'initialisé le Client précédant a notre instance de client	//
+	////////////////////////////////////////////////////////////////////////////////
 	void SetPrécédent(ClientsEnAttente * p);
+	////////////////////////////////////////////////////////////////////////////////
+	//									MutateurSetSuivant()					                  //
+	//					Intrants: un pointeur sur un Client Extrants: Aucun				//
+	//		   Permet d'initialisé le Client suivant a notre instance de client		//
+	////////////////////////////////////////////////////////////////////////////////
 	void SetSuivant(ClientsEnAttente *p);
+	////////////////////////////////////////////////////////////////////////////////
+	//										MutateurSetClient()					               //
+	//							Intrants: un Client Extrants: Aucun								//
+	//						Permet de "setter" les valeurs d'un client						//
+	////////////////////////////////////////////////////////////////////////////////
 	void SetClient(Client c);
-
+	////////////////////////////////////////////////////////////////////////////////
+	//									AccesseursGetPrécédent()			                  //
+	//					Intrants: Aucun Extrants: un pointeur sur un Client				//
+	//		   Permet d'obtenir le pointeur sur le client précédent celui demandé	//
+	////////////////////////////////////////////////////////////////////////////////
 	ClientsEnAttente * GetPrécédent() const;
+	////////////////////////////////////////////////////////////////////////////////
+	//									AccesseurGetSuivant()				                  //
+	//					Intrants: Aucun Extrants: un pointeur sur un Client				//
+	//		   Permet d'obtenir le pointeur sur le client suivant celui demandé		//
+	////////////////////////////////////////////////////////////////////////////////
 	ClientsEnAttente * GetSuivant() const;
+	////////////////////////////////////////////////////////////////////////////////
+	//												GetNom()						                  //
+	//						Intrants: Aucun Extrants: string du nom du client				//
+	//								Permet d'obtenir le nom du client							//
+	////////////////////////////////////////////////////////////////////////////////
 	string GetNom() const;
+	////////////////////////////////////////////////////////////////////////////////
+	//										GetNombrePersonne()				                  //
+	//						Intrants: Aucun Extrants: int du nombre de personne			//
+	//								Permet d'obtenir le nombre de personne						//
+	////////////////////////////////////////////////////////////////////////////////
 	int GetNombrePersonne() const;
+	////////////////////////////////////////////////////////////////////////////////
+	//									GetClientSection()					                  //
+	//					Intrants: Aucun Extrants: vector des sections demandées			//
+	//					Permet d'obtenir les sections que le client a demandées			//
+	////////////////////////////////////////////////////////////////////////////////
 	vector<Section> GetClientSection() const;
-   Client GetClient() const;
-	
+	////////////////////////////////////////////////////////////////////////////////
+	//												GetClient()											//
+	//								Intrants: Aucun Extrants: Client								//
+	//									Permet d'obtenir un client									//
+	////////////////////////////////////////////////////////////////////////////////
+	Client GetClient() const;
+	////////////////////////////////////////////////////////////////////////////////
+	//											ChoixSection()					                  //
+	//			Intrants: Client, et une section Extrant : bool Présent					//
+	//			Permet de parcourir le vector de section du client pour					//
+	//			comparé avec la section demandé. Si la section y est						//
+	//						présente, retourne vrai sinon, faux									//
+	////////////////////////////////////////////////////////////////////////////////
 	bool ChoixSection(ClientsEnAttente c, Section s);
 };
 
