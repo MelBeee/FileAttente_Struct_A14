@@ -12,6 +12,7 @@
 #pragma warning (disable:4227)
 #include <string>
 #include <iostream>
+#include <sstream>
 #include <vector>
 using namespace std;
 ////////////////////////////////////////////////////////////////////////////////

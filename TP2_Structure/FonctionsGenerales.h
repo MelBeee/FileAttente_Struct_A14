@@ -106,7 +106,7 @@ bool GetInt(int & n);
 //		Fonction qui demande nom et nombre d'une reservation tant qu'il		   //
 //      n'y a pas trouver une équivalente a celle entré par l'utilisateur	   //
 ////////////////////////////////////////////////////////////////////////////////
-void DemanderQuiEstClient(string & nom, int & nbre, FileAttente & laFile);
+bool DemanderQuiEstClient(string & nom, int & nbre, FileAttente & laFile);
 ////////////////////////////////////////////////////////////////////////////////
 //						  AfficherLaFileEnEntier()							               //
 //					Intrant : ostream, laFile		Extrant : Aucun			         //

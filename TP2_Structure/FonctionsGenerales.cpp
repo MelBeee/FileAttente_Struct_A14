@@ -17,7 +17,6 @@ void Attendre()
    cin.ignore(cin.rdbuf()->in_avail() + 1);
    system("cls");
 }
-
 ////////////////////////////////////////////////////////////////////////////////
 //								GetInt()									                     //
 ////////////////////////////////////////////////////////////////////////////////
@@ -37,7 +36,6 @@ bool GetInt(int & n)
 
    return caractere;
 }
-
 ////////////////////////////////////////////////////////////////////////////////
 //								MenuFaireChoix()							                  //
 ////////////////////////////////////////////////////////////////////////////////
@@ -67,7 +65,6 @@ int MenuFaireChoix()
 
    return Choix;
 }
-
 ////////////////////////////////////////////////////////////////////////////////
 //							   DemanderInfoClient()							               //
 ////////////////////////////////////////////////////////////////////////////////
@@ -94,7 +91,6 @@ void DemanderInfoClient(string& nom, int& nbre, int& sections)
 
    Attendre();
 }
-
 ////////////////////////////////////////////////////////////////////////////////
 //							   DemanderInfoClient()							               //
 ////////////////////////////////////////////////////////////////////////////////
@@ -135,7 +131,6 @@ int DeterminerSection()
 
    return sections;
 }
-
 ////////////////////////////////////////////////////////////////////////////////
 //								    Sections()								                  //
 ////////////////////////////////////////////////////////////////////////////////
@@ -154,7 +149,6 @@ char Sections(int & section, string nom)
 
    return selectionne;
 }
-
 ////////////////////////////////////////////////////////////////////////////////
 //								SetClientSection()							               //
 ////////////////////////////////////////////////////////////////////////////////
@@ -176,7 +170,6 @@ void SetClientSection(int section, Client& c)
       section -= 1;
    }
 }
-
 ////////////////////////////////////////////////////////////////////////////////
 //							   AssignerTable()								               //
 ////////////////////////////////////////////////////////////////////////////////
@@ -216,7 +209,6 @@ void AssignerTable(FileAttente & laFile)
 
    Attendre();
 }
-
 ////////////////////////////////////////////////////////////////////////////////
 //						   QuitterLeProgramme()								               //
 ////////////////////////////////////////////////////////////////////////////////
@@ -246,7 +238,6 @@ bool QuitterLeProgramme(FileAttente & laFile)
    system("cls");
    return quitter;
 }
-
 ////////////////////////////////////////////////////////////////////////////////
 //								AffichageFinale()							                  //
 ////////////////////////////////////////////////////////////////////////////////
@@ -259,7 +250,6 @@ void AffichageFinale(FileAttente & laFile)
    AfficherLigneSeparation();
    Attendre();
 }
-
 ////////////////////////////////////////////////////////////////////////////////
 //								RetraitClient()								               //
 ////////////////////////////////////////////////////////////////////////////////
@@ -283,7 +273,6 @@ void RetraitClient(FileAttente & laFile)
 
    Attendre();
 }
-
 ////////////////////////////////////////////////////////////////////////////////
 //								CreationClient()							                  //
 ////////////////////////////////////////////////////////////////////////////////
@@ -301,7 +290,6 @@ Client CreationClient(Client n)
 
    return n;
 }
-
 ////////////////////////////////////////////////////////////////////////////////
 //								AfficherUnClient()							               //
 ////////////////////////////////////////////////////////////////////////////////
@@ -318,18 +306,17 @@ void AfficherUnClient(FileAttente & laFile, ostream & out)
    if (laFile.EstVide()) // si la file est vide on peut pas afficher de client 
       throw exception("La file est vide \n");
 
-   DemanderQuiEstClient(nom, nbre, laFile);   // demande qui est client 
-
-   system("cls");
-   AfficherLigneSeparation();
-   cout << " Affichage d'un client en attente " << endl;
-   AfficherLigneSeparation();
-   cout << laFile.GetClient(laFile.DonnerLeRang(nom, nbre));   // affiche le client
-   AfficherLigneSeparation();
-
+	if (!DemanderQuiEstClient(nom, nbre, laFile))  // demande qui est client 
+	{
+		system("cls");
+		AfficherLigneSeparation();
+		cout << " Affichage d'un client en attente " << endl;
+		AfficherLigneSeparation();
+		cout << laFile.GetClient(laFile.DonnerLeRang(nom, nbre));   // affiche le client
+		AfficherLigneSeparation();
+	}
    Attendre();
 }
-
 ////////////////////////////////////////////////////////////////////////////////
 //							AfficherLaFileEnEntier()							            //
 ////////////////////////////////////////////////////////////////////////////////
@@ -352,26 +339,36 @@ void AfficherLaFileEnEntier(ostream & out, FileAttente & laFile)
    AfficherLigneSeparation();
    Attendre();
 }
-
 ////////////////////////////////////////////////////////////////////////////////
 //							DemanderQuiEstClient()							               //
 ////////////////////////////////////////////////////////////////////////////////
-void DemanderQuiEstClient(string & nom, int & nbre, FileAttente & laFile)
+bool DemanderQuiEstClient(string & nom, int & nbre, FileAttente & laFile)
 {
    if (laFile.EstVide())
       throw exception("La file est vide \n");
-
+	bool recommencer = false; 
+	char choix; 
    do // demander tant qu'il n'a pas entrer des données qui existe
    {
       cout << " Quel était le nom de votre réservation ? ";
       cin >> nom;
       cout << " Pour combien de personnes avez vous réservé ? ";
       cin >> nbre;
-      if (!laFile.VérifierSiPrésent(nom, nbre)) // utilise la fonction verifier si présent pour analyser données entrées par le user
-         cout << " Vous n'avez pas donné les bonnes informations, recommencez. " << endl;
-   } while (!laFile.VérifierSiPrésent(nom, nbre));
+		if (!laFile.VérifierSiPrésent(nom, nbre)) // utilise la fonction verifier si présent pour analyser données entrées par le user
+		{
+			cout << " Vous n'avez pas donné les bonnes informations, recommencez ? (o/n) " ;
+			do
+			{
+				cin >> choix;
+			} while (choix != 'o' && choix != 'n');
+			if (choix == 'n')
+			{
+				recommencer = true; 
+			}
+		}
+   } while (!laFile.VérifierSiPrésent(nom, nbre) && !recommencer);
+	return recommencer; 
 }
-
 ////////////////////////////////////////////////////////////////////////////////
 //						AfficherLigneSeparation()							               //
 ////////////////////////////////////////////////////////////////////////////////
@@ -383,8 +380,9 @@ void AfficherLigneSeparation()
    }
    cout << endl;
 }
-
-
+////////////////////////////////////////////////////////////////////////////////
+//										SwitchMenu()							               //
+////////////////////////////////////////////////////////////////////////////////
 bool SwitchMenu(bool quitter, FileAttente & laFile, Client nouveau)
 {
    switch (MenuFaireChoix())
