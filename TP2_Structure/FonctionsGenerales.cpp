@@ -181,7 +181,7 @@ void AssignerTable(FileAttente & laFile)
    AfficherLigneSeparation();
 
    if (laFile.EstVide())
-      throw exception("La file est vide \n");
+      throw exception("\n La file est vide \n");
 
    int nbrePersonne, section;
    Section sectiontable;
@@ -261,16 +261,16 @@ void RetraitClient(FileAttente & laFile)
    AfficherLigneSeparation();
 
    if (laFile.EstVide())
-      throw exception("La file est vide \n");
+      throw exception("\n La file est vide \n");
 
    string nom;
    int nbre;
 
-   DemanderQuiEstClient(nom, nbre, laFile); // maintenant qu'on a trouver les bonnes données
-   laFile.Retirer(nom, nbre); //on le retire avec la fonction retirer
-
-   cout << " Aurevoir " << nom << endl;
-
+	if (!DemanderQuiEstClient(nom, nbre, laFile)) // maintenant qu'on a trouver les bonnes données
+	{
+		laFile.Retirer(nom, nbre); //on le retire avec la fonction retirer
+		cout << " Aurevoir " << nom << endl;
+	}
    Attendre();
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -304,7 +304,7 @@ void AfficherUnClient(FileAttente & laFile, ostream & out)
    string nom, infoClient;
 
    if (laFile.EstVide()) // si la file est vide on peut pas afficher de client 
-      throw exception("La file est vide \n");
+      throw exception("\n La file est vide \n");
 
 	if (!DemanderQuiEstClient(nom, nbre, laFile))  // demande qui est client 
 	{
@@ -345,7 +345,7 @@ void AfficherLaFileEnEntier(ostream & out, FileAttente & laFile)
 bool DemanderQuiEstClient(string & nom, int & nbre, FileAttente & laFile)
 {
    if (laFile.EstVide())
-      throw exception("La file est vide \n");
+      throw exception("\n La file est vide \n");
 	bool recommencer = false; 
 	char choix; 
    do // demander tant qu'il n'a pas entrer des données qui existe
