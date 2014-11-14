@@ -302,21 +302,15 @@ Client FileAttente::Assigner(int nbPlacesDeLaTable, Section sectionDeLaTable)
 	}
 
 	if (!trouver)
-	{
 		throw exception("Pas de groupe correspondant aux demandes");
-	}
-	else
-	{
-		cout << " Bonne appetit " << meilleursChoix->GetNom() << endl;
 
+
+		cout << " Bonne appetit " << meilleursChoix->GetNom() << endl;
 		c.nombreDePersonnes = meilleursChoix->GetNombrePersonne();
 		c.nomReservation = meilleursChoix->GetNom();
 		c.sectionChoisis = meilleursChoix->GetClientSection();
 
 		Retirer(meilleursChoix->GetNom(), meilleursChoix->GetNombrePersonne());
-	}
-
-
 
 	return c;
 }
