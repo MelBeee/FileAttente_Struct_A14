@@ -24,18 +24,6 @@ ClientsEnAttente::ClientsEnAttente(string nom, int nbPersonne, vector<Section> s
 	clientsTable_.nombreDePersonnes = nbPersonne;
 	clientsTable_.sectionChoisis = sections;
 }
-////////////////////////////////////////////////////////////////////////////////
-//											Par Défaut												//
-////////////////////////////////////////////////////////////////////////////////
-ClientsEnAttente::ClientsEnAttente()
-{
-	vector<Section> vect; 
-	SetPrécédent(nullptr);
-	SetSuivant(nullptr);
-	clients_Table_.nomReservation = "";
-	clients_Table.nombreDePersonnes = 0;
-	clients_Table.sectionChoisis = vect;
-}
 
 										//--- MUTATEURS ---\\
 
