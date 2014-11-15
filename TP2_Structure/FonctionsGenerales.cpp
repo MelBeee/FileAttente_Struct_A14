@@ -244,10 +244,10 @@ bool QuitterLeProgramme(FileAttente & laFile)
 void AffichageFinale(FileAttente & laFile)
 {
    AfficherLigneSeparation(); // affiche les info finales en utilisant les fonctions de la file
-   cout << " Il y a eu " << laFile.ObtenirNbGroupesTotal() << " réservations comblés " << endl;
-   cout << " Il y a eu " << laFile.ObtenirNbPersonnesTotal() << " clients servis dans le restaurant ce soir " << endl;
-   cout << " Il restait " << laFile.ObtenirNbPersonnes() << " clients dans la file d'attente lors de la fermeture du restaurant " << endl;
-   AfficherLigneSeparation();
+	cout << "Nombre de groupes servis : " << endl;
+	cout << "Nombre de personnes placees a table : " << endl; 
+	cout << "Nombre de groupes en file : " << laFile.ObtenirNbGroupes() << endl; 
+	AfficherLigneSeparation();
    Attendre();
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -412,3 +412,4 @@ bool SwitchMenu(bool quitter, FileAttente & laFile, Client nouveau)
    }
    return quitter;
 }
+
