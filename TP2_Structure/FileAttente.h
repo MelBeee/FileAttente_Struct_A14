@@ -23,7 +23,8 @@ class FileAttente
 
 	////////////////////////////////////////////////////////////////////////////////
 	//												SetPremier()							             
-	//										Intrant : 	Extrant : 	 
+	//							Intrant : prend un pointeur du noeud et l'identifie
+	//										 comme le nouveau premier de la list. 	 
 	//	
 	////////////////////////////////////////////////////////////////////////////////
 	void SetPremier(ClientsEnAttente * p);
