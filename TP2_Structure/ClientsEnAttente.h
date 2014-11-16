@@ -25,26 +25,17 @@ enum Section
 };
 
 ////////////////////////////////////////////////////////////////////////////////
-//									 Structure de Client				                     //
-//		      Structure comportant les données a stocker pour un client	      //
-////////////////////////////////////////////////////////////////////////////////
-//struct Client
-//{
-//	string nomReservation;
-//	int nombreDePersonnes;
-//	vector<Section> sectionChoisis;
-//};
-
-////////////////////////////////////////////////////////////////////////////////
 //								Class ClientsEnAttente							        	   //
 ////////////////////////////////////////////////////////////////////////////////
 class ClientsEnAttente
 {
-	Client clientsTable_;				// Instance de struct Client
-	ClientsEnAttente * pPrécédent_;  // Chaque noeud retient l'adresse de celui qui le précède
-	ClientsEnAttente * pSuivant_;    // et de celui qui le suit
-
 public:
+	struct Client
+	{
+		string nomReservation;
+		int nombreDePersonnes;
+		vector<Section> sectionChoisis;
+	};
 	////////////////////////////////////////////////////////////////////////////////
 	//								 ConstructeurParamétrique										//
 	//	Intrants: Nom du client, nombre de personne a table et les sections voulus //
@@ -113,6 +104,11 @@ public:
 	//						présente, retourne vrai sinon, faux									//
 	////////////////////////////////////////////////////////////////////////////////
 	bool ChoixSection(ClientsEnAttente c, Section s);
+private:
+	Client clientsTable_;				// Instance de struct Client
+	ClientsEnAttente * pPrécédent_;  // Chaque noeud retient l'adresse de celui qui le précède
+	ClientsEnAttente * pSuivant_;    // et de celui qui le suit
+
 };
 
 #endif

@@ -11,12 +11,7 @@
 #include "ClientsEnAttente.h"
 
 
-struct Client
-{
-	string nomReservation;
-	int nombreDePersonnes;
-	vector<Section> sectionChoisis;
-};
+
 
 									//--- CONSTRUCTEURS ---\\
 
@@ -98,7 +93,7 @@ ClientsEnAttente * ClientsEnAttente::GetSuivant() const
 ////////////////////////////////////////////////////////////////////////////////
 //												GetClient										   //
 ////////////////////////////////////////////////////////////////////////////////
-Client ClientsEnAttente::GetClient() const
+ClientsEnAttente::Client ClientsEnAttente::GetClient() const
 {
 	return clientsTable_;
 }

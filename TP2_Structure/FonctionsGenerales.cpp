@@ -152,7 +152,7 @@ char Sections(int & section, string nom)
 ////////////////////////////////////////////////////////////////////////////////
 //								SetClientSection()							               //
 ////////////////////////////////////////////////////////////////////////////////
-void SetClientSection(int section, Client& c)
+void SetClientSection(int section, ClientsEnAttente::Client& c)
 {
    if (section >= 100) // si section > 100, ca veux dire que l'utilisateur a dit oui a SalleAManger
    {   // on pushback donc SalleAManger dans le vecteur<section> du Client
@@ -267,7 +267,7 @@ void RetraitClient(FileAttente & laFile)
 ////////////////////////////////////////////////////////////////////////////////
 //								CreationClient()							                  //
 ////////////////////////////////////////////////////////////////////////////////
-Client CreationClient(Client c)
+ClientsEnAttente::Client CreationClient(ClientsEnAttente::Client c)
 {
 	AfficherEntete(" Ajout d'un client ");
 
@@ -389,7 +389,7 @@ void AfficherEntete(string entete)
 ////////////////////////////////////////////////////////////////////////////////
 //										SwitchMenu()							               //
 ////////////////////////////////////////////////////////////////////////////////
-bool SwitchMenu(bool quitter, FileAttente & laFile, Client nouveau)
+bool SwitchMenu(bool quitter, FileAttente & laFile, ClientsEnAttente::Client nouveau)
 {
    switch (MenuFaireChoix())
    {

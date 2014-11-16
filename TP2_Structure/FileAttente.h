@@ -22,17 +22,17 @@ class FileAttente
 	int nbGroupesTotal_ = 0;//Nombre de Groupe dans la file au total
 
 	////////////////////////////////////////////////////////////////////////////////
-<<<<<<< HEAD
+
 	//												SetPremier()							             
 	//							Intrant : prend un pointeur du noeud et l'identifie
 	//									comme le nouveau premier de la list avec le
 	//									pointeur premier.
 	//	
-=======
+
 	//												SetPremier()										//           
 	//						Intrant : prend un pointeur du noeud et l'identifie			//
 	//									 comme le nouveau premier de la list. 					//
->>>>>>> origin/master
+
 	////////////////////////////////////////////////////////////////////////////////
 	void SetPremier(ClientsEnAttente * p);
 	////////////////////////////////////////////////////////////////////////////////
@@ -147,13 +147,13 @@ public:
 	//										Intrant : 	Extrant : 	 
 	//	ajoute un nouveau client dans la file d'attente
 	////////////////////////////////////////////////////////////////////////////////
-	void	Ajouter(Client clientAMettreEnFile);
+	void	Ajouter(ClientsEnAttente::Client clientAMettreEnFile);
 	////////////////////////////////////////////////////////////////////////////////
 	//												Retirer()							             
 	//										Intrant : 	Extrant : 	 
 	//	 assigner un groupe a une table
 	////////////////////////////////////////////////////////////////////////////////
-	Client Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable);
+	ClientsEnAttente::Client Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable);
 	////////////////////////////////////////////////////////////////////////////////
 	//												Retirer()							             
 	//										Intrant : 	Extrant : 	 

@@ -67,7 +67,7 @@ void RetraitClient(FileAttente & laFile);
 //					Intrant : int, client	Extrant : Aucun					         //
 //		Fonction qui pushback les Section(enum) dans le vecteur du client	      //
 ////////////////////////////////////////////////////////////////////////////////
-void SetClientSection(int section, Client& c);
+void SetClientSection(int section, ClientsEnAttente::Client& c);
 ////////////////////////////////////////////////////////////////////////////////
 //							  DeterminerSection()							               //
 //						Intrant : Aucun	Extrant : Int						            //
@@ -79,7 +79,7 @@ int DeterminerSection();
 //					Intrant : Client	Extrant : Client					               //
 //	   Fonction qui englobe tout les fonctions pour créer un nouveau client    //
 ////////////////////////////////////////////////////////////////////////////////
-Client CreationClient(Client n);
+ClientsEnAttente::Client CreationClient(ClientsEnAttente::Client n);
 ////////////////////////////////////////////////////////////////////////////////
 //							AfficherUnClient()								               //
 //					Intrant : laFile	Extrant : Aucun						            //
@@ -118,7 +118,7 @@ void AfficherLaFileEnEntier(ostream & out, FileAttente & laFile);
 //					Intrant : Aucun		Extrant : Aucun						         //
 //		Fonctions de paresseux ! :) Affiche une ligne de = pour séparer		   //
 ////////////////////////////////////////////////////////////////////////////////
-bool SwitchMenu(bool quitter, FileAttente & laFile, Client nouveau);
+bool SwitchMenu(bool quitter, FileAttente & laFile, ClientsEnAttente::Client nouveau);
 ////////////////////////////////////////////////////////////////////////////////
 //										DemanderRang()								            //
 //				Intrant : laFile et le rang		Extrant : bool				         //

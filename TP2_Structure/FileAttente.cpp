@@ -128,7 +128,7 @@ void FileAttente::Afficher(ostream & out) const
 ////////////////////////////////////////////////////////////////////////////////
 //												Ajouter()							            //
 ////////////////////////////////////////////////////////////////////////////////
-void FileAttente::Ajouter(Client clientAMettreEnFile)
+void FileAttente::Ajouter(ClientsEnAttente::Client clientAMettreEnFile)
 {
 	ClientsEnAttente * pNouveau = new ClientsEnAttente(clientAMettreEnFile.nomReservation,
 		clientAMettreEnFile.nombreDePersonnes,
@@ -284,12 +284,12 @@ string FileAttente::MettreEnMajuscules(string nom) const
 ////////////////////////////////////////////////////////////////////////////////
 //											Retirer()								            //
 ////////////////////////////////////////////////////////////////////////////////
-Client FileAttente::Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable)
+ClientsEnAttente::Client FileAttente::Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable)
 {
 	ClientsEnAttente * pTemporaire = GetPremier();
 	ClientsEnAttente * meilleursChoix = nullptr;
 	bool trouver = false;
-	Client c;
+	ClientsEnAttente::Client c;
 
 	for (int i = nbPlacesDeLaTable; i > 0 && !trouver; i--)
 	{

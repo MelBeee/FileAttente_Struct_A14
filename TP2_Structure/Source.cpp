@@ -19,7 +19,7 @@ int main()
 {
 	setlocale(LC_ALL, ""); // Pour faire afficher les caractères spéciaux
 	bool quitter = true; // Variable servant à savoir si on quitte le programme ou non
-   Client nouveau; // Instance de la structure Client pour ajouter des nouveaux clients à la file
+	ClientsEnAttente::Client nouveau; // Instance de la structure Client pour ajouter des nouveaux clients à la file
    FileAttente laFile;	// Création de l'instance de la classe FileAttente
 	
 	CreationClienstPourTest(laFile);
@@ -41,7 +41,7 @@ int main()
 // Fonction de paresseuuux :) 
 void CreationClienstPourTest(FileAttente & laFile)
 {
-	Client a, b, c, d, e, f, g;
+	ClientsEnAttente::Client a, b, c, d, e, f, g;
 	vector<Section> h, i, j, k, l, m;
 
 	h.push_back(Section::SalleManger);
