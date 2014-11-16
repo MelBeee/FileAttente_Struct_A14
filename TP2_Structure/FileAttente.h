@@ -118,52 +118,72 @@ public:
 	int    ObtenirNbPersonnes() const;
 	////////////////////////////////////////////////////////////////////////////////
 	//												ObtenirNbPersonnesTotal()							             
-	//										Intrant : 	Extrant : retourne le
-	//											nombre de client total 
+	//										Extrant : retourne le nombre de 
+	//											client total 
 	//											qui a été servi.
 	//
 	////////////////////////////////////////////////////////////////////////////////
 	int    ObtenirNbPersonnesTotal() const;
 	////////////////////////////////////////////////////////////////////////////////
 	//												ObtenirNbGroupesTotal()							             
-	//										Intrant : 	Extrant : 	 
-	//	retourne le nombre de groupe qui a été servi
+	//										Extrant : retourne le nombre de
+	//											groupe qui a été servi
+	//
 	////////////////////////////////////////////////////////////////////////////////
 	int    ObtenirNbGroupesTotal() const;
 	////////////////////////////////////////////////////////////////////////////////
 	//												MettreEnMajuscules()							             
-	//										Intrant : 	Extrant : 	 
-	//	mettre le string passé en caractère en majuscule, pour verifier si les noms sont pareils
+	//										Intrant : une chaine String
+	//										Extrant : la même chaine mais en majuscule
+	//										mettre le string passé en caractère 
+	//											en majuscule, pour verifier si les noms sont pareils
+	//
 	////////////////////////////////////////////////////////////////////////////////
 	string  MettreEnMajuscules(string nom) const;
 	////////////////////////////////////////////////////////////////////////////////
 	//												EstLeMemeNom()							             
-	//										Intrant : 	Extrant : 	 
-	//	vérifie si le client passé en parametre et le client de l'instance sont pareil
+	//										Intrant : -le pointeur du client
+	//												  -le nom
+	//												  -le nombre de personne
+	//										Extrant : si le client est pareil
+	//											que celui de l'instance. 
+	//										vérifie si le client passé en parametre
+	//											et le client de l'instance sont pareil
+	//
 	////////////////////////////////////////////////////////////////////////////////
 	bool EstLeMemeNom(ClientsEnAttente * p, string nom, int nbPersonnes) const;
 	////////////////////////////////////////////////////////////////////////////////
 	//												Ajouter()							             
-	//										Intrant : 	Extrant : 	 
-	//	ajoute un nouveau client dans la file d'attente
+	//										Intrant : Le client a mettre en file. 	 
+	//										Ajoute un nouveau client dans
+	//											la file d'attente
+	//
 	////////////////////////////////////////////////////////////////////////////////
 	void	Ajouter(ClientsEnAttente::Client clientAMettreEnFile);
 	////////////////////////////////////////////////////////////////////////////////
 	//												Retirer()							             
-	//										Intrant : 	Extrant : 	 
-	//	 assigner un groupe a une table
+	//										Intrant : -le nombre de place de la 
+	//														réservation.
+	//												  -la/les section(s) du client.
+	//										assigner un groupe a une table.
+	//
 	////////////////////////////////////////////////////////////////////////////////
 	ClientsEnAttente::Client Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable);
 	////////////////////////////////////////////////////////////////////////////////
 	//												Retirer()							             
-	//										Intrant : 	Extrant : 	 
-	//	retirer un groupe de la file
+	//										Intrant : -le nom du client
+	//												  -le nombre de personne
+	//										Extrant : si le client a retirer existe. 
+	//										retirer un groupe de la file.
+	//
 	////////////////////////////////////////////////////////////////////////////////
 	bool	Retirer(string nomClient, int nbPersonnes);
 	////////////////////////////////////////////////////////////////////////////////
 	//												GetClient()							             
-	//										Intrant : 	Extrant : 	 
-	//	retourne un client
+	//										Intrant : l'indice du client
+	//										Extrant : la chaine de caractère du client	 
+	//										retourne un client
+	//
 	////////////////////////////////////////////////////////////////////////////////
 	string	GetClient(int indice) const;
 	////////////////////////////////////////////////////////////////////////////////
