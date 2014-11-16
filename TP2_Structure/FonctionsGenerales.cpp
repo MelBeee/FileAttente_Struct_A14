@@ -238,8 +238,8 @@ bool QuitterLeProgramme(FileAttente & laFile)
 void AffichageFinale(FileAttente & laFile)
 {
    AfficherLigneSeparation(); // affiche les info finales en utilisant les fonctions de la file
-	cout << "Nombre de groupes servis : " << endl;
-	cout << "Nombre de personnes placees a table : " << endl; 
+	cout << "Nombre de groupes servis : " << laFile.ObtenirNbGroupesTotal() << endl;
+	cout << "Nombre de personnes placees a table : " << laFile.ObtenirNbPersonnesTotal() << endl; 
 	cout << "Nombre de groupes en file : " << laFile.ObtenirNbGroupes() << endl; 
 	AfficherLigneSeparation();
    Attendre();
@@ -309,7 +309,7 @@ bool DemanderRang(FileAttente & laFile, int & rang)
 	cout << "Entrer un rang : ";
 	cin >> rang;
 
-	if (rang > 0 && rang < laFile.ObtenirNbGroupes())
+	if (rang > 0 && rang <= laFile.ObtenirNbGroupes())
 		estLa = true; 
 
 	return estLa; 

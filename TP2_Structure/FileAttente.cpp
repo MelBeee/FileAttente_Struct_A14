@@ -73,6 +73,8 @@ FileAttente::FileAttente()
 {
 	SetNbGroupes(0);  // il n'y a pas d'éléments dans la liste
 	SetNbPersonnes(0);
+	SetNbGroupesTotal(0);
+	SetNbPersonnesTotal(0);
 	SetPremier(nullptr);     // on pointe sur rien
 	SetDernier(nullptr);
 }
@@ -143,11 +145,9 @@ void FileAttente::Ajouter(Client clientAMettreEnFile)
 		GetDernier()->SetSuivant(pNouveau);
 		SetDernier(pNouveau);
 	}
-	SetNbGroupes(ObtenirNbGroupes() + 1);
-	SetNbGroupesTotal(ObtenirNbGroupes());
 
+	SetNbGroupes(ObtenirNbGroupes() + 1);
 	SetNbPersonnes(ObtenirNbPersonnes() + clientAMettreEnFile.nombreDePersonnes);
-	SetNbPersonnesTotal(ObtenirNbPersonnes());
 }
 ////////////////////////////////////////////////////////////////////////////////
 //												Retirer()							            //
@@ -311,6 +311,8 @@ Client FileAttente::Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable)
 
 	Retirer(meilleursChoix->GetNom(), meilleursChoix->GetNombrePersonne());
 
+	SetNbGroupesTotal(ObtenirNbGroupesTotal() + 1);
+	SetNbPersonnesTotal(ObtenirNbPersonnesTotal() + c.nombreDePersonnes);
 	return c;
 }
 ////////////////////////////////////////////////////////////////////////////////
