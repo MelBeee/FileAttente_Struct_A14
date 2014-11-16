@@ -400,10 +400,10 @@ bool SwitchMenu(bool quitter, FileAttente & laFile, Client nouveau)
       AssignerTable(laFile);
       break;
    case 3:
-      RetraitClient(laFile); // pouvoir quitter la boucle ? 
+      RetraitClient(laFile);
       break;
    case 4:
-      AfficherUnClient(laFile, cout); // pouvoir quitter la boucle ? 
+      AfficherUnClient(laFile, cout); 
       break;
    case 5:
       AfficherLaFileEnEntier(cout, laFile);

@@ -22,11 +22,17 @@ class FileAttente
 	int nbGroupesTotal_ = 0;//Nombre de Groupe dans la file au total
 
 	////////////////////////////////////////////////////////////////////////////////
+<<<<<<< HEAD
 	//												SetPremier()							             
 	//							Intrant : prend un pointeur du noeud et l'identifie
 	//									comme le nouveau premier de la list avec le
 	//									pointeur premier.
 	//	
+=======
+	//												SetPremier()										//           
+	//						Intrant : prend un pointeur du noeud et l'identifie			//
+	//									 comme le nouveau premier de la list. 					//
+>>>>>>> origin/master
 	////////////////////////////////////////////////////////////////////////////////
 	void SetPremier(ClientsEnAttente * p);
 	////////////////////////////////////////////////////////////////////////////////
