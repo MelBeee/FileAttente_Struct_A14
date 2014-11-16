@@ -28,12 +28,12 @@ enum Section
 //									 Structure de Client				                     //
 //		      Structure comportant les données a stocker pour un client	      //
 ////////////////////////////////////////////////////////////////////////////////
-struct Client
-{
-	string nomReservation;
-	int nombreDePersonnes;
-	vector<Section> sectionChoisis;
-};
+//struct Client
+//{
+//	string nomReservation;
+//	int nombreDePersonnes;
+//	vector<Section> sectionChoisis;
+//};
 
 ////////////////////////////////////////////////////////////////////////////////
 //								Class ClientsEnAttente							        	   //

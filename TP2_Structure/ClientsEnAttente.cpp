@@ -11,6 +11,13 @@
 #include "ClientsEnAttente.h"
 
 
+struct Client
+{
+	string nomReservation;
+	int nombreDePersonnes;
+	vector<Section> sectionChoisis;
+};
+
 									//--- CONSTRUCTEURS ---\\
 
 ////////////////////////////////////////////////////////////////////////////////
