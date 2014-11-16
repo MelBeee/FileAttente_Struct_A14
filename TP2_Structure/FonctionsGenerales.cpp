@@ -1,15 +1,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 //								FonctionsGenerales.cpp									      //
 //				  Fait par Mélissa Boucher et Xavier Brosseau				         //
-//							Créé le 29 octobre 2014							               //
-//						Derniere modif 16 novembre 2014						            //
-//																		                        //
+//			Créé le 29 octobre 2014,	Derniere modif 16 novembre 2014			   //
 //				     Définitions des fonctions utilisé dans le main	            //
 ////////////////////////////////////////////////////////////////////////////////
 #include "FonctionsGenerales.h"
-
-////////////////////////////////////////////////////////////////////////////////
-//								Attendre()									                  //
 ////////////////////////////////////////////////////////////////////////////////
 void Attendre()
 {
@@ -17,8 +12,6 @@ void Attendre()
    cin.ignore(cin.rdbuf()->in_avail() + 1);
    system("cls");
 }
-////////////////////////////////////////////////////////////////////////////////
-//						AfficherLigneSeparation()							               //
 ////////////////////////////////////////////////////////////////////////////////
 void AfficherLigneSeparation()
 {
@@ -29,8 +22,6 @@ void AfficherLigneSeparation()
 	cout << endl;
 }
 ////////////////////////////////////////////////////////////////////////////////
-//									AfficherEntete()							               //
-////////////////////////////////////////////////////////////////////////////////
 void AfficherEntete(string entete)
 {
 	system("cls");
@@ -38,8 +29,6 @@ void AfficherEntete(string entete)
 	cout << entete << endl;
 	AfficherLigneSeparation();
 }
-////////////////////////////////////////////////////////////////////////////////
-//								GetInt()									                     //
 ////////////////////////////////////////////////////////////////////////////////
 bool GetInt(int & n)
 {
@@ -51,19 +40,14 @@ bool GetInt(int & n)
    buffer >> n;
 
    if (!buffer)
-   {
       caractere = false;
-   }
 
    return caractere;
 }
 ////////////////////////////////////////////////////////////////////////////////
-//								MenuFaireChoix()							                  //
-////////////////////////////////////////////////////////////////////////////////
 int MenuFaireChoix()
 {
-   // Initialisation a -1 pour rentrer dans la boucle
-   int Choix = -1;
+   int Choix = -1; // Initialisation a -1 pour rentrer dans la boucle
 
    AfficherLigneSeparation(); // Affichage du menu
    cout << " 1. Ajouter un client dans la file " << endl
@@ -73,7 +57,6 @@ int MenuFaireChoix()
       << " 5. Afficher la file d'attente en entier " << endl
       << " 6. Quitter le programme " << endl;
    AfficherLigneSeparation();
-
    // Faire un choix, recommencez tant que le caractère entré n'est pas un chiffre
    // entre 1 et 6 et pas un caractère
    do
@@ -83,11 +66,8 @@ int MenuFaireChoix()
    } while (Choix < 1 || Choix > 6);
 
    system("cls");
-
    return Choix;
 }
-////////////////////////////////////////////////////////////////////////////////
-//										SwitchMenu()							               //
 ////////////////////////////////////////////////////////////////////////////////
 bool SwitchMenu(bool quitter, FileAttente & laFile, ClientsEnAttente::Client nouveau)
 {
@@ -119,38 +99,28 @@ bool SwitchMenu(bool quitter, FileAttente & laFile, ClientsEnAttente::Client nou
 	return quitter;
 }
 ////////////////////////////////////////////////////////////////////////////////
-//								CreationClient()							                  //
-////////////////////////////////////////////////////////////////////////////////
 ClientsEnAttente::Client CreationClient(ClientsEnAttente::Client c)
 {
 	AfficherEntete(" Ajout d'un client ");
-
 	int sections;
-
 	DemanderInfoClient(c.nomReservation, c.nombreDePersonnes, sections);   // Demander les infos du client pour ensuite le créer 
 	SetClientSection(sections, c);
-
 	return c;
 }
-////////////////////////////////////////////////////////////////////////////////
-//							   DemanderInfoClient()							               //
 ////////////////////////////////////////////////////////////////////////////////
 void DemanderInfoClient(string& nom, int& nbre, int& sections)
 {
    cout << " Bienvenue ! Veuillez entrer les informations suivantes " << endl;
-
    cout << " Le nom de la réservation : "; // Demander le nom de la reservation a l'utilisateur
    cin >> nom;
    do
-   {
-      // demander le nombre de personne a l'utilisateur 
-      // tant qu'il rentre un nombre invalide
+   {  // demander le nombre de personne a l'utilisateur 
       cout << " Combien de personne à table : ";
       cin >> nbre;
 
       if (nbre < 1)
          cout << " Nombre invalide, recommencez " << endl;
-   } while (nbre < 1);
+   } while (nbre < 1);  // tant qu'il rentre un nombre invalide
 
    // demander les sections a l'utilisateur
    cout << " Est-ce que vous aimeriez manger dans les sections suivantes (o/n) " << endl;
@@ -159,12 +129,9 @@ void DemanderInfoClient(string& nom, int& nbre, int& sections)
    Attendre();
 }
 ////////////////////////////////////////////////////////////////////////////////
-//							   DeterminerSection()							               //
-////////////////////////////////////////////////////////////////////////////////
 int DeterminerSection()
 {
-   // tableau de char pour stocker les sections que le client veux
-   char section[3];
+   char section[3];   // tableau de char pour stocker les sections que le client veux
    int sections = 0;
    // string d'affichage
    string nonfumeur = "Terrasse NonFumeur ? ";
@@ -195,16 +162,12 @@ int DeterminerSection()
          << " Nous avons décidé pour vous que toutes les sections sont à votre goût. " << endl;
       sections = 111;
    }
-
    return sections;
 }
-////////////////////////////////////////////////////////////////////////////////
-//								    Sections()								                  //
 ////////////////////////////////////////////////////////////////////////////////
 char Sections(int & section, string nom)
 {
    char selectionne;
-
    do // tant que le caractère n'est pas o ou n on redemande a l'utilisateur
    {
       cout << nom;
@@ -216,9 +179,6 @@ char Sections(int & section, string nom)
 
    return selectionne;
 }
-
-////////////////////////////////////////////////////////////////////////////////
-//								SetClientSection()							               //
 ////////////////////////////////////////////////////////////////////////////////
 void SetClientSection(int section, ClientsEnAttente::Client& c)
 {
@@ -239,24 +199,19 @@ void SetClientSection(int section, ClientsEnAttente::Client& c)
    }
 }
 ////////////////////////////////////////////////////////////////////////////////
-//							   AssignerTable()								               //
-////////////////////////////////////////////////////////////////////////////////
 void AssignerTable(FileAttente & laFile)
 {
 	AfficherEntete(" Assignation d'une table ");
-
    if (laFile.EstVide())
       throw exception("\n La file est vide \n");
 
    int nbrePersonne, section;
    Section sectiontable;
-
    do
    {
       cout << "Combien de personnes peuvent s'asseoir a cette table ? ";
       cin >> nbrePersonne;
    } while (nbrePersonne < 1);
-
    do
    {
       cout << " Dans quelle section se trouve la table ? (TF 1, TNF 2, SAM 3) ";
@@ -271,16 +226,12 @@ void AssignerTable(FileAttente & laFile)
    }
 
    laFile.Retirer(nbrePersonne, sectiontable);
-
    Attendre();
 }
-////////////////////////////////////////////////////////////////////////////////
-//								RetraitClient()								               //
 ////////////////////////////////////////////////////////////////////////////////
 void RetraitClient(FileAttente & laFile)
 {
 	AfficherEntete(" Retrait d'un client qui quitte ");
-
    if (laFile.EstVide())
       throw exception("\n La file est vide \n");
 
@@ -294,8 +245,6 @@ void RetraitClient(FileAttente & laFile)
 	}
    Attendre();
 }
-////////////////////////////////////////////////////////////////////////////////
-//							DemanderQuiEstClient()							               //
 ////////////////////////////////////////////////////////////////////////////////
 bool DemanderQuiEstClient(string & nom, int & nbre, FileAttente & laFile)
 {
@@ -326,8 +275,6 @@ bool DemanderQuiEstClient(string & nom, int & nbre, FileAttente & laFile)
 	return recommencer;
 }
 ////////////////////////////////////////////////////////////////////////////////
-//								AfficherUnClient()							               //
-////////////////////////////////////////////////////////////////////////////////
 void AfficherUnClient(FileAttente & laFile, ostream & out)
 {
 	AfficherEntete(" Affichage d'un client en attente ");
@@ -339,7 +286,6 @@ void AfficherUnClient(FileAttente & laFile, ostream & out)
       throw exception("\n La file est vide \n");
 
 	estLa = DemanderRang(laFile, rang);
-
 	AfficherEntete(" Affichage d'un client en attente ");
 	if (estLa)  // demande qui est client 
 		cout << laFile.GetClient(rang);   // affiche le client
@@ -349,8 +295,6 @@ void AfficherUnClient(FileAttente & laFile, ostream & out)
 	AfficherLigneSeparation();
    Attendre();
 }
-////////////////////////////////////////////////////////////////////////////////
-//											DemanderRang()							            //
 ////////////////////////////////////////////////////////////////////////////////
 bool DemanderRang(FileAttente & laFile, int & rang)
 {
@@ -363,8 +307,6 @@ bool DemanderRang(FileAttente & laFile, int & rang)
 
 	return estLa; 
 }
-////////////////////////////////////////////////////////////////////////////////
-//							AfficherLaFileEnEntier()							            //
 ////////////////////////////////////////////////////////////////////////////////
 void AfficherLaFileEnEntier(ostream & out, FileAttente & laFile)
 {
@@ -381,8 +323,6 @@ void AfficherLaFileEnEntier(ostream & out, FileAttente & laFile)
    AfficherLigneSeparation();
    Attendre();
 }
-////////////////////////////////////////////////////////////////////////////////
-//						   QuitterLeProgramme()								               //
 ////////////////////////////////////////////////////////////////////////////////
 bool QuitterLeProgramme(FileAttente & laFile)
 {
@@ -407,8 +347,6 @@ bool QuitterLeProgramme(FileAttente & laFile)
 	system("cls");
 	return quitter;
 }
-////////////////////////////////////////////////////////////////////////////////
-//								AffichageFinale()							                  //
 ////////////////////////////////////////////////////////////////////////////////
 void AffichageFinale(FileAttente & laFile)
 {
