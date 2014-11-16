@@ -119,5 +119,17 @@ void AfficherLaFileEnEntier(ostream & out, FileAttente & laFile);
 //		Fonctions de paresseux ! :) Affiche une ligne de = pour séparer		   //
 ////////////////////////////////////////////////////////////////////////////////
 bool SwitchMenu(bool quitter, FileAttente & laFile, Client nouveau);
+////////////////////////////////////////////////////////////////////////////////
+//										DemanderRang()								            //
+//				Intrant : laFile et le rang		Extrant : bool				         //
+//		Fonction qui demande un rang a l'utilisateur et retourne si il existe   //
+////////////////////////////////////////////////////////////////////////////////
+bool DemanderRang(FileAttente & laFile, int & Rang);
+////////////////////////////////////////////////////////////////////////////////
+//									 AfficherEntete()								            //
+//					Intrant : string		Extrant : Aucun						         //
+//					Affiche l'entete des différents choix du menu					   //
+////////////////////////////////////////////////////////////////////////////////
+void AfficherEntete(string entete);
 
 #endif

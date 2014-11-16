@@ -13,11 +13,8 @@
 #include <string>
 using namespace std;
 
-////////////////////////////////////////////////////////////////////////////////
-// A FAIRE / FINIR															               //	
-// Commenter FileAttente.h .cpp / ClientsEnAttente.h .cpp                     //
-// Tester tout																                  //
-////////////////////////////////////////////////////////////////////////////////
+void CreationClienstPourTest(FileAttente & laFile);
+
 int main()
 {
 	setlocale(LC_ALL, ""); // Pour faire afficher les caractères spéciaux
@@ -25,6 +22,8 @@ int main()
    Client nouveau; // Instance de la structure Client pour ajouter des nouveaux clients à la file
    FileAttente laFile;	// Création de l'instance de la classe FileAttente
 	
+	CreationClienstPourTest(laFile);
+
 	while (quitter) // tant que quitter est a true, on continue 
 	{
 		try
@@ -39,3 +38,61 @@ int main()
 	}
 }
 
+// Fonction de paresseuuux :) 
+void CreationClienstPourTest(FileAttente & laFile)
+{
+	Client a, b, c, d, e, f, g;
+	vector<Section> h, i, j, k, l, m;
+
+	h.push_back(Section::SalleManger);
+
+	i.push_back(Section::TerrasseFumeur);
+
+	j.push_back(Section::SalleManger);
+	j.push_back(Section::TerrasseFumeur);
+
+	k.push_back(Section::TerrasseFumeur);
+	k.push_back(Section::TerrasseNonFumeur);
+
+	l.push_back(Section::TerrasseNonFumeur);
+
+	m.push_back(Section::TerrasseFumeur);
+	m.push_back(Section::TerrasseNonFumeur);
+	m.push_back(Section::SalleManger);
+
+	a.nomReservation = "Arthur";
+	a.nombreDePersonnes = 4;
+	a.sectionChoisis = h;
+
+	b.nomReservation = "Benoit";
+	b.nombreDePersonnes = 6;
+	b.sectionChoisis = i;
+
+	c.nomReservation = "Charles";
+	c.nombreDePersonnes = 2;
+	c.sectionChoisis = j;
+
+	d.nomReservation = "Diane";
+	d.nombreDePersonnes = 3;
+	d.sectionChoisis = i;
+
+	e.nomReservation = "Elise";
+	e.nombreDePersonnes = 4;
+	e.sectionChoisis = k;
+
+	f.nomReservation = "Francis";
+	f.nombreDePersonnes = 2;
+	f.sectionChoisis = l;
+
+	g.nomReservation = "Gaston";
+	g.nombreDePersonnes = 8;
+	g.sectionChoisis = m; 
+
+	laFile.Ajouter(a);
+	laFile.Ajouter(b);
+	laFile.Ajouter(c);
+	laFile.Ajouter(d);
+	laFile.Ajouter(e);
+	laFile.Ajouter(f);
+	laFile.Ajouter(g);
+}
