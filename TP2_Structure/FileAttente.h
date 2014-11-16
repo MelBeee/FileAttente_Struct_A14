@@ -25,13 +25,13 @@ class FileAttente
 
 	//												SetPremier()							             
 	//							Intrant : prend un pointeur du noeud et l'identifie
-	//									comme le nouveau premier de la list avec le
-	//									pointeur premier.
+	//								comme le nouveau premier de la list avec le
+	//								pointeur premier.
 	//	
 
-	//												SetPremier()										//           
-	//						Intrant : prend un pointeur du noeud et l'identifie			//
-	//									 comme le nouveau premier de la list. 					//
+	//												SetPremier()										           
+	//						Intrant : prend un pointeur du noeud et l'identifie			
+	//							comme le nouveau premier de la list. 					
 
 	////////////////////////////////////////////////////////////////////////////////
 	void SetPremier(ClientsEnAttente * p);
@@ -94,120 +94,122 @@ public:
 	////////////////////////////////////////////////////////////////////////////////
 	FileAttente();
 	////////////////////////////////////////////////////////////////////////////////
-	//												Afficher()							             
-	//										Intrant : Ostream
-	//											effectue l'affichage des clients
-	//											de la list.
+	//											Afficher()							             
+	//									Intrant : Ostream
+	//									effectue l'affichage des clients de la list.
 	// 
 	////////////////////////////////////////////////////////////////////////////////
 	void   Afficher(ostream & out) const;
 	////////////////////////////////////////////////////////////////////////////////
-	//												ObtenirNbGroupes()							             
-	//										Extrant : retourne le nombre de
-	//											groupes que contient laFile
+	//									ObtenirNbGroupes()							             
+	//					Extrant : retourne le nombre de groupes que contient laFile
 	//
 	////////////////////////////////////////////////////////////////////////////////
 
 	int    ObtenirNbGroupes() const;
 	////////////////////////////////////////////////////////////////////////////////
-	//												ObtenirNbPersonnes()							             
-	//										Extrant : retourne le nombre de 
-	//											clients que contient laFile
-
+	//									ObtenirNbPersonnes()							             
+	//					Extrant : retourne le nombre de clients que contient laFile
+	//
 	////////////////////////////////////////////////////////////////////////////////
 	int    ObtenirNbPersonnes() const;
 	////////////////////////////////////////////////////////////////////////////////
-	//												ObtenirNbPersonnesTotal()							             
-	//										Extrant : retourne le nombre de 
-	//											client total 
-	//											qui a été servi.
+	//									ObtenirNbPersonnesTotal()							             
+	//					Extrant : retourne le nombre de client total qui a été servi.
 	//
 	////////////////////////////////////////////////////////////////////////////////
 	int    ObtenirNbPersonnesTotal() const;
 	////////////////////////////////////////////////////////////////////////////////
-	//												ObtenirNbGroupesTotal()							             
-	//										Extrant : retourne le nombre de
-	//											groupe qui a été servi
+	//										ObtenirNbGroupesTotal()							             
+	//							Extrant : retourne le nombre de groupe qui a été servi
 	//
 	////////////////////////////////////////////////////////////////////////////////
 	int    ObtenirNbGroupesTotal() const;
 	////////////////////////////////////////////////////////////////////////////////
-	//												MettreEnMajuscules()							             
-	//										Intrant : une chaine String
-	//										Extrant : la même chaine mais en majuscule
-	//										mettre le string passé en caractère 
-	//											en majuscule, pour verifier si les noms sont pareils
+	//										MettreEnMajuscules()							             
+	//								Intrant : une chaine String
+	//								Extrant : la même chaine mais en majuscule
+	//								mettre le string passé en caractère en majuscule,
+	//								pour verifier si les noms sont pareils
 	//
 	////////////////////////////////////////////////////////////////////////////////
 	string  MettreEnMajuscules(string nom) const;
 	////////////////////////////////////////////////////////////////////////////////
-	//												EstLeMemeNom()							             
-	//										Intrant : -le pointeur du client
-	//												  -le nom
-	//												  -le nombre de personne
-	//										Extrant : si le client est pareil
-	//											que celui de l'instance. 
-	//										vérifie si le client passé en parametre
-	//											et le client de l'instance sont pareil
+	//										EstLeMemeNom()							             
+	//								Intrant : -le pointeur du client
+	//										  -le nom
+	//										  -le nombre de personne
+	//								Extrant : si le client est pareil que celui de l'instance. 
+	//								vérifie si le client passé en parametre
+	//								et le client de l'instance sont pareil
 	//
 	////////////////////////////////////////////////////////////////////////////////
 	bool EstLeMemeNom(ClientsEnAttente * p, string nom, int nbPersonnes) const;
 	////////////////////////////////////////////////////////////////////////////////
-	//												Ajouter()							             
-	//										Intrant : Le client a mettre en file. 	 
-	//										Ajoute un nouveau client dans
-	//											la file d'attente
+	//										Ajouter()							             
+	//								Intrant : Le client a mettre en file. 	 
+	//								Ajoute un nouveau client dans la file d'attente
 	//
 	////////////////////////////////////////////////////////////////////////////////
 	void	Ajouter(ClientsEnAttente::Client clientAMettreEnFile);
 	////////////////////////////////////////////////////////////////////////////////
-	//												Retirer()							             
-	//										Intrant : -le nombre de place de la 
-	//														réservation.
-	//												  -la/les section(s) du client.
-	//										assigner un groupe a une table.
+	//										Retirer()							             
+	//								Intrant : -le nombre de place de la	réservation.
+	//										  -la/les section(s) du client.
+	//								assigner un groupe a une table.
 	//
 	////////////////////////////////////////////////////////////////////////////////
 	ClientsEnAttente::Client Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable);
 	////////////////////////////////////////////////////////////////////////////////
-	//												Retirer()							             
-	//										Intrant : -le nom du client
-	//												  -le nombre de personne
-	//										Extrant : si le client a retirer existe. 
-	//										retirer un groupe de la file.
+	//										Retirer()							             
+	//								Intrant : -le nom du client
+	//										  -le nombre de personne
+	//								Extrant : si le client a retirer existe. 
+	//								retirer un groupe de la file.
 	//
 	////////////////////////////////////////////////////////////////////////////////
 	bool	Retirer(string nomClient, int nbPersonnes);
 	////////////////////////////////////////////////////////////////////////////////
-	//												GetClient()							             
-	//										Intrant : l'indice du client
-	//										Extrant : la chaine de caractère du client	 
-	//										retourne un client
+	//										GetClient()							             
+	//								Intrant : l'indice du client
+	//								Extrant : la chaine de caractère du client	 
+	//								retourne un client
 	//
 	////////////////////////////////////////////////////////////////////////////////
 	string	GetClient(int indice) const;
 	////////////////////////////////////////////////////////////////////////////////
-	//												EstVide()							             
-	//										Intrant : 	Extrant : 	 
-	//	verifie si la file est vide
+	//										EstVide()							             
+	//								Extrant : si la chaine est vide
+	//								verifie si la file est vide
+	//
 	////////////////////////////////////////////////////////////////////////////////
 	bool	EstVide() const;
 	////////////////////////////////////////////////////////////////////////////////
-	//												VérifierSiPrésent()							             
-	//										Intrant : 	Extrant : 	 
-	//	Méthode qui vérifie si un nom est dans la liste
+	//										VérifierSiPrésent()							             
+	//								Intrant : -le nom du client
+	//										  -le nombre de personne
+	//								Extrant : si le client est présente	dans la liste 
+	//								Méthode qui vérifie si un nom est dans la liste
+	//
 	////////////////////////////////////////////////////////////////////////////////
 	bool   VérifierSiPrésent(string nom, int nbPersonnes) const;
 	////////////////////////////////////////////////////////////////////////////////
-	//												AfficherSection()							             
-	//										Intrant : 	Extrant : 	 
-	//	Pour afficher le choix de section
+	//										AfficherSection()							             
+	//								Intrant : le ID de la section
+	//								Extrant : le string de la section a 
+	//								afficher Pour afficher le choix de section
+	//
 	////////////////////////////////////////////////////////////////////////////////
 	string AfficherSection(int i) const;
 	////////////////////////////////////////////////////////////////////////////////
-	//												ReduireBoucle()							             
-	//										Intrant : 	Extrant : 	 
-	//	
+	//										ReduireBoucle()							             
+	//						Intrant : -la reference du noeud
+	//								  -la reference de si il est trouver
+	//								  -la reference du meilleurs choix de noeud
+	//								  -la reference de l'indice du nombre de place
+	//								  -la reference du vecteur de section choisi
+	//						determine si le noeud contient les section demandées
+	//
 	////////////////////////////////////////////////////////////////////////////////
 	void ReduireBoucle(ClientsEnAttente * & pTemporaire, bool & trouver, ClientsEnAttente * & meilleursChoix, int & i, Section & sectionDeLaTable);
 };
