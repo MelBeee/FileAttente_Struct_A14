@@ -1,9 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //								FileAttente.h									               //
 //				  Fait par Mélissa Boucher et Xavier Brosseau				         //
-//							Créé le 29 octobre 2014							               //
-//						Derniere modif 16 novembre 2014						            //
-//																		                        //
+//			Créé le 29 octobre 2014,	Derniere modif 16 novembre 2014			   //
 //			Déclaration de la classe FileAttente qui stock le 1er et dernier		//
 //			clients en attente. Les méthodes utilisés sont fait pour modififer	//
 //			la file et afficher la file.														//

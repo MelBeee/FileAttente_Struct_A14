@@ -1,9 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //								      ClientsEnAttente.h								      //
 //				      Fait par Mélissa Boucher et Xavier Brosseau				      //
-//							      Créé le 29 octobre 2014							         //
-//						      Derniere modif 16 novembre 2014						      //
-//																		                        //
+//			Créé le 29 octobre 2014,	Derniere modif 16 novembre 2014			   //
 //			Déclaration de la classe ClientsEnAttente qui permet de créer        //
 //       des clients a ajouter dans la file d'attente. Structure Client       //
 ////////////////////////////////////////////////////////////////////////////////
@@ -15,15 +13,11 @@
 #include <sstream>
 #include <vector>
 using namespace std;
-////////////////////////////////////////////////////////////////////////////////
-//								      enum Section					                     //
-//		      enumeration pour les choix de sections que l'utilisateur a        //
-////////////////////////////////////////////////////////////////////////////////
-enum Section
+
+enum Section // enumeration pour les choix de sections que l'utilisateur a
 {
 	TerrasseNonFumeur = 1, TerrasseFumeur = 10, SalleManger = 100
 };
-
 ////////////////////////////////////////////////////////////////////////////////
 //								Class ClientsEnAttente							        	   //
 ////////////////////////////////////////////////////////////////////////////////
@@ -36,79 +30,45 @@ public:
 		int nombreDePersonnes;
 		vector<Section> sectionChoisis;
 	};
-	////////////////////////////////////////////////////////////////////////////////
-	//								 ConstructeurParamétrique										//
-	//	Intrants: Nom du client, nombre de personne a table et les sections voulus //
-	//		      Permet de créer un ClientsEnAttente avec des valeurs demandées    //
-	////////////////////////////////////////////////////////////////////////////////
+	//	Intrants: Nom du client, nombre de personne a table et les sections voulus
+	// Permet de créer un ClientsEnAttente avec des valeurs demandées
 	ClientsEnAttente(string nom, int nbPersonne, vector<Section> sections);
-	////////////////////////////////////////////////////////////////////////////////
-	//									MutateurSetPrécédent()				                  //
-	//					Intrants: un pointeur sur un Client Extrants: Aucun				//
-	//		   Permet d'initialisé le Client précédant a notre instance de client	//
-	////////////////////////////////////////////////////////////////////////////////
+	//	Intrants: un pointeur sur un Client Extrants: Aucun
+	//	Permet d'initialisé le Client précédant a notre instance de client
 	void SetPrécédent(ClientsEnAttente * p);
-	////////////////////////////////////////////////////////////////////////////////
-	//									MutateurSetSuivant()					                  //
-	//					Intrants: un pointeur sur un Client Extrants: Aucun				//
-	//		   Permet d'initialisé le Client suivant a notre instance de client		//
-	////////////////////////////////////////////////////////////////////////////////
+	//	Intrants: un pointeur sur un Client Extrants: Aucun
+	//	Permet d'initialisé le Client suivant a notre instance de client
 	void SetSuivant(ClientsEnAttente *p);
-	////////////////////////////////////////////////////////////////////////////////
-	//										MutateurSetClient()					               //
-	//							Intrants: un Client Extrants: Aucun								//
-	//						Permet de "setter" les valeurs d'un client						//
-	////////////////////////////////////////////////////////////////////////////////
+	// Intrants: un Client Extrants: Aucun
+	//	Permet de "setter" les valeurs d'un client
 	void SetClient(Client c);
-	////////////////////////////////////////////////////////////////////////////////
-	//									AccesseursGetPrécédent()			                  //
-	//					Intrants: Aucun Extrants: un pointeur sur un Client				//
-	//		   Permet d'obtenir le pointeur sur le client précédent celui demandé	//
-	////////////////////////////////////////////////////////////////////////////////
+	//	Intrants: Aucun Extrants: un pointeur sur un Client
+	//	Permet d'obtenir le pointeur sur le client précédent celui demandé
 	ClientsEnAttente * GetPrécédent() const;
-	////////////////////////////////////////////////////////////////////////////////
-	//									AccesseurGetSuivant()				                  //
-	//					Intrants: Aucun Extrants: un pointeur sur un Client				//
-	//		   Permet d'obtenir le pointeur sur le client suivant celui demandé		//
-	////////////////////////////////////////////////////////////////////////////////
+	//	Intrants: Aucun Extrants: un pointeur sur un Client
+	//	Permet d'obtenir le pointeur sur le client suivant celui demandé
 	ClientsEnAttente * GetSuivant() const;
-	////////////////////////////////////////////////////////////////////////////////
-	//												GetNom()						                  //
-	//						Intrants: Aucun Extrants: string du nom du client				//
-	//								Permet d'obtenir le nom du client							//
-	////////////////////////////////////////////////////////////////////////////////
+	//	Intrants: Aucun Extrants: string du nom du client
+	//	Permet d'obtenir le nom du client
 	string GetNom() const;
-	////////////////////////////////////////////////////////////////////////////////
-	//										GetNombrePersonne()				                  //
-	//						Intrants: Aucun Extrants: int du nombre de personne			//
-	//								Permet d'obtenir le nombre de personne						//
-	////////////////////////////////////////////////////////////////////////////////
+	// Intrants: Aucun Extrants: int du nombre de personne
+	//	Permet d'obtenir le nombre de personne	
 	int GetNombrePersonne() const;
-	////////////////////////////////////////////////////////////////////////////////
-	//									GetClientSection()					                  //
-	//					Intrants: Aucun Extrants: vector des sections demandées			//
-	//					Permet d'obtenir les sections que le client a demandées			//
-	////////////////////////////////////////////////////////////////////////////////
+	//	Intrants: Aucun Extrants: vector des sections demandées
+	//	Permet d'obtenir les sections que le client a demandées
 	vector<Section> GetClientSection() const;
-	////////////////////////////////////////////////////////////////////////////////
-	//												GetClient()											//
-	//								Intrants: Aucun Extrants: Client								//
-	//									Permet d'obtenir un client									//
-	////////////////////////////////////////////////////////////////////////////////
+	//	Intrants: Aucun Extrants: Client
+	//	Permet d'obtenir un client
 	Client GetClient() const;
-	////////////////////////////////////////////////////////////////////////////////
-	//											ChoixSection()					                  //
-	//			Intrants: Client, et une section Extrant : bool Présent					//
-	//			Permet de parcourir le vector de section du client pour					//
-	//			comparé avec la section demandé. Si la section y est						//
-	//						présente, retourne vrai sinon, faux									//
-	////////////////////////////////////////////////////////////////////////////////
+	//	Intrants: Client, et une section Extrant : bool Présent
+	//	Permet de parcourir le vector de section du client pour comparé avec la 
+	// section demandé. Si la section y est présente, retourne vrai sinon, faux
 	bool ChoixSection(ClientsEnAttente c, Section s);
+
 private:
 	Client clientsTable_;				// Instance de struct Client
 	ClientsEnAttente * pPrécédent_;  // Chaque noeud retient l'adresse de celui qui le précède
 	ClientsEnAttente * pSuivant_;    // et de celui qui le suit
-
 };
 
 #endif

@@ -1,9 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //				   			      Source.cpp									            //
 //				   Fait par Mélissa Boucher et Xavier Brosseau				         //
-//						      Créé le 29 octobre 2014							            //
-//						   Derniere modif 16 novembre 2014						         //
-//																		                        //
+//			Créé le 29 octobre 2014,	Derniere modif 16 novembre 2014			   //
 //			Menu utilisateur servant à tester les différentes fonctions		      //
 //			de la file d'attente dans le cadre d'une utilisateur d'une		      //	 
 //			file de clients et d'attribuation de table dans un restaurant.	      //
