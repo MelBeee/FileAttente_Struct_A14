@@ -63,7 +63,7 @@ bool DemanderQuiEstClient(string & nom, int & nbre, FileAttente & laFile);
 //	Afficher la file d'attente en entier
 void AfficherLaFileEnEntier(ostream & out, FileAttente & laFile);
 //	Intrant : Aucun		Extrant : Aucun
-// Fonctions de paresseux ! :) Affiche une ligne de = pour séparer
+// Fonctions qui demande a l'utilsiateur un choix et qui execute selon le choix
 bool SwitchMenu(bool quitter, FileAttente & laFile, ClientsEnAttente::Client nouveau);
 //	Intrant : laFile et le rang		Extrant : bool
 //	Fonction qui demande un rang a l'utilisateur et retourne si il existe
