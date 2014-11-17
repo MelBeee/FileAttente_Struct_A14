@@ -86,11 +86,11 @@ void FileAttente::Afficher(ostream & out) const
 	if (pTemporaire == nullptr)
 		throw exception(" La file d'attente est vide ");
 
-	while (pTemporaire != 0)
+	while (pTemporaire != 0) // tant qu'on arrive pas a un pointeur null
 	{
-		cout << GetClient(indice) << endl;
-		indice++;
-		pTemporaire = pTemporaire->GetSuivant();
+		cout << GetClient(indice) << endl;  // on affiche un client
+		indice++; 
+		pTemporaire = pTemporaire->GetSuivant(); // on affecte au client suivant
 	}
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -100,12 +100,12 @@ void FileAttente::Ajouter(ClientsEnAttente::Client clientAMettreEnFile)
 		clientAMettreEnFile.nombreDePersonnes,
 		clientAMettreEnFile.sectionChoisis);
 
-	if (EstVide())
+	if (EstVide()) // si la file est vide, il n'y a pas de client
 	{
 		SetPremier(pNouveau);
 		SetDernier(pNouveau);  // ajouté quand on a un pointe
 	}
-	else
+	else // si la file est rempli, il faut changer le dernier client
 	{
 		pNouveau->SetPrécédent(GetDernier());
 		GetDernier()->SetSuivant(pNouveau);
@@ -121,9 +121,8 @@ bool FileAttente::Retirer(string nomClient, int nbPersonnes)
 	bool existe = false;
 
 	if (pTemporaire == nullptr)
-	{
 		throw exception("La liste est vide");
-	}
+
 	if (VérifierSiPrésent(nomClient, nbPersonnes))
 	{
 		while (pTemporaire != nullptr && !existe)
@@ -164,7 +163,7 @@ bool FileAttente::Retirer(string nomClient, int nbPersonnes)
 			}
 			SetNbPersonnes(ObtenirNbPersonnes() - pTemporaire->GetNombrePersonne());
 			SetNbGroupes(ObtenirNbGroupes() - 1);
-			delete pTemporaire;
+			delete pTemporaire; // tjrs delete ! :D 
 		}
 	}
 	return existe;
@@ -174,12 +173,12 @@ string FileAttente::GetClient(int indice) const
 {
 	ClientsEnAttente * pBalayage = GetPremier();
 	int compteur = 1;
-	while (compteur != indice)
+	while (compteur != indice) // on va chercher le client a l'indice passé en parametre 
 	{
 		pBalayage = pBalayage->GetSuivant();
 		compteur++;
 	}
-
+   // et on affiche ses informations
 	string nom = " Nom de la réservation : " + pBalayage->GetNom();
 	string nombre = " Nombre de personne : " + to_string(pBalayage->GetNombrePersonne());
 	string section = " Sections possibles : |";
@@ -204,12 +203,13 @@ string FileAttente::AfficherSection(int i) const
 ////////////////////////////////////////////////////////////////////////////////
 bool FileAttente::EstVide() const
 {
-	return GetPremier() == 0;
+	return GetPremier() == 0; 
 }
 ////////////////////////////////////////////////////////////////////////////////
 bool FileAttente::VérifierSiPrésent(string nom, int nbPersonnes) const
 {
 	ClientsEnAttente * pBalayage = GetPremier();
+   // vérifie tout les clients de la file pour voir si le client demandé existe vraiment.
 	while (pBalayage != nullptr && !EstVide() && !EstLeMemeNom(pBalayage, nom, nbPersonnes))
 	{
 		pBalayage = pBalayage->GetSuivant();
@@ -234,28 +234,28 @@ string FileAttente::MettreEnMajuscules(string nom) const
 ClientsEnAttente::Client FileAttente::Retirer(int nbPlacesDeLaTable, Section sectionDeLaTable)
 {
 	ClientsEnAttente * pTemporaire = GetPremier();
-	ClientsEnAttente * meilleursChoix = nullptr;
+	ClientsEnAttente * meilleursChoix = nullptr; // meilleur groupe pour la combinaison demandé
 	bool trouver = false;
 	ClientsEnAttente::Client c;
 
-	for (int i = nbPlacesDeLaTable; i > 0 && !trouver; i--)
-	{
+	for (int i = nbPlacesDeLaTable; i > 0 && !trouver; i--)  // on commence par notre nbdeplace demandé,
+	{                                                        //  puis a chaque tour de boucle on va voir les groupes un peu plus petit
 		pTemporaire = GetPremier();
-		while (pTemporaire != nullptr && !trouver)
+		while (pTemporaire != nullptr && !trouver) // on parcours tout les clients de la file
 		{
 			ReduireBoucle(pTemporaire, trouver, meilleursChoix, i, sectionDeLaTable);
-			pTemporaire = pTemporaire->GetSuivant();
+			pTemporaire = pTemporaire->GetSuivant(); // va chercher le suivant
 		}
 	}
 
 	if (!trouver)
 		throw exception("Pas de groupe correspondant aux demandes");
-
+   // affiche et "créer" un client temporaire pour le delete
 	cout << " Bonne appetit " << meilleursChoix->GetNom() << endl;
 	c.nombreDePersonnes = meilleursChoix->GetNombrePersonne();
 	c.nomReservation = meilleursChoix->GetNom();
 	c.sectionChoisis = meilleursChoix->GetClientSection();
-
+   // delete le client assigner a une table
 	Retirer(meilleursChoix->GetNom(), meilleursChoix->GetNombrePersonne());
 
 	SetNbGroupesTotal(ObtenirNbGroupesTotal() + 1);
@@ -265,13 +265,13 @@ ClientsEnAttente::Client FileAttente::Retirer(int nbPlacesDeLaTable, Section sec
 ////////////////////////////////////////////////////////////////////////////////
 void FileAttente::ReduireBoucle(ClientsEnAttente * & pTemporaire, bool & trouver, ClientsEnAttente * & meilleursChoix, int & i, Section & sectionDeLaTable)
 {
-	if (pTemporaire->GetNombrePersonne() == i)
+	if (pTemporaire->GetNombrePersonne() == i) // verifie si le nbre de personne du groupe est egale a notre compteur
 	{
-		for (unsigned int j = 0; j < pTemporaire->GetClientSection().size() && !trouver; j++)
+		for (unsigned int j = 0; j < pTemporaire->GetClientSection().size() && !trouver; j++) // on parcours le vecteur de nos sections
 		{
-			trouver = (AfficherSection(pTemporaire->GetClientSection().at(j)) == AfficherSection(sectionDeLaTable));
+			trouver = (AfficherSection(pTemporaire->GetClientSection().at(j)) == AfficherSection(sectionDeLaTable)); // pour comparer avec la section demandé
 			if (trouver)
-				meilleursChoix = pTemporaire;
+				meilleursChoix = pTemporaire; // attribut le meilleur choix jusqu'a maintenant 
 		}
 	}
 }

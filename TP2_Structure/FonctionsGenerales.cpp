@@ -15,9 +15,9 @@ void Attendre()
 ////////////////////////////////////////////////////////////////////////////////
 void AfficherLigneSeparation()
 {
-	for (int i = 0; i < 50; i++) // cout de paresseux :)
+	for (int i = 0; i < 50; i++) 
 	{
-		cout << "=";
+		cout << "="; // cout de paresseux :)
 	}
 	cout << endl;
 }
@@ -57,13 +57,13 @@ int MenuFaireChoix()
       << " 5. Afficher la file d'attente en entier " << endl
       << " 6. Quitter le programme " << endl;
    AfficherLigneSeparation();
-   // Faire un choix, recommencez tant que le caractère entré n'est pas un chiffre
-   // entre 1 et 6 et pas un caractère
-   do
+
+
+   do   // Faire un choix, recommencez tant que le caractère entré n'est pas un chiffre
    {
       cout << " Faites votre choix : ";
       GetInt(Choix);
-   } while (Choix < 1 || Choix > 6);
+   } while (Choix < 1 || Choix > 6);   // entre 1 et 6 et pas un caractère
 
    system("cls");
    return Choix;
@@ -122,9 +122,8 @@ void DemanderInfoClient(string& nom, int& nbre, int& sections)
          cout << " Nombre invalide, recommencez " << endl;
    } while (nbre < 1);  // tant qu'il rentre un nombre invalide
 
-   // demander les sections a l'utilisateur
    cout << " Est-ce que vous aimeriez manger dans les sections suivantes (o/n) " << endl;
-   sections = DeterminerSection();
+   sections = DeterminerSection(); // demander les sections a l'utilisateur
 
    Attendre();
 }
@@ -133,7 +132,6 @@ int DeterminerSection()
 {
    char section[3];   // tableau de char pour stocker les sections que le client veux
    int sections = 0;
-   // string d'affichage
    string nonfumeur = "Terrasse NonFumeur ? ";
    string fumeur = "Terrasse Fumeur ? ";
    string sallemanger = "Salle à Manger ? ";
@@ -303,7 +301,7 @@ bool DemanderRang(FileAttente & laFile, int & rang)
 	cin >> rang;
 
 	if (rang > 0 && rang <= laFile.ObtenirNbGroupes())
-		estLa = true; 
+		estLa = true;  // si le rang demander est dans les limites de notre file 
 
 	return estLa; 
 }

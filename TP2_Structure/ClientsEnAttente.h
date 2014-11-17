@@ -61,8 +61,7 @@ public:
 	//	Permet d'obtenir un client
 	Client GetClient() const;
 	//	Intrants: Client, et une section Extrant : bool Présent
-	//	Permet de parcourir le vector de section du client pour comparé avec la 
-	// section demandé. Si la section y est présente, retourne vrai sinon, faux
+	//	Permet de parcourir le vector de section du client pour comparé avec la section demandé. Si la section y est présente, retourne vrai sinon, faux
 	bool ChoixSection(ClientsEnAttente c, Section s);
 
 private:

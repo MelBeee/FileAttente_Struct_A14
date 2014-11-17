@@ -57,8 +57,7 @@ public:
 	//	mettre le string passé en parametre en majuscule, pour verifier si les noms sont pareils
 	string  MettreEnMajuscules(string nom) const;					             
 	//	Intrant : -le pointeur du client  -le nom  -le nombre de personne
-	//	Extrant : si le client est pareil que celui de l'instance. vérifie si le client 
-	// passé en parametre et le client de l'instance sont pareil
+	//	Extrant : si le client est pareil que celui de l'instance. vérifie si le client passé en parametre et le client de l'instance sont pareil
 	bool EstLeMemeNom(ClientsEnAttente * p, string nom, int nbPersonnes) const;			             
 	//	Intrant : Le client a mettre en file. 	 
 	//	Ajoute un nouveau client dans la file d'attente
@@ -80,8 +79,7 @@ public:
 	//	Méthode qui vérifie si un nom est dans la liste
 	bool   VérifierSiPrésent(string nom, int nbPersonnes) const;					             
 	//	Intrant : le ID de la section
-	//	Extrant : le string de la section a 
-	//	afficher Pour afficher le choix de section
+	//	Extrant : le string de la section a afficher Pour afficher le choix de section
 	string AfficherSection(int i) const;					             
 	//	Intrant : -la reference du noeud
 	//				 -la reference de si il est trouver
